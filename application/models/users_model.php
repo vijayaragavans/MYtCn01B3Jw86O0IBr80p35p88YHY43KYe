@@ -310,12 +310,13 @@ class Users_Model extends CI_Model
     }
 
     
-    function Total_Visits( $api_key )
+    function Total_Visits( $api_key, $start_dt, $end_dt   )
     {
     
     	$this->db->select("count(traffic_id) as total_visits");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
+        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         $this->db->limit(1);
         $query = $this->db->get();
         
@@ -330,23 +331,47 @@ class Users_Model extends CI_Model
     }
     
     
-    function Unique_Visits( $api_key )
+    function Unique_Visits( $api_key, $start_dt, $end_dt   )
     {
-    	$this->db->select("count(traffic_id) as unique_visits");
+    	$this->db->select("count(1) as unique_visits");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
-		$this->db->group_by('traffic.user_ip');
+        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        $this->db->group_by('traffic.user_ip');
         $query = $this->db->get();
         
 		$db_results = $query->result();	
 		
 		 if (count($db_results) > 0 )
         {   
-        	return $db_results[0];
-        } else {            
+        	return $db_results;
+        } else {
         	 return false;
         } 
     
+    }
+    
+    
+    function Latest_Hits( $api_key, $start_dt, $end_dt  )
+    {
+    	
+    	$this->db->select("*");
+        $this->db->from(TOOL_DB_NAME.'.traffic');
+        $this->db->where(array('traffic.user_api_key'=>$api_key));
+        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        $this->db->group_by('traffic.user_ip');
+        $this->db->order_by('traffic.data_created_on', 'DESC');
+        $this->db->limit(10);
+        $query = $this->db->get();
+        
+		$db_results = $query->result();	
+		
+		 if (count($db_results) > 0 )
+        {   
+        	return $db_results;
+        } else {
+        	 return false;
+        } 
     }
 }
 /* End of file users_model.php */

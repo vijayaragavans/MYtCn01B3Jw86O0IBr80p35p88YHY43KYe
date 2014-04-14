@@ -244,26 +244,37 @@ class Users
     
     
     
-    public function Total_Visits( $user_api_key )
+    public function Total_Visits( $user_api_key, $start_dt, $end_dt   )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Total_Visits( $user_api_key );
+    	$response = $this->_CI->users_model->Total_Visits( $user_api_key, $start_dt, $end_dt   );
     	
     	return $response;
     }
     
     
     
-    public function Unique_Visits( $api_key )
+    public function Unique_Visits( $api_key, $start_dt, $end_dt   )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Unique_Visits( $api_key );
+    	$response = $this->_CI->users_model->Unique_Visits( $api_key, $start_dt, $end_dt   );
     	
     	return $response;
+    }
+    
+    
+    public function Latest_Hits( $api_key, $start_dt, $end_dt  )
+    {
+    	
+    	$response = false;
+    	
+    	$response = $this->_CI->users_model->Latest_Hits( $api_key, $start_dt, $end_dt  );
+    	
+    	return $response;    	
     }
     
 }

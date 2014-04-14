@@ -35,7 +35,8 @@ class Home extends CI_Controller {
 	{
 		
 		$user_info = false;
-
+		
+		
 		$user_data = $this->session->userdata('mystat');
 		
 	   	$user_api_key = $user_data['user_api_key'];
@@ -51,11 +52,10 @@ class Home extends CI_Controller {
 			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
 
 			$start_dt = date('Y-m-d', $d1);
-			
 			$end_dt = date('Y-m-d');
 			
-	   		$this->input->set_cookie('start', Date('MM d Y', $start_dt )) ;
-	   		$this->input->set_cookie('end', Date('MM d Y', $end_dt )) ;
+			setcookie('start', date('M d Y', strtotime($start_dt) ));
+			setcookie('end', date('M d Y', strtotime($end_dt) ));
 	   }
 	   
 	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt  );
@@ -64,9 +64,11 @@ class Home extends CI_Controller {
 	   
 	   $count_repeat = $this->users->Count_Repeat( $user_api_key );
 	   	   
-	   $total_visits = $this->users->Total_Visits( $user_api_key );		//	Total Visits Count
+	   $total_visits = $this->users->Total_Visits( $user_api_key, $start_dt, $end_dt );		//	Total Visits Count
 	   
-	   $unique_visits = $this->users->Unique_Visits( $user_api_key );		//	Unique Visits Count
+	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $start_dt, $end_dt );		//	Unique Visits Count
+	   
+	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt );
 	   
 	   $visits_details = '';
 	   $i = 0;
@@ -94,10 +96,11 @@ class Home extends CI_Controller {
 		   $this->mysmarty->assign('user', $user_data);
 		   $this->mysmarty->assign('visits', $visits_details);
 	   	   $this->mysmarty->assign('browsers', $browser);
-	   	   $this->mysmarty->assign('unique_visits', $unique_visits->unique_visits);
-	   	   $this->mysmarty->assign('total_visits', $total_visits->total_visits);
-		   $this->mysmarty->assign('count_unique', $count_unique);		   
-		   $this->mysmarty->assign('count_repeat', $count_repeat);		   
+	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
+	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
+		   $this->mysmarty->assign('count_unique', $count_unique);
+		   $this->mysmarty->assign('count_repeat', $count_repeat);
+		   $this->mysmarty->assign('latest_events', $latest_events);
 		   $this->mysmarty->assign('active_user_count', $active_user_count);
 	  	   $this->mysmarty->assign('filename',$file);            
 		   $this->mysmarty->display('home.html'); 
@@ -289,6 +292,51 @@ class Home extends CI_Controller {
     	
     }
 	
+    
+    
+    
+    public function Get_Latest_Events( $user_api_key, $start_dt, $end_dt )
+    {
+    	
+    	$latest_hits = 	$this->users->Latest_Hits( $user_api_key, $start_dt, $end_dt  );		//	Unique Visits Count
+    	
+    	$j = 1;
+    	foreach( $latest_hits as $hits )
+    	{
+    		$output[$j]['user_ip'] = $hits->user_ip; 	
+    		$output[$j]['user_country'] = $hits->user_country; 	
+    		$output[$j]['time_ago'] = $this->ago( strtotime( $hits->data_created_on ) ); 	
+    		
+    		$j++;
+    	}
+    	
+    	
+    	return $output;
+    	
+    }
+    
+    public function ago($time)
+	{
+	   $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+	   $lengths = array("60","60","24","7","4.35","12","10");
+	
+	   $now = time();
+	
+	       $difference     = $now - $time;
+	       $tense         = "ago";
+	
+	   for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+	       $difference /= $lengths[$j];
+	   }
+	
+	   $difference = round($difference);
+	
+	   if($difference != 1) {
+	       $periods[$j].= "s";
+	   }
+	
+	   return "$difference $periods[$j] ago ";
+	}
 
 }
 
