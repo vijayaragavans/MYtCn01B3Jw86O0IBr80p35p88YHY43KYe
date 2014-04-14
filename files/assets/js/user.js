@@ -1,7 +1,7 @@
 $(document).ready(function() { 
 		
-	var local_dir = "http://localhost/myanalytics/";
-
+	//var local_dir = "http://localhost/myanalytics/";
+	var local_dir = location.protocol + "//" + document.domain + "/;
 	
 	$("#logForm").validate({
 		rules: {
