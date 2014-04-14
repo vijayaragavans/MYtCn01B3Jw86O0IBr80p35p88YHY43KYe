@@ -3,8 +3,6 @@ $(document).ready(function() {
 	//var local_dir = "http://localhost/myanalytics/";
 	var local_dir = location.protocol + "//" + document.domain + "/";
 	
-	alert(local_dir);
-	return false;
 	$("#logForm").validate({
 		rules: {
 		input_password: {
