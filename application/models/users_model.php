@@ -355,11 +355,11 @@ class Users_Model extends CI_Model
     function Latest_Hits( $api_key, $start_dt, $end_dt  )
     {
     	
-    	$this->db->select("*");
+    	$this->db->select("DISTINCT(user_ip) as ip, *");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
-        $this->db->group_by('traffic.user_ip');
+        //$this->db->group_by('traffic.user_ip');
         $this->db->order_by('traffic.data_created_on', 'DESC');
         $this->db->limit(10);
         $query = $this->db->get();

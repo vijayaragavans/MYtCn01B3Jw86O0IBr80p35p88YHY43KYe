@@ -303,7 +303,7 @@ class Home extends CI_Controller {
     	$j = 1;
     	foreach( $latest_hits as $hits )
     	{
-    		$output[$j]['user_ip'] = $hits->user_ip; 	
+    		$output[$j]['user_ip'] = $hits->ip; 	
     		$output[$j]['user_country'] = $hits->user_country; 	
     		$output[$j]['time_ago'] = $this->ago( strtotime( $hits->data_created_on ) ); 	
     		
