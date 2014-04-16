@@ -300,9 +300,6 @@ class Home extends CI_Controller {
     	
     	$latest_hits = 	$this->users->Latest_Hits( $user_api_key, $start_dt, $end_dt  );		//	Unique Visits Count
     	
-    	var_dump( $latest_hits );
-    	die;
-    	
     	$j = 1;
     	foreach( $latest_hits as $hits )
     	{
