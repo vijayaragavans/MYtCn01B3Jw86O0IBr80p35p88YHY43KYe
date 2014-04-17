@@ -396,6 +396,8 @@ class Users_Model extends CI_Model
         } 
     	
     }
+    
+    
 }
 /* End of file users_model.php */
 ?>

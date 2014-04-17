@@ -21,6 +21,7 @@ class Home extends CI_Controller {
         $this->load->helper(array('form', 'url', 'cookie'));           
         $this->load->library('core/users');  
         $this->load->library('core/sh_behaviour');          
+        $this->load->library('core/sh_country');          
         $this->config->load('mail_vars', TRUE);
         
         $this->current_date = date('Y-m-d');
@@ -62,7 +63,7 @@ class Home extends CI_Controller {
 			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
 	   	
 	   }
-	   
+
 	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt  );
 	   
 	   $count_unique = $this->users->Count_Unique( $user_api_key );
@@ -79,7 +80,12 @@ class Home extends CI_Controller {
 	   
 	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
 	   
-	   print_r($browser_chrome);
+	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
+	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
+	   
+	   print_r($top_1_country);
 	   
 	   $visits_details = '';
 	   $i = 0;
@@ -107,9 +113,10 @@ class Home extends CI_Controller {
 		   $this->mysmarty->assign('user', $user_data);
 		   $this->mysmarty->assign('visits', $visits_details);
 	   	   $this->mysmarty->assign('browsers', $browser);
+	   	   $this->mysmarty->assign('top_1_country', $top_1_country);
+	   	   $this->mysmarty->assign('top_2_country', $top_2_country);
 	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
-	   	   
 	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
 		   $this->mysmarty->assign('count_unique', $count_unique);

@@ -281,12 +281,12 @@ class Users
     
     public function Get_Browser( $browser, $api_key, $start_dt, $end_dt )
     {
-    	
+
     	$response = false;
-    	
+
     	$response = $this->_CI->users_model->Get_Browser( $browser, $api_key, $start_dt, $end_dt );
-    	
-    	return $response;    	
+
+    	return $response;
     }    
     
 }
