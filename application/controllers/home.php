@@ -20,7 +20,8 @@ class Home extends CI_Controller {
         $this->load->library('form_validation');   
         $this->load->helper(array('form', 'url', 'cookie'));           
         $this->load->library('core/users');  
-        $this->load->library('core/sh_behaviour');          
+        $this->load->library('core/sh_behaviour'); 
+        $this->load->library('core/sh_language'); 
         $this->load->library('core/sh_country');          
         $this->config->load('mail_vars', TRUE);
         
@@ -84,6 +85,10 @@ class Home extends CI_Controller {
 	   
 	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
 	   
+	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
+	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
 	   $visits_details = '';
 	   $i = 0;
 	   $Mon = '';
@@ -112,6 +117,8 @@ class Home extends CI_Controller {
 	   	   $this->mysmarty->assign('browsers', $browser);
 	   	   $this->mysmarty->assign('top_1_country', $top_1_country);
 	   	   $this->mysmarty->assign('top_2_country', $top_2_country);
+	   	   $this->mysmarty->assign('top_1_language', $top_1_language);
+	   	   $this->mysmarty->assign('top_2_language', $top_2_language);
 	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
 	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
