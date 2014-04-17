@@ -73,7 +73,13 @@ class Home extends CI_Controller {
 	   
 	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $start_dt, $end_dt );		//	Unique Visits Count
 	   
-	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt );
+	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt );	//	Latest Hits
+	   
+	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
+	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   
+	   print_r($browser_chrome);
 	   
 	   $visits_details = '';
 	   $i = 0;
@@ -101,6 +107,9 @@ class Home extends CI_Controller {
 		   $this->mysmarty->assign('user', $user_data);
 		   $this->mysmarty->assign('visits', $visits_details);
 	   	   $this->mysmarty->assign('browsers', $browser);
+	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
+	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
+	   	   
 	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
 		   $this->mysmarty->assign('count_unique', $count_unique);
