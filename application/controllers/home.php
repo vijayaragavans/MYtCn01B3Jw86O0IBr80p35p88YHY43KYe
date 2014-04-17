@@ -84,9 +84,6 @@ class Home extends CI_Controller {
 	   
 	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
 	   
-	   
-	   print_r($top_1_country);
-	   
 	   $visits_details = '';
 	   $i = 0;
 	   $Mon = '';
