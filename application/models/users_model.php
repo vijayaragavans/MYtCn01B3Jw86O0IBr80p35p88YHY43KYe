@@ -373,6 +373,29 @@ class Users_Model extends CI_Model
         	 return false;
         } 
     }
+    
+    
+    
+    function Get_Browser( $browser, $api_key, $start_dt, $end_dt )
+    {
+    	
+    	$this->db->select("count(traffic_id) as count_of_broswer, user_browser_name ");
+        $this->db->from(TOOL_DB_NAME.'.traffic');
+        $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_browser_name'=>$browser));
+        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        $this->db->limit(1);
+        $query = $this->db->get();
+        
+		$db_results = $query->result();	
+		
+		 if (count($db_results) > 0 )
+        {   
+        	return $db_results[0];
+        } else {
+        	 return false;
+        } 
+    	
+    }
 }
 /* End of file users_model.php */
 ?>
