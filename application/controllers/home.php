@@ -56,6 +56,11 @@ class Home extends CI_Controller {
 			
 			setcookie('start', date('M d Y', strtotime($start_dt) ));
 			setcookie('end', date('M d Y', strtotime($end_dt) ));
+	   }else{
+	   	
+			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
+			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
+	   	
 	   }
 	   
 	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt  );
