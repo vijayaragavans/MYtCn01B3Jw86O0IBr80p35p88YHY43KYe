@@ -56,8 +56,10 @@ class Home extends CI_Controller {
 			$start_dt = date('Y-m-d', $d1);
 			$end_dt = date('Y-m-d');
 			
-			setcookie('start', date('M d Y', strtotime($start_dt) ));
-			setcookie('end', date('M d Y', strtotime($end_dt) ));
+			$expire_time = time()+3600*24*30;
+			
+			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/' );
+			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
 	   }else{
 	   	
 			$start_dt = date('Y-m-d', strtotime( $start_dt ) );

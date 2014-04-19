@@ -556,14 +556,15 @@ function Response_Data( start , end )
 	{
 		$.removeCookie('start');
 		$.removeCookie('end');
-		$.cookie("start", start);
-		$.cookie("end", end);
+		
+		$.cookie("start", start, {path: '/'});
+		$.cookie("end", end, {path: '/'});
 		
 		window.location.reload();
 
 	}else{
-		$.cookie("start", start);
-		$.cookie("end", end);
+		$.cookie("start", start, {path: '/'});
+		$.cookie("end", end, {path: '/'});
 		window.location.reload();
 	}
 

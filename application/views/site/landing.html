@@ -213,7 +213,7 @@
 										{/foreach}
 									</ul>
 									<div class="space5"></div>
-									<a href="#" class="pull-right">View all notifications</a>										
+									<a href="{$base_url}info/all_visits/" class="pull-right">View all notifications</a>										
 									<div class="clearfix no-top-space no-bottom-space"></div>
 								</div>
 							</div>
@@ -331,28 +331,9 @@
 									</div>
 									<div id="region_statistics_content" class="hide">
 										<div class="btn-toolbar no-top-space clearfix">
-											<div class="btn-group" data-toggle="buttons-radio">
-												<button class="btn btn-mini active">Users</button><button class="btn btn-mini">Orders</button><button class="btn btn-mini">Income</button>		
-											</div>
-											<div class="btn-group pull-right">
-												<button class="btn btn-mini dropdown-t	oggle" data-toggle="dropdown">
-												Select Region 
-												<span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu">
-													<li><a href="javascript:;" id="regional_stat_world">World</a></li>
-													<li><a href="javascript:;" id="regional_stat_usa">USA</a></li>
-													<li><a href="javascript:;" id="regional_stat_europe">Europe</a></li>
-													<li><a href="javascript:;" id="regional_stat_russia">Russia</a></li>
-													<li><a href="javascript:;" id="regional_stat_germany">Germany</a></li>
-												</ul>
-											</div>
+											<a href='world.html' class='btn primary'>Entire World</a>
 										</div>
 										<div id="vmap_world" class="vmaps  chart hide"></div>
-										<div id="vmap_usa" class="vmaps chart hide"></div>
-										<div id="vmap_europe" class="vmaps chart hide"></div>
-										<div id="vmap_russia" class="vmaps chart hide"></div>
-										<div id="vmap_germany" class="vmaps chart hide"></div>
 									</div>
 								</div>
 							</div>
