@@ -195,12 +195,12 @@ class Users
     }
     
     
-    public function Count_Repeat( $user_api_key )
+    public function Count_Repeat( $user_api_key, $start_dt, $end_dt, $country, $country_code  )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Count_Repeat( $user_api_key );
+    	$response = $this->_CI->users_model->Count_Repeat( $user_api_key, $start_dt, $end_dt, $country, $country_code  );
     	
     	return $response;
     	
@@ -208,12 +208,12 @@ class Users
     
     
     
-    public function Visits( $user_api_key, $start_dt, $end_dt )
+    public function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Visits( $user_api_key, $start_dt, $end_dt );
+    	$response = $this->_CI->users_model->Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code );
     	
     	return $response;
     
@@ -244,47 +244,47 @@ class Users
     
     
     
-    public function Total_Visits( $user_api_key, $start_dt, $end_dt   )
+    public function Total_Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code  )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Total_Visits( $user_api_key, $start_dt, $end_dt   );
+    	$response = $this->_CI->users_model->Total_Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code    );
     	
     	return $response;
     }
     
     
     
-    public function Unique_Visits( $api_key, $start_dt, $end_dt   )
+    public function Unique_Visits( $api_key, $start_dt, $end_dt, $country, $country_code    )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Unique_Visits( $api_key, $start_dt, $end_dt   );
+    	$response = $this->_CI->users_model->Unique_Visits( $api_key, $start_dt, $end_dt, $country, $country_code    );
     	
     	return $response;
     }
     
     
-    public function Latest_Hits( $api_key, $start_dt, $end_dt  )
+    public function Latest_Hits( $api_key, $start_dt, $end_dt, $country, $country_code   )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Latest_Hits( $api_key, $start_dt, $end_dt  );
+    	$response = $this->_CI->users_model->Latest_Hits( $api_key, $start_dt, $end_dt, $country, $country_code   );
     	
     	return $response;    	
     }
     
     
     
-    public function Get_Browser( $browser, $api_key, $start_dt, $end_dt )
+    public function Get_Browser( $browser, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
 
     	$response = false;
 
-    	$response = $this->_CI->users_model->Get_Browser( $browser, $api_key, $start_dt, $end_dt );
+    	$response = $this->_CI->users_model->Get_Browser( $browser, $api_key, $start_dt, $end_dt, $country, $country_code  );
 
     	return $response;
     }    

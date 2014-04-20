@@ -17,13 +17,20 @@ class Language_Model extends CI_Model
 	 
     
     
-    function Top_Language( $placeholder, $api_key, $start_dt, $end_dt )
+    function Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
     	
     	$this->db->select(" count(traffic_id) as count_of_hits, user_agent_lang ");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_agent_lang !='=>'' ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         $this->db->group_by('traffic.user_agent_lang');
         $this->db->order_by('count_of_hits', DESC);
         

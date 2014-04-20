@@ -36,12 +36,12 @@ class Sh_language
     }
     
     
-    public function Top_Language( $placeholder, $api_key, $start_dt, $end_dt )
+    public function Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
 
     	$response = false;
 
-    	$response = $this->_CI->language_model->Top_Language( $placeholder, $api_key, $start_dt, $end_dt );
+    	$response = $this->_CI->language_model->Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
 
     	return $response;
     }    

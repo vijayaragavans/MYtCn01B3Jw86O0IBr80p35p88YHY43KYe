@@ -206,13 +206,21 @@ class Users_Model extends CI_Model
     }
     
     
-    function Count_Repeat($user_api_key )
+    function Count_Repeat($user_api_key, $start_dt, $end_dt, $country, $country_code  )
     {
     	
 	        $this->db->select("count(traffic.user_ip) as count_of,  user_ip");
 	        $this->db->from(TOOL_DB_NAME.'.traffic');
         	$this->db->where(array('traffic.user_api_key '=>$user_api_key ));
-	        $this->db->group_by('user_ip');	        
+	        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+	        
+	        if($country != 'all')
+	        {
+				$this->db->where('traffic.user_country =', $country);
+				$this->db->or_where('traffic.user_country_code =', $country_code); 
+	        }
+        	
+        	$this->db->group_by('user_ip');	        
 	        $this->db->having('count_of > 1');
 
 	        $query = $this->db->get();
@@ -231,13 +239,20 @@ class Users_Model extends CI_Model
     
     
     
-    function Visits( $user_api_key, $start_dt, $end_dt )
+    function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code )
     {
     	
         $this->db->select("count(traffic.user_ip) as total, DATE(traffic.data_created_on) as dates");
 	    $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key '=>$user_api_key ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         $this->db->group_by(" DATE(`data_created_on`)");
 	    $this->db->order_by("traffic.data_created_on", DESC);	        
 	    $this->db->limit(6);
@@ -310,13 +325,20 @@ class Users_Model extends CI_Model
     }
 
     
-    function Total_Visits( $api_key, $start_dt, $end_dt   )
+    function Total_Visits( $api_key, $start_dt, $end_dt, $country, $country_code    )
     {
     
     	$this->db->select("count(traffic_id) as total_visits");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         $this->db->limit(1);
         $query = $this->db->get();
         
@@ -331,12 +353,19 @@ class Users_Model extends CI_Model
     }
     
     
-    function Unique_Visits( $api_key, $start_dt, $end_dt   )
+    function Unique_Visits( $api_key, $start_dt, $end_dt, $country, $country_code    )
     {
     	$this->db->select("count(1) as unique_visits");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         $this->db->group_by('traffic.user_ip');
         $query = $this->db->get();
         
@@ -352,13 +381,20 @@ class Users_Model extends CI_Model
     }
     
     
-    function Latest_Hits( $api_key, $start_dt, $end_dt  )
+    function Latest_Hits( $api_key, $start_dt, $end_dt, $country, $country_code   )
     {
     	
     	$this->db->select("DISTINCT(user_ip) as ip, user_country, data_created_on");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         //$this->db->group_by('traffic.user_ip');
         $this->db->order_by('traffic.data_created_on', 'DESC');
         $this->db->limit(10);
@@ -376,13 +412,20 @@ class Users_Model extends CI_Model
     
     
     
-    function Get_Browser( $browser, $api_key, $start_dt, $end_dt )
+    function Get_Browser( $browser, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
     	
     	$this->db->select("count(traffic_id) as count_of_broswer, user_browser_name ");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_browser_name'=>$browser));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        if($country != 'all')
+        {
+			$this->db->where('traffic.user_country =', $country);
+			$this->db->or_where('traffic.user_country_code =', $country_code); 
+        }
+        
         $this->db->limit(1);
         $query = $this->db->get();
         

@@ -50,7 +50,7 @@ var Index = function () {
                     },
                     onRegionClick: function (element, code, region) {
                         var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                        alert(message);
+                        Country_Cookie( region,  code.toUpperCase());
                     }
                 };
 
@@ -844,3 +844,25 @@ var Index = function () {
 
 }();
 
+
+
+function Country_Cookie( country, country_code )
+{
+	
+	if($.cookie('country') || $.cookie('country_code'))
+	{
+		$.removeCookie('country');
+		$.removeCookie('country_code');
+		
+		$.cookie("country", country, {path: '/'});
+		$.cookie("country_code", country_code, {path: '/'});
+		
+		window.location.reload();
+
+	}else{
+		$.cookie("country", country, {path: '/'});
+		$.cookie("country_code", country_code, {path: '/'});
+		window.location.reload();
+	}
+
+}

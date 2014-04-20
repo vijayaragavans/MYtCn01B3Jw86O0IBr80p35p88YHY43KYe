@@ -36,12 +36,12 @@ class Sh_country
     }
     
     
-    public function Top_Country( $placeholder, $api_key, $start_dt, $end_dt )
+    public function Top_Country( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
 
     	$response = false;
 
-    	$response = $this->_CI->country_model->Top_Country( $placeholder, $api_key, $start_dt, $end_dt );
+    	$response = $this->_CI->country_model->Top_Country( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
 
     	return $response;
     }    

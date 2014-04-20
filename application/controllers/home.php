@@ -21,9 +21,15 @@ class Home extends CI_Controller {
         $this->load->helper(array('form', 'url', 'cookie'));           
         $this->load->library('core/users');  
         $this->load->library('core/sh_behaviour'); 
+        $this->load->library('core/sh_demographics'); 
+        
         $this->load->library('core/sh_language'); 
         $this->load->library('core/sh_country');          
         $this->config->load('mail_vars', TRUE);
+        
+        
+        $this->country;
+        $this->country_code;
         
         $this->current_date = date('Y-m-d');
     }
@@ -48,6 +54,7 @@ class Home extends CI_Controller {
 	   $start_dt = $this->input->cookie('start') ;
 	   $end_dt = $this->input->cookie('end') ;
 	   
+	   
 	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
 	   {
 	   	
@@ -60,36 +67,41 @@ class Home extends CI_Controller {
 			
 			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/' );
 			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
+			
+			$this->country = 'all';
+			$this->country_code = 'all';
+			
+			
 	   }else{
 	   	
 			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
 			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
 	   	
+			$this->country = $this->input->cookie('country') ;;
+			$this->country_code = $this->input->cookie('country_code') ;;
 	   }
 
-	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt  );
+	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code );
 	   
-	   $count_unique = $this->users->Count_Unique( $user_api_key );
-	   
-	   $count_repeat = $this->users->Count_Repeat( $user_api_key );
+	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code  );
 	   	   
-	   $total_visits = $this->users->Total_Visits( $user_api_key, $start_dt, $end_dt );		//	Total Visits Count
+	   $total_visits = $this->users->Total_Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );		//	Total Visits Count
 	   
-	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $start_dt, $end_dt );		//	Unique Visits Count
+	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );		//	Unique Visits Count
 	   
-	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt );	//	Latest Hits
+	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Latest Hits
 	   
-	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $start_dt, $end_dt );	//	Chrome Count
+	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
 	   
 	   $visits_details = '';
 	   $i = 0;
@@ -105,6 +117,9 @@ class Home extends CI_Controller {
 	   }
 	   
 	   	$browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
+	   	
+	   $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
+	   		   	
 	   
 	   	if(isset($user_data['user_id'])){
 
@@ -117,6 +132,7 @@ class Home extends CI_Controller {
 		   $this->mysmarty->assign('user', $user_data);
 		   $this->mysmarty->assign('visits', $visits_details);
 	   	   $this->mysmarty->assign('browsers', $browser);
+	   	   $this->mysmarty->assign('country_data', $country_data);
 	   	   $this->mysmarty->assign('top_1_country', $top_1_country);
 	   	   $this->mysmarty->assign('top_2_country', $top_2_country);
 	   	   $this->mysmarty->assign('top_1_language', $top_1_language);
@@ -125,8 +141,9 @@ class Home extends CI_Controller {
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
 	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
-		   $this->mysmarty->assign('count_unique', $count_unique);
 		   $this->mysmarty->assign('count_repeat', $count_repeat);
+		   $this->mysmarty->assign('country', $this->country);
+		   $this->mysmarty->assign('country_code', $this->country_code);
 		   $this->mysmarty->assign('latest_events', $latest_events);
 		   $this->mysmarty->assign('active_user_count', $active_user_count);
 	  	   $this->mysmarty->assign('filename',$file);            
@@ -322,10 +339,10 @@ class Home extends CI_Controller {
     
     
     
-    public function Get_Latest_Events( $user_api_key, $start_dt, $end_dt )
+    public function Get_Latest_Events( $user_api_key, $start_dt, $end_dt, $country, $country_code )
     {
     	
-    	$latest_hits = 	$this->users->Latest_Hits( $user_api_key, $start_dt, $end_dt  );		//	Unique Visits Count
+    	$latest_hits = 	$this->users->Latest_Hits( $user_api_key, $start_dt, $end_dt, $country, $country_code );		//	Unique Visits Count
     	
     	$j = 1;
     	foreach( $latest_hits as $hits )

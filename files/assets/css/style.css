@@ -2967,3 +2967,7 @@ Bootstrap Tree CSS changes(new in v1.4)
 
 	
 	
+
+path{
+	cursor: pointer;
+	}	
