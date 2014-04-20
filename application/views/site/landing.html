@@ -293,6 +293,32 @@
 					<!-- END OVERVIEW STATISTIC BLOCKS-->
 					<div class="row-fluid">
 						<div class="span6">
+							<!-- BEGIN REGIONAL STATS PORTLET-->
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-globe"></i>Regional Stats</h4>
+									<span class="tools">
+									<a href="javascript:;" class="icon-chevron-down"></a>
+									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
+									<a href="javascript:;" class="icon-refresh"></a>		
+									<a href="javascript:;" class="icon-remove"></a>										
+									</span>							
+								</div>
+								<div class="widget-body">
+									<div id="region_statistics_loading">
+										<img src="assets/img/loading.gif" alt="loading" />
+									</div>
+									<div id="region_statistics_content" class="hide">
+										<div class="btn-toolbar no-top-space clearfix">
+											<a href='world.html' class='btn primary'>Entire World</a>
+										</div>
+										<div id="vmap_world" class="vmaps  chart hide"></div>
+									</div>
+								</div>
+							</div>
+							<!-- END REGIONAL STATS PORTLET-->
+						</div>
+						<div class="span6">
 							<!-- BEGIN RECENT ORDERS PORTLET-->
 							<div class="widget">
 								<div class="widget-title">
@@ -336,6 +362,8 @@
 							</div>
 							<!-- END RECENT ORDERS PORTLET-->
 						</div>
+					</div>
+					<div class="row-fluid">
 						<div class="span6">
 							<!-- BEGIN CHAT PORTLET-->
 							<div class="widget" id="chats">
