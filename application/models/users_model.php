@@ -214,7 +214,7 @@ class Users_Model extends CI_Model
         	$this->db->where(array('traffic.user_api_key '=>$user_api_key ));
 	        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
 	        
-	        if($country != 'all')
+        if($country != $country_code )
 	        {
 				$this->db->where('traffic.user_country =', $country);
 				$this->db->or_where('traffic.user_country_code =', $country_code); 
@@ -337,7 +337,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        if($country != 'all')
+                if($country != $country_code )
         {
 			$this->db->where('traffic.user_country =', $country);
 			$this->db->or_where('traffic.user_country_code =', $country_code); 
@@ -364,7 +364,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        if($country != 'all')
+                if($country != $country_code )
         {
 			$this->db->where('traffic.user_country =', $country);
 			$this->db->or_where('traffic.user_country_code =', $country_code); 
@@ -393,7 +393,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        if($country != 'all')
+                if($country != $country_code )
         {
 			$this->db->where('traffic.user_country =', $country);
 			$this->db->or_where('traffic.user_country_code =', $country_code); 
@@ -424,7 +424,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_browser_name'=>$browser));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        if($country != 'all')
+                if($country != $country_code )
         {
 			$this->db->where('traffic.user_country =', $country);
 			$this->db->or_where('traffic.user_country_code =', $country_code); 
