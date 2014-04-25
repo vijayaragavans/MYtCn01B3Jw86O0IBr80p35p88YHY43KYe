@@ -2,7 +2,7 @@
 Core script to handle the entire layout and base functions
 **/
 var App = function () {
-	
+ 	
     // IE mode
     var isIE8 = false;
     var isIE9 = false;
