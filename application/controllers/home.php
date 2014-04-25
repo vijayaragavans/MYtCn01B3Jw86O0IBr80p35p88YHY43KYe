@@ -80,6 +80,8 @@ class Home extends CI_Controller {
 			$this->country = $this->input->cookie('country') ;;
 			$this->country_code = $this->input->cookie('country_code') ;;
 	   }
+	   
+	   echo $start_dt . ' ' .$end_dt;
 
 	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code );
 	   
