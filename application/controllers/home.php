@@ -148,7 +148,7 @@ class Home extends CI_Controller {
 		   $this->mysmarty->assign('active_user_count', $active_user_count);
 	  	   $this->mysmarty->assign('filename',$file);            
 		   $this->mysmarty->display('home.html'); 
-		
+		 
 	}
 	
 	

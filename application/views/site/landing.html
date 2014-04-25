@@ -211,7 +211,7 @@
 								<div class="widget-body">
 									<ul class="item-list scroller padding" data-height="307" data-always-visible="1">
 										{foreach from=$latest_events item=hits key=i}
-											{if isset($hits.user_ip) }
+											{if isset($hits.user_ip) } 
 											<li>
 												<span class="label label-success"><i class="icon-bell"></i></span>
 												<span>Visits from {$hits.user_ip}</span>
