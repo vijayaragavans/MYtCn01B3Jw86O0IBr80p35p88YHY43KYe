@@ -214,12 +214,13 @@ class Users_Model extends CI_Model
         	$this->db->where(array('traffic.user_api_key '=>$user_api_key ));
 	        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
 	        
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
         if($country != $country_code )
-	        {
-				$this->db->where('traffic.user_country =', $country);
-				$this->db->or_where('traffic.user_country_code =', $country_code); 
-	        }
-        	
+        {
+			$this->db->where($whare);
+        }
+        
+	                	
         	$this->db->group_by('user_ip');	        
 	        $this->db->having('count_of > 1');
 
@@ -251,12 +252,13 @@ class Users_Model extends CI_Model
          * By dafault country & country code is 0
          */
         
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
         if($country != $country_code )
         {
-			$this->db->where('traffic.user_country =', $country);
-			$this->db->or_where('traffic.user_country_code =', $country_code); 
+			$this->db->where($whare);
         }
         
+                
         $this->db->group_by(" DATE(`data_created_on`)");
 	    $this->db->order_by("traffic.data_created_on", DESC);	        
 	    $this->db->limit(6);
@@ -337,12 +339,13 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-                if($country != $country_code )
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        if($country != $country_code )
         {
-			$this->db->where('traffic.user_country =', $country);
-			$this->db->or_where('traffic.user_country_code =', $country_code); 
+			$this->db->where($whare);
         }
         
+                
         $this->db->limit(1);
         $query = $this->db->get();
         
@@ -364,12 +367,13 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-                if($country != $country_code )
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        if($country != $country_code )
         {
-			$this->db->where('traffic.user_country =', $country);
-			$this->db->or_where('traffic.user_country_code =', $country_code); 
+			$this->db->where($whare);
         }
         
+                
         $this->db->group_by('traffic.user_ip');
         $query = $this->db->get();
         
@@ -393,12 +397,13 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-                if($country != $country_code )
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        if($country != $country_code )
         {
-			$this->db->where('traffic.user_country =', $country);
-			$this->db->or_where('traffic.user_country_code =', $country_code); 
+			$this->db->where($whare);
         }
         
+                
         //$this->db->group_by('traffic.user_ip');
         $this->db->order_by('traffic.data_created_on', 'DESC');
         $this->db->limit(10);
@@ -424,10 +429,10 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_browser_name'=>$browser));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-                if($country != $country_code )
+        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        if($country != $country_code )
         {
-			$this->db->where('traffic.user_country =', $country);
-			$this->db->or_where('traffic.user_country_code =', $country_code); 
+			$this->db->where($whare);
         }
         
         $this->db->limit(1);
