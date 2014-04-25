@@ -860,6 +860,7 @@ function Country_Cookie( country, country_code )
 		window.location.reload();
 
 	}else{
+		
 		$.cookie("country", country, {path: '/'});
 		$.cookie("country_code", country_code, {path: '/'});
 		window.location.reload();
