@@ -30,7 +30,7 @@ class Demographics_Model extends CI_Model
     	else if($data_type == 'Territory')
     	{
     		
-	        $this->db->select("distinct(traffic.user_country) as lang, count(traffic_id) as users");
+	        $this->db->select("distinct(traffic.user_country) as lang, count(traffic_id) as users, user_country_code");
 	        $this->db->group_by('traffic.user_country');
 	        
     	}else if($data_type == 'City')

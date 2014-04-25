@@ -81,8 +81,6 @@ class Home extends CI_Controller {
 			$this->country_code = $this->input->cookie('country_code') ;;
 	   }
 	   
-	   echo $start_dt . ' ' .$end_dt;
-
 	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code );
 	   
 	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code  );
@@ -122,7 +120,6 @@ class Home extends CI_Controller {
 	   	
 	   $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
 	   		   	
-	   
 	   	if(isset($user_data['user_id'])){
 
 	   	   $file = 'site/landing.html';
