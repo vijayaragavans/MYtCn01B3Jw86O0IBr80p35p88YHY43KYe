@@ -214,7 +214,7 @@ class Users_Model extends CI_Model
         	$this->db->where(array('traffic.user_api_key '=>$user_api_key ));
 	        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
 	        
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
@@ -252,7 +252,7 @@ class Users_Model extends CI_Model
          * By dafault country & country code is 0
          */
         
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
@@ -339,7 +339,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
@@ -367,7 +367,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
@@ -397,7 +397,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
@@ -429,7 +429,7 @@ class Users_Model extends CI_Model
         $this->db->where(array('traffic.user_api_key'=>$api_key, 'traffic.user_browser_name'=>$browser));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
-        $whare = "traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' ";
+        $whare = " ( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
         if($country != $country_code )
         {
 			$this->db->where($whare);
