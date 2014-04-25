@@ -44,7 +44,7 @@ class Users_Model extends CI_Model
         	 return 0;
         } 
         
-        
+         
     }
  	/**
      * @method updatePassword - To change the password
@@ -275,7 +275,7 @@ class Users_Model extends CI_Model
     function VisitsDetails( $keyword, $user_api_key )
     {
     	
-        
+         
         if($keyword == 'unique'){
 
 		        $this->db->select("*");
