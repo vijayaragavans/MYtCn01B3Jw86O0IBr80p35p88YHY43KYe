@@ -202,6 +202,65 @@ class Info extends CI_Controller {
 	}
 	
 	
+	public function user_country_details()
+	{
+		
+	   $user_data = $this->session->userdata('mystat');
+	   
+	   $user_api_key = $user_data['user_api_key'];
+	   
+	   $page =  $this->url_input[$this->url_count];
+	   
+	   $country_code =  $this->url_input[$this->url_category];
+	   
+	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
+	   	
+	   		redirect(SITE_URL."home/login");
+	   		
+	   }
+	   
+	   $start_dt = $this->input->cookie('start') ;
+	   $end_dt = $this->input->cookie('end') ;
+	   
+	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
+	   {
+	   	
+			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
+
+			$start_dt = date('Y-m-d', $d1);
+			$end_dt = date('Y-m-d');
+			
+			$expire_time = time()+3600*24*30;
+			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/');
+			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
+	   }else{
+	   	
+			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
+			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
+	   	
+	   }
+	   
+	   
+	   
+	   $fromStart = $this->perPage * $page;
+	   
+	   $total_pages = $this->pagination( $user_api_key, $start_dt, $end_dt  );
+	   
+	   $details = $this->sh_info->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $start_dt, $end_dt, $country_code );
+	   
+	   $file = 'site/view_country_visits.html';
+		
+	   $this->mysmarty->assign('user', $user_data);
+	   $this->mysmarty->assign('current_page', $page);
+	   $this->mysmarty->assign('total_pages', $total_pages);
+	   $this->mysmarty->assign('details', $details);
+	   $this->mysmarty->assign('filename',$file);
+	   $this->mysmarty->assign('details',$details);
+	   
+	   $this->mysmarty->display('home.html'); 
+			
+	  }
+	
 }
 
 /* End of file home.php */
