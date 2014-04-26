@@ -41,7 +41,7 @@ var Index = function () {
                     showTooltip: true,
                     onLabelShow: function (event, label, code) {
                         var region_name = $(label).text();
-                        label.html('Modify tooltip content as: ' + region_name );
+                        label.html(' ' + region_name );
                     },
                     onRegionOver: function (event, code) {
                         if (code == 'ca') {

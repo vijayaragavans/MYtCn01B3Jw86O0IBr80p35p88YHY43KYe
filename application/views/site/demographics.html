@@ -1,0 +1,107 @@
+
+<div id="main">
+  
+     <div class="scroll">
+     <!-- 	<div style="float: right;"><a href='{$base_url}info/Export_Data' class='btn btn-primary '>Export CSV</a></div><br/> -->
+     	
+	      <table class="table table-hover">
+	          <thead>
+	              <tr>
+						<th><i class="icon-user"></i> <span class="hidden-phone ">Language</span></th>
+						<th><i class="icon-briefcase"></i> <span class="hidden-phone">{$labels.count_of_value}</span></th>
+	              </tr>
+	          </thead>
+	          <tbody>
+	          
+					{foreach from=$lang_data item=data key=i}
+					<tr>
+						<td>{$data.lang}</td>
+						<td>{$data.users}</td>
+					</tr>
+					{/foreach}		    	
+	            
+				</div>
+           </tbody>
+       </table>
+
+					<div class="row-fluid">
+						<div class="span6">
+							<!-- BEGIN RECENT ORDERS PORTLET-->
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-shopping-cart"></i>Demographics</h4>
+									<span class="tools">
+									<a href="javascript:;" class="icon-chevron-down"></a>
+									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
+									<a href="javascript:;" class="icon-refresh"></a>		
+									<a href="javascript:;" class="icon-remove"></a>
+									</span>							
+								</div>
+								<div class="widget-body">
+									<table class="table table-striped table-bordered table-advance table-hover">
+										<thead>
+											<tr>
+												<th><i class="icon-user"></i> <span class="hidden-phone ">Country</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone">{$labels.count_of_value}</span></th>
+											</tr>
+										</thead>
+										<tbody>
+											{foreach from=$country_data item=data key=i}
+										    	<tr>
+										        	<td>{$data.lang}</td>
+										        	<td>{$data.users}</td>
+										        </tr>
+											{/foreach}		    	
+										</tbody>
+									</table>
+									<div class="space7"></div>
+									<div class="clearfix">
+										<a href="#" class="btn btn-mini pull-right">All Orders</a>
+									</div>
+								</div>
+							</div>
+							<!-- END RECENT ORDERS PORTLET-->
+						</div>
+				
+
+
+
+						<div class="span6">
+							<!-- BEGIN RECENT ORDERS PORTLET-->
+							<div class="widget">
+								<div class="widget-title">
+									<h4><i class="icon-shopping-cart"></i>Demographics</h4>
+									<span class="tools">
+									<a href="javascript:;" class="icon-chevron-down"></a>
+									<a href="#widget-config" data-toggle="modal" class="icon-wrench"></a>
+									<a href="javascript:;" class="icon-refresh"></a>		
+									<a href="javascript:;" class="icon-remove"></a>
+									</span>							
+								</div>
+								<div class="widget-body">
+									<table class="table table-striped table-bordered table-advance table-hover">
+										<thead>
+											<tr>
+												<th><i class="icon-user"></i> <span class="hidden-phone ">City</span></th>
+												<th><i class="icon-briefcase"></i> <span class="hidden-phone">{$labels.count_of_value}</span></th>
+											</tr>
+										</thead>
+										<tbody>
+											{foreach from=$city_data item=data key=i}
+										    	<tr>
+										        	<td>{$data.lang}</td>
+										        	<td>{$data.users}</td>
+										        </tr>
+											{/foreach}		    	
+										</tbody>
+									</table>
+									<div class="space7"></div>
+									<div class="clearfix">
+										<a href="#" class="btn btn-mini pull-right">All Orders</a>
+									</div>
+								</div>
+							</div>
+							<!-- END RECENT ORDERS PORTLET-->
+						</div>
+      </div>
+</div>
