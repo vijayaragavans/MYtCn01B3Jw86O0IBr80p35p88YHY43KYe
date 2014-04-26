@@ -89,7 +89,7 @@ class Info_Model extends CI_Model
     	
     	$this->db->select(" * ");
         $this->db->from(TOOL_DB_NAME.'.traffic');
-        $this->db->where(array( 'traffic.user_api_key'=>$api_key, 'traffic.user_country_code' > $country_code ));
+        $this->db->where(array( 'traffic.user_api_key'=>$api_key, 'traffic.user_country_code' => $country_code ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         $this->db->order_by('traffic.data_created_on', DESC);
         $this->db->limit( $perPage, $fromStart);
