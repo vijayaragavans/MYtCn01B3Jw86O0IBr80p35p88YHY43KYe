@@ -45,11 +45,11 @@ class Sh_info
     }
     
     
-    public function Pagination( $user_api_key, $start_dt, $end_dt  )
+    public function Pagination( $user_api_key, $start_dt, $end_dt, $country_code  )
     {
     	$response = false;
     	
-    	$response = $this->_CI->info_model->Pagination( $user_api_key, $start_dt, $end_dt  );
+    	$response = $this->_CI->info_model->Pagination( $user_api_key, $start_dt, $end_dt, $country_code );
     	
     	return $response;    	
     }

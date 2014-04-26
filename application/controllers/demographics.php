@@ -47,7 +47,7 @@ class Demographics extends CI_Controller {
 	   
 	   $labels = array("label_name" => "DemoGraphics", "count_of_value" =>"VISIT");
 	   
-	   	$file = 'site/data_count.html';
+	   	$file = 'site/demographics.html';
 	    $this->mysmarty->assign('country_data', $country_data);
 	   	$this->mysmarty->assign('city_data', $city_data);
 	    $this->mysmarty->assign('response', 'all');

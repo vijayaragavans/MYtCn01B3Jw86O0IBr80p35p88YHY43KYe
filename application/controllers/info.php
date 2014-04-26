@@ -149,11 +149,11 @@ class Info extends CI_Controller {
 	
 	
 	
-	public function pagination( $user_api_key, $start_dt, $end_dt  )
+	public function pagination( $user_api_key, $start_dt, $end_dt, $country_code  )
 	{
 		
         $result = '';
-		$count =  ceil( $this->sh_info->Pagination( $user_api_key, $start_dt, $end_dt  ) / floor($this->perPage) );
+		$count =  ceil( $this->sh_info->Pagination( $user_api_key, $start_dt, $end_dt, $country_code  ) / floor($this->perPage) );
         
         return $count-1;
 	}
@@ -211,7 +211,7 @@ class Info extends CI_Controller {
 	   
 	   $page =  $this->url_input[$this->url_count];
 	   
-	   $country_code =  $this->url_input[$this->url_category];
+	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
 	   
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
@@ -244,7 +244,7 @@ class Info extends CI_Controller {
 	   
 	   $fromStart = $this->perPage * $page;
 	   
-	   $total_pages = $this->pagination( $user_api_key, $start_dt, $end_dt  );
+	   $total_pages = $this->pagination( $user_api_key, $start_dt, $end_dt, $country_code  );
 	   
 	   $details = $this->sh_info->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $start_dt, $end_dt, $country_code );
 	   
@@ -253,6 +253,7 @@ class Info extends CI_Controller {
 	   $this->mysmarty->assign('user', $user_data);
 	   $this->mysmarty->assign('current_page', $page);
 	   $this->mysmarty->assign('total_pages', $total_pages);
+	   $this->mysmarty->assign('country_code', $country_code);
 	   $this->mysmarty->assign('details', $details);
 	   $this->mysmarty->assign('filename',$file);
 	   $this->mysmarty->assign('details',$details);
