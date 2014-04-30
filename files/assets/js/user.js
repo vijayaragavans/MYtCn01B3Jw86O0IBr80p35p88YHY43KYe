@@ -3,7 +3,7 @@ $(document).ready(function() {
 	//var local_dir = "http://localhost/myanalytics/";
 	//var local_dir = location.protocol + "//" + document.domain + "/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/";
 	var local_dir = location.protocol + "//" + document.domain + "/";
-	
+	 
 	$("#logForm").validate({
 		rules: {
 		input_password: {

@@ -49,16 +49,11 @@ define('TOOL_DB_NAME', 'hii_db');
 $active_group = 'default';
 $active_record = TRUE;
 
-/*$db['default']['hostname'] = 'localhost'; 
+$db['default']['hostname'] = 'localhost'; 
 $db['default']['username'] = 'rightern_news';
 $db['default']['password'] = 'M0nster.com';
-$db['default']['database'] = 'rightern_mystat'; */
+$db['default']['database'] = 'rightern_mystat'; 
 
-
-$db['default']['hostname'] = 'localhost'; 
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'hii_db';
 
 
 $db['default']['dbdriver'] = 'mysql';
