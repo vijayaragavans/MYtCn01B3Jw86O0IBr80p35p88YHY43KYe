@@ -13,7 +13,10 @@
 
 class Info extends CI_Controller {
 	
-	function __construct()
+
+     public $date;
+
+     function __construct()
     {
         parent::__construct();        			
         // load the necessary libraries
@@ -34,7 +37,8 @@ class Info extends CI_Controller {
         $this->url_count = count($this->url_input) -1;
         
         $this->url_category = count($this->url_input) -2;
-    
+
+
     }
     
 	/*
@@ -105,34 +109,13 @@ class Info extends CI_Controller {
 	   		
 	   }
 	   
-	   $start_dt = $this->input->cookie('start') ;
-	   $end_dt = $this->input->cookie('end') ;
-	   
-	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
-	   {
-	   	
-			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
-
-			$start_dt = date('Y-m-d', $d1);
-			$end_dt = date('Y-m-d');
-			
-			$expire_time = time()+3600*24*30;
-			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/');
-			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
-	   }else{
-	   	
-			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
-			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
-	   	
-	   }
-	   
-	   
-	   
 	   $fromStart = $this->perPage * $page;
+
+	   $date = $this->Get_Date_Range( );
+
+	   $total_pages = $this->pagination( $user_api_key, $date['start_dt'], $date['end_dt']  );
 	   
-	   $total_pages = $this->pagination( $user_api_key, $start_dt, $end_dt  );
-	   
-	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart, $start_dt, $end_dt );
+	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart, $date['start_dt'], $date['end_dt'] );
 	   
 	   $file = 'site/notification.html';
 		
@@ -145,6 +128,40 @@ class Info extends CI_Controller {
 	   
 	   $this->mysmarty->display('home.html'); 
 	   	   
+	}
+
+
+
+
+	# Purpose: Dynamically getting the date range
+	# using at all_visits()
+
+	public function Get_Date_Range(  )
+	{
+
+	   $start_dt = $this->input->cookie('start') ;
+	   $end_dt = $this->input->cookie('end') ;
+	   
+	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
+	   {
+	   	
+			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
+
+			$date['start_dt'] = date('Y-m-d', $d1);
+			$date['end_dt'] = date('Y-m-d');
+			
+			$expire_time = time()+3600*24*30;
+			setcookie('start', date('M d Y', strtotime($date['start_dt']) ), $expire_time, '/');
+			setcookie('end', date('M d Y', strtotime($date['end_dt']) ), $expire_time, '/');
+	   }else{
+	   	
+			$date['start_dt'] = date('Y-m-d', strtotime( $start_dt ) );
+			$date['end_dt'] = date('Y-m-d', strtotime( $end_dt ) );
+	   	
+	   }    
+
+	   	return $date;
+
 	}
 	
 	
@@ -201,7 +218,9 @@ class Info extends CI_Controller {
 			
 	}
 	
-	
+	# Purpose: Getting the visitors details based on the country
+	# Landing page
+
 	public function user_country_details()
 	{
 		
@@ -219,34 +238,13 @@ class Info extends CI_Controller {
 	   		
 	   }
 	   
-	   $start_dt = $this->input->cookie('start') ;
-	   $end_dt = $this->input->cookie('end') ;
-	   
-	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
-	   {
-	   	
-			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
+	   $date = $this->Get_Date_Range( );
 
-			$start_dt = date('Y-m-d', $d1);
-			$end_dt = date('Y-m-d');
-			
-			$expire_time = time()+3600*24*30;
-			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/');
-			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
-	   }else{
-	   	
-			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
-			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
-	   	
-	   }
-	   
-	   
-	   
 	   $fromStart = $this->perPage * $page;
 	   
-	   $total_pages = $this->pagination( $user_api_key, $start_dt, $end_dt, $country_code  );
+	   $total_pages = $this->pagination( $user_api_key, $date['start_dt'], $date['end_dt'], $country_code  );
 	   
-	   $details = $this->sh_info->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $start_dt, $end_dt, $country_code );
+	   $details = $this->sh_info->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $date['start_dt'], $date['end_dt'], $country_code );
 	   
 	   $file = 'site/view_country_visits.html';
 		
