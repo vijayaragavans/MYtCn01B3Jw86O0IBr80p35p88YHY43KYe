@@ -43,9 +43,9 @@
 | The $active_record variables lets you determine whether or not to load
 | the active record class
 */
-//define('TOOL_DB_NAME', 'rightern_mystat');
+define('TOOL_DB_NAME', 'rightern_mystat');
 
-define('TOOL_DB_NAME', 'hii_db');
+//define('TOOL_DB_NAME', 'hii_db');
 $active_group = 'default';
 $active_record = TRUE;
 
