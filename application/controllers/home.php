@@ -106,16 +106,23 @@ class Home extends CI_Controller {
 	   $visits_details = '';
 	   $i = 0;
 	   $Mon = '';
+
+	   $start = "[";
+	     $visits_details = '["Year", "Visits"], ';
 	   foreach($visits as $visit){
+
 
 	   		if($i > 0 ) $comma = ',';
 	   		$rtt = explode('-', $visit['dates']);
 	   		$mont = $rtt[1]-1;
-	   		$utc_date = $rtt[0].', '.$mont.', '.$rtt[2]; 
-	   		$visits_details .= $comma. '[Date.UTC('.$utc_date.'),'.$visit['total'].']';
+	   		$utc_date = date('y', strtotime($visit['dates'])).'-'.date('M', strtotime($visit['dates'])).'-'.$rtt[2]; 
+	   		$visits_details .= $comma.  $start.'"'.$utc_date.'",' . $visit['total'].']';
 	   		$i++;
+
+
 	   }
-	   
+
+
 	   	$browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
 	   	
 	   $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
