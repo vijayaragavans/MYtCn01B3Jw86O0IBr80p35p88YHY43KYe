@@ -1,0 +1,56 @@
+
+	  <link href="{$static_server}files/assets/css/simplePagination.css" rel="stylesheet" />
+	  <link href="{$static_server}files/assets/css/style.css" rel="stylesheet" />
+      <script type="text/javascript" src="{$static_server}files/assets/js/jquery.simplePagination.js"></script>
+
+{literal}
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$('#dark-pagination').pagination({
+			pages: "{/literal}{$total_pages}{literal}",
+			cssStyle: 'dark-theme',
+			displayedPages: 3,
+			hrefTextPrefix:"{/literal}{$base_url}{literal}country/index/",
+			edges: 3,
+			currentPage:"{/literal}{$current_page}{literal}"
+		});
+
+	});
+</script>
+
+{/literal}
+<div id="main">
+  <div class="widget-body">
+  
+     <div class="scroll">
+     	<div style="float: right;"><a href='{$base_url}info/Export_Data' class='btn btn-primary '>Export CSV</a></div><br/>
+	      <table class="table table-hover">
+	          <thead>
+	              <tr>
+	                  <th>Country</th>
+	                  <th>Visits</th>
+	                  <th></th>
+	              </tr>
+	          </thead>
+	          <tbody>
+	          
+	{foreach from=$details item=info key=i}
+               <tr>
+                   <td>{$info.lang}</td>
+                   <td>{$info.users}</td> 
+                   <td><a href='{$base_url}country/user_country_details/{$info.user_country_code}'>View</a></td>
+               </tr>
+	{/foreach}
+	            
+				</div>
+           </tbody>
+       </table>
+				
+		<div class="pagination-holder black clearfix">
+			<ul id="dark-pagination" class="pagination"></ul>
+		</div>
+    </div>
+</div>
