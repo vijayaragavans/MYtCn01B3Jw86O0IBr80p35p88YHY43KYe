@@ -28,6 +28,8 @@ class Info extends CI_Controller {
         
         $this->start = '';
         $this->perPage = 5;
+        $this->country_code ;
+
         $this->current_date = date("Y-m-d H:i:s");
         
         $this->email_date = date("Y-M-d");
@@ -111,13 +113,15 @@ class Info extends CI_Controller {
 	   		
 	   }
 	   
+	   ($this->input->cookie('country_code') != '' || $this->input->cookie('country_code') != 'all')  ? $this->country_code = $this->input->cookie('country_code')  : $this->country_code  = 'all';
+
 	   $date_range = $this->sh_common->Get_Date_Range( );
 
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->pagination( $user_api_key, $date_range['start_dt'], $date_range['end_dt']  );
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $this->country_code, $date_range['start_dt'], $date_range['end_dt']  );
 	   
-	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart, $date_range['start_dt'], $date_range['end_dt'] );
+	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart, $date_range['start_dt'], $date_range['end_dt'], $this->country_code );
 	   
 	   $file = 'site/notification.html';
 		
@@ -135,17 +139,6 @@ class Info extends CI_Controller {
 
 
 
-	public function pagination( $user_api_key, $start_dt, $end_dt, $country_code  )
-	{
-		
-        		$result = '';
-
-		$count =  ceil( $this->sh_info->Pagination( $user_api_key, $start_dt, $end_dt, $country_code  ) / floor($this->perPage) );
-        
-        		return $count-1;
-	}
-	
-	
 	public function Export_Data()
 	{
 		
@@ -183,7 +176,7 @@ class Info extends CI_Controller {
 			
 	}
 	
-	
+
 }
 
 /* End of file home.php */

@@ -23,8 +23,23 @@ class Country extends CI_Controller {
         $this->load->library('core/sh_behaviour');   
         $this->load->library('core/sh_common'); 
         $this->load->library('core/sh_country'); 
-          
+
         
+        $this->start = '';
+        $this->perPage = 5;
+        $this->current_date = date("Y-m-d H:i:s");
+        
+        $this->email_date = date("Y-M-d");
+        
+        $this->url = $_SERVER['REQUEST_URI'];
+
+        $this->url_input = split('/', $this->url);
+
+        $this->url_count = count($this->url_input) -1;
+        
+        $this->url_category = count($this->url_input) -2;
+
+
     }
     
 	/*
@@ -35,17 +50,39 @@ class Country extends CI_Controller {
 	public function index()
 	{
 	
-	   $Userdata = $this->session->userdata('mystat');
+	   $user_data = $this->session->userdata('mystat');
 	   
-	       if($Userdata){
+	   $user_api_key = $user_data['user_api_key'];
+	   
+	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
+	   	
+	   		redirect(SITE_URL."home/login");
+	   		
+	   }
 
-	       		redirect(SITE_URL."home/index/");
-	       }else{
-			$file = 'site/login.html';
-	      }
-	   	$this->mysmarty->assign('filename',$file);
-            
-		$this->mysmarty->display('home.html'); 
+
+	   $page =  $this->url_input[$this->url_count];
+
+	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
+	   
+	   $fromStart = $this->perPage * $page;
+
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'group_by_country', 'all', 'all' );
+	   
+	   $details = $this->sh_country->Get_All_Countries( $user_api_key, $this->perPage, $fromStart );
+
+	   $file = 'site/country.html';
+		
+	   $this->mysmarty->assign('user', $user_data);
+	   $this->mysmarty->assign('current_page', $page);
+	   $this->mysmarty->assign('total_pages', $total_pages);
+	   $this->mysmarty->assign('country_code', $country_code);
+	   $this->mysmarty->assign('details', $details);
+	   $this->mysmarty->assign('filename',$file);
+	   $this->mysmarty->assign('details',$details);
+	   
+	   $this->mysmarty->display('home.html'); 
+
 		
 	}
 	
@@ -73,10 +110,8 @@ class Country extends CI_Controller {
 	   
 	   $fromStart = $this->perPage * $page;
 
-	   echo $fromStart;
-	   
-	   $total_pages = $this->pagination( $user_api_key, $country_code  );
-	   
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code, 'all', 'all' );
+
 	   $details = $this->sh_country->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $country_code );
 	   
 	   $file = 'site/view_country_visits.html';

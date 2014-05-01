@@ -51,6 +51,10 @@ class Home extends CI_Controller {
 	   		
 	   //VISITS DETAILS
 
+	   $this->country_code = $this->input->cookie('country_code') ;
+
+	   echo $this->country_code;
+
 	   $date_range = $this->sh_common->Get_Date_Range( );
 
 	   $visits = $this->users->Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code );
