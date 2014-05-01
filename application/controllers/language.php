@@ -63,11 +63,13 @@ class Language extends CI_Controller {
 
 	   $page =  $this->url_input[$this->url_count];
 
-	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
+	   ( is_numeric( $page ) ) ? $lang_code =  $this->url_input[$this->url_category] :  $lang_code = $page ;
 	   
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'group_by_language', 'all', 'all' );
+	   $code = array( 'group_by_language' => "all" );
+
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
 
 	   $details = $this->sh_language->Get_All_languages( $user_api_key, $this->perPage, $fromStart );
 
@@ -110,16 +112,18 @@ class Language extends CI_Controller {
 	   
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'where_lang', 'all', 'all' );
+	   $code = array( 'lang_code' => "$lang_code" );
+
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
 
 	   $details = $this->sh_language->Get_Lang_Details( $user_api_key, $this->perPage, $fromStart, $lang_code );
 	   
-	   $file = 'site/view_country_visits.html';
+	   $file = 'site/view_language_visits.html';
 		
 	   $this->mysmarty->assign('user', $user_data);
 	   $this->mysmarty->assign('current_page', $page);
 	   $this->mysmarty->assign('total_pages', $total_pages);
-	   $this->mysmarty->assign('country_code', $country_code);
+	   $this->mysmarty->assign('code', $lang_code);
 	   $this->mysmarty->assign('details', $details);
 	   $this->mysmarty->assign('filename',$file);
 	   $this->mysmarty->assign('details',$details);

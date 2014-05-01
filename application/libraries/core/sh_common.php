@@ -77,6 +77,7 @@ class Sh_common
 
         $count =  ceil( $this->_CI->sh_info->Pagination( $user_api_key, $country_code, $start_dt, $end_dt  ) / floor($this->_CI->perPage) );
         
+        //$count = $this->_CI->sh_info->Pagination( $user_api_key, $country_code, $start_dt, $end_dt );
         return $count-1;
     }
 

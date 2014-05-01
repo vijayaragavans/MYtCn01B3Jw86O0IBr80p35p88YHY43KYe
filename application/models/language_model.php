@@ -76,7 +76,7 @@ class Language_Model extends CI_Model
     } 
 
 
-
+ 
     function Get_Lang_Details( $api_key, $perPage, $fromStart, $lang_code  )
     {
 

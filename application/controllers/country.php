@@ -66,8 +66,10 @@ class Country extends CI_Controller {
 	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
 	   
 	   $fromStart = $this->perPage * $page;
- 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'group_by_country', 'all', 'all' );
+
+ 	   $code = array( 'group_by_country' => $country_code );
+
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $code , 'all', 'all' );
 	   
 	   $details = $this->sh_country->Get_All_Countries( $user_api_key, $this->perPage, $fromStart );
 
@@ -110,7 +112,9 @@ class Country extends CI_Controller {
 	   
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code, 'all', 'all' );
+	   $code = array( 'country_code' => $country_code );
+
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
 
 	   $details = $this->sh_country->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $country_code );
 	   
