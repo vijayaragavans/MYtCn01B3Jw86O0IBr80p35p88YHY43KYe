@@ -11,7 +11,7 @@
 	 * Version	   : 1.0
 	 */
 
-class Country extends CI_Controller {
+class Language extends CI_Controller {
 	
 	function __construct()
     {
@@ -22,7 +22,7 @@ class Country extends CI_Controller {
         $this->load->library('core/users');   
         $this->load->library('core/sh_behaviour');   
         $this->load->library('core/sh_common'); 
-        $this->load->library('core/sh_country'); 
+        $this->load->library('core/sh_language'); 
 
         
         $this->start = '';
@@ -66,12 +66,12 @@ class Country extends CI_Controller {
 	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
 	   
 	   $fromStart = $this->perPage * $page;
- 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'group_by_country', 'all', 'all' );
-	   
-	   $details = $this->sh_country->Get_All_Countries( $user_api_key, $this->perPage, $fromStart );
 
-	   $file = 'site/country.html';
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'group_by_language', 'all', 'all' );
+
+	   $details = $this->sh_language->Get_All_languages( $user_api_key, $this->perPage, $fromStart );
+
+	   $file = 'site/language.html';
 		
 	   $this->mysmarty->assign('user', $user_data);
 	   $this->mysmarty->assign('current_page', $page);
@@ -90,7 +90,7 @@ class Country extends CI_Controller {
 	# Purpose: Getting the visitors details based on the country
 	# Landing page
 
-	public function user_country_details()
+	public function user_language_details()
 	{
 		
 	   $user_data = $this->session->userdata('mystat');
@@ -103,16 +103,16 @@ class Country extends CI_Controller {
 	   		
 	   }
 
-
+ 
 	   $page =  $this->url_input[$this->url_count];
 
-	   ( is_numeric( $page ) ) ? $country_code =  $this->url_input[$this->url_category] :  $country_code = $page ;
+	   ( is_numeric( $page ) && $page != 1 ) ? $lang_code =  $this->url_input[$this->url_category] :  $lang_code = $page ;
 	   
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $user_api_key, $country_code = 'where_lang', 'all', 'all' );
 
-	   $details = $this->sh_country->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $country_code );
+	   $details = $this->sh_language->Get_Lang_Details( $user_api_key, $this->perPage, $fromStart, $lang_code );
 	   
 	   $file = 'site/view_country_visits.html';
 		
