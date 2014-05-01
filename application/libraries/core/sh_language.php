@@ -44,8 +44,28 @@ class Sh_language
     	$response = $this->_CI->language_model->Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
 
     	return $response;
-    }    
-    
+    }   
+
+
+    public function Get_All_languages( $user_api_key, $perPage, $fromStart  )
+    {
+        $response = false;
+        
+        $response = $this->_CI->language_model->Get_All_languages( $user_api_key, $perPage, $fromStart  );
+        
+        return $response;       
+    }
+
+
+    public function Get_Lang_Details( $user_api_key, $perPage, $fromStart, $lang_code  )
+    {
+        $response = false;
+        
+        $response = $this->_CI->language_model->Get_Lang_Details( $user_api_key, $perPage, $fromStart, $lang_code  );
+        
+        return $response;       
+    }
+
     
 }
 /* End of file users.php */

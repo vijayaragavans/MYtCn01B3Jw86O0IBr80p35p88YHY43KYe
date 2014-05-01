@@ -55,6 +55,15 @@ class Sh_country
         
         return $response;       
     }
-    
+
+
+    public function Get_All_Countries( $user_api_key, $perPage, $fromStart  )
+    {
+        $response = false;
+        
+        $response = $this->_CI->country_model->Get_All_Countries( $user_api_key, $perPage, $fromStart  );
+        
+        return $response;       
+    }
 }
 /* End of file users.php */

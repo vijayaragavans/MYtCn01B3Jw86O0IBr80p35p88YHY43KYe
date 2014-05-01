@@ -35,21 +35,21 @@ class Sh_info
     }
     
     
-    public function Get_All_Notifications( $user_api_key, $perPage, $fromStart, $start_dt, $end_dt  )
+    public function Get_All_Notifications( $user_api_key, $perPage, $fromStart, $start_dt, $end_dt  , $country_code )
     {
     	$response = false;
     	
-    	$response = $this->_CI->info_model->Get_All_Notifications( $user_api_key, $perPage, $fromStart, $start_dt, $end_dt  );
+    	$response = $this->_CI->info_model->Get_All_Notifications( $user_api_key, $perPage, $fromStart, $start_dt, $end_dt, $country_code   );
     	
     	return $response;    	
     }
     
     
-    public function Pagination( $user_api_key, $start_dt, $end_dt, $country_code  )
+    public function Pagination( $user_api_key, $country_code, $start_dt, $end_dt )
     {
     	$response = false;
     	
-    	$response = $this->_CI->info_model->Pagination( $user_api_key, $start_dt, $end_dt, $country_code );
+    	$response = $this->_CI->info_model->Pagination( $user_api_key, $country_code, $start_dt, $end_dt );
     	
     	return $response;    	
     }

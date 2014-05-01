@@ -28,8 +28,12 @@ class Sh_common
         $this->_CI = & get_instance();
         // load users model
         $this->_CI->load->library('external/Mandrill');
+        $this->_CI->load->library('core/sh_info');
         $this->_CI->load->helper(array('form', 'url', 'cookie'));           
         $this->_CI->config->load('mail_vars', TRUE);
+        
+        $this->_CI->start = '';
+        $this->_CI->perPage = 5;
     }
     
     
@@ -63,6 +67,19 @@ class Sh_common
 
     }
     
+
+
+
+    public function pagination( $user_api_key, $country_code , $start_dt, $end_dt )
+    {
+        
+        $result = '';
+
+        $count =  ceil( $this->_CI->sh_info->Pagination( $user_api_key, $country_code, $start_dt, $end_dt  ) / floor($this->_CI->perPage) );
+        
+        return $count-1;
+    }
+
         
 }
 /* End of file users.php */
