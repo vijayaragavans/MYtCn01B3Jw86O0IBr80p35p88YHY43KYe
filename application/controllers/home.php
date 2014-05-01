@@ -95,13 +95,12 @@ class Home extends CI_Controller {
 	   		$visits_details .= $comma.  $start.'"'.$utc_date.'",' . $visit['total'].']';
 	   		$i++;
 
-
 	   }
 
 
-	   	$browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
+	  $browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
 	   	
-	   $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
+	  $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
 	   		   	
 	   	if(isset($user_data['user_id'])){
 

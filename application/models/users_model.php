@@ -244,7 +244,7 @@ class Users_Model extends CI_Model
     {
     	
         $this->db->select("count(traffic.user_ip) as total, DATE(traffic.data_created_on) as dates");
-	    $this->db->from(TOOL_DB_NAME.'.traffic');
+        $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key '=>$user_api_key ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         
@@ -260,7 +260,7 @@ class Users_Model extends CI_Model
         
                 
         $this->db->group_by(" DATE(`data_created_on`)");
-	    $this->db->order_by("traffic.data_created_on", DESC);	        
+	    $this->db->order_by("traffic.data_created_on", ASC);	        
 	    $this->db->limit(6);
     
         $query = $this->db->get();
