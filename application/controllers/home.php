@@ -22,7 +22,8 @@ class Home extends CI_Controller {
         $this->load->library('core/users');  
         $this->load->library('core/sh_behaviour'); 
         $this->load->library('core/sh_demographics'); 
-        
+        $this->load->library('core/sh_common'); 
+
         $this->load->library('core/sh_language'); 
         $this->load->library('core/sh_country');          
         $this->config->load('mail_vars', TRUE);
@@ -43,65 +44,36 @@ class Home extends CI_Controller {
 	{
 		
 		$user_info = false;
-		
-		
+
 		$user_data = $this->session->userdata('mystat');
 		
 	   	$user_api_key = $user_data['user_api_key'];
 	   		
 	   //VISITS DETAILS
-	   
-	   $start_dt = $this->input->cookie('start') ;
-	   $end_dt = $this->input->cookie('end') ;
-	   
-	   
-	   if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
-	   {
-	   	
-			$d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
 
-			$start_dt = date('Y-m-d', $d1);
-			$end_dt = date('Y-m-d');
-			
-			$expire_time = time()+3600*24*30;
-			
-			setcookie('start', date('M d Y', strtotime($start_dt) ), $expire_time, '/' );
-			setcookie('end', date('M d Y', strtotime($end_dt) ), $expire_time, '/');
-			
-			$this->country = 'all';
-			$this->country_code = 'all';
-			
-			
-	   }else{
-	   	
-			$start_dt = date('Y-m-d', strtotime( $start_dt ) );
-			$end_dt = date('Y-m-d', strtotime( $end_dt ) );
-	   	
-			$this->country = $this->input->cookie('country') ;;
-			$this->country_code = $this->input->cookie('country_code') ;;
-	   }
+	   $date_range = $this->sh_common->Get_Date_Range( );
+
+	   $visits = $this->users->Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code );
 	   
-	   $visits = $this->users->Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code );
-	   
-	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code  );
+	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code  );
 	   	   
-	   $total_visits = $this->users->Total_Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );		//	Total Visits Count
+	   $total_visits = $this->users->Total_Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Total Visits Count
 	   
-	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );		//	Unique Visits Count
+	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Unique Visits Count
 	   
-	   $latest_events = $this->Get_Latest_Events( $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Latest Hits
+	   $latest_events = $this->Get_Latest_Events( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Latest Hits
 	   
-	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $start_dt, $end_dt, $this->country, $this->country_code   );	//	Chrome Count
+	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
 	   $visits_details = '';
 	   $i = 0;
