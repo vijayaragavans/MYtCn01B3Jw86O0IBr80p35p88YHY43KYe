@@ -47,5 +47,14 @@ class Sh_country
     }    
     
     
+    public function Get_All_Details( $user_api_key, $perPage, $end_dt, $country_code  )
+    {
+        $response = false;
+        
+        $response = $this->_CI->country_model->Get_All_Details( $user_api_key, $perPage, $end_dt, $country_code  );
+        
+        return $response;       
+    }
+    
 }
 /* End of file users.php */
