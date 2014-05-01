@@ -39,7 +39,9 @@
 			var self = this;
 
 			o.pages = o.pages ? o.pages : Math.ceil(o.items / o.itemsOnPage) ? Math.ceil(o.items / o.itemsOnPage) : 1;
+
 			o.currentPage = o.currentPage - 1;
+
 			o.halfDisplayed = o.displayedPages / 2;
 
 			this.each(function() {
@@ -214,15 +216,19 @@
 
 			options = $.extend(options, opts || {});
 
+
 			if (pageIndex == o.currentPage || o.disabled) {
 				if (o.disabled) {
 					$linkWrapper.addClass('disabled');
 				} else {
 					$linkWrapper.addClass('active');
 				}
-				$link = $('<span class="current">' + (options.text) + '</span>');
+				//$link = $('<span class="current">' + (options.text) + '</span>');
+					$link = $('<a href="' + o.hrefTextPrefix + (pageIndex ) + o.hrefTextSuffix + '" class="page-link current">' + (options.text) + '</a>');
+
 			} else {
-				$link = $('<a href="' + o.hrefTextPrefix + (pageIndex + 1) + o.hrefTextSuffix + '" class="page-link">' + (options.text) + '</a>');
+					$link = $('<a href="' + o.hrefTextPrefix + (pageIndex + 1) + o.hrefTextSuffix + '" class="page-link">' + (options.text) + '</a>');
+
 				$link.click(function(event){
 					return methods._selectPage.call(self, pageIndex, event);
 				});

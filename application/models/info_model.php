@@ -17,13 +17,17 @@ class Info_Model extends CI_Model
 	 
     
     
-    function Get_All_Notifications( $api_key, $perPage, $fromStart, $start_dt, $end_dt  )
+    function Get_All_Notifications( $api_key, $perPage, $fromStart, $start_dt, $end_dt, $country_code   )
     {
     	
     	$this->db->select(" * ");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+
+         if( isset( $country_code ) && $country_code != 'all' )
+            $this->db->where("traffic.user_country_code =", $country_code);
+
         $this->db->order_by('traffic.data_created_on', DESC);
         $this->db->limit( $perPage, $fromStart);
         
@@ -41,18 +45,34 @@ class Info_Model extends CI_Model
     }
     
 	 
-    function Pagination( $api_key, $start_dt, $end_dt, $country_code )
+    function Pagination( $api_key, $country_code, $start_dt, $end_dt )
     {
         $this->db->select("*");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where('traffic.user_api_key', $api_key);
 
-        if( $start_dt != '' && $end_dt != '' )
+        if( $start_dt != 'all' && $end_dt != 'all' )
             $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
 
-        if( isset( $country_code ) )
-        	$this->db->where("traffic.user_country_code =", $country_code);
+
         
+        if($country_code == 'group_by_country')
+           {
+
+                $this->db->group_by('traffic.user_country');
+
+           } elseif($country_code == 'group_by_language')
+           {
+
+                $this->db->group_by('traffic.user_agent_lang');
+
+           }else{
+
+                $this->db->where("traffic.user_country_code =", $country_code);
+
+           }
+
+
         $query = $this->db->get();
         
 		$db_results = $query->result();

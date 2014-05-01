@@ -75,6 +75,30 @@ class Country_Model extends CI_Model
     }
 
 
+    function Get_All_Countries(  $api_key, $perPage, $fromStart )
+    {
+        $this->db->select("distinct(traffic.user_country) as lang, count(traffic_id) as users, user_country_code");
+        $this->db->group_by('traffic.user_country');
+        $this->db->order_by('users', 'DESC');
+
+        $this->db->from(TOOL_DB_NAME.'.traffic');
+        $this->db->where(array( 'traffic.user_api_key'=>$api_key ));
+        $this->db->limit( $perPage, $fromStart);
+        
+        $query = $this->db->get();
+        
+        $db_results = $query->result_array();   
+        
+         if (count($db_results) > 0 )
+        {   
+            return $db_results;
+        } else {
+             return false;
+        } 
+
+    } 
+
+
 }
 /* End of file users_model.php */
 ?>
