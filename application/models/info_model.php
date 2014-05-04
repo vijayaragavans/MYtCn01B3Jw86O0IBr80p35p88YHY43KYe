@@ -81,6 +81,10 @@ class Info_Model extends CI_Model
             {
                     $this->db->where("traffic.user_city =", $code['where_by_city']);
 
+            }elseif( key($code) == 'where_by_browser' )
+            {
+                    $this->db->where("traffic.user_browser_name =", $code['where_by_browser']);
+
             }
 
         $query = $this->db->get();
