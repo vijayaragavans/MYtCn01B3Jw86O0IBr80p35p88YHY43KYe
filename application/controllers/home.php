@@ -53,11 +53,14 @@ class Home extends CI_Controller {
 
 	   $this->country_code = $this->input->cookie('country_code') ;
 
-	   echo $this->country_code;
-
 	   $date_range = $this->sh_common->Get_Date_Range( );
 
-	   $visits = $this->users->Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code );
+	   $str_start_date = strtotime( $date_range['start_dt']);
+	   $str_end_date = strtotime( $date_range['end_dt']);
+
+	   $limit_of = floor( ( $str_end_date - $str_start_date) /(60*60*24));
+
+	   $visits = $this->users->Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code, ( $limit_of >0 ) ? $limit_of : 1 );
 	   
 	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code  );
 	   	   

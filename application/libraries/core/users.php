@@ -208,12 +208,12 @@ class Users
     
     
     
-    public function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code )
+    public function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code, $limit_of  )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->users_model->Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code );
+    	$response = $this->_CI->users_model->Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code, $limit_of  );
     	
     	return $response;
     

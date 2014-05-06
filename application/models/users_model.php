@@ -240,7 +240,7 @@ class Users_Model extends CI_Model
     
     
     
-    function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code )
+    function Visits( $user_api_key, $start_dt, $end_dt, $country, $country_code, $limit_of  )
     {
     	
         $this->db->select("count(traffic.user_ip) as total, DATE(traffic.data_created_on) as dates");
@@ -261,7 +261,7 @@ class Users_Model extends CI_Model
                 
         $this->db->group_by(" DATE(`data_created_on`)");
 	    $this->db->order_by("traffic.data_created_on", ASC);	        
-	    $this->db->limit(6);
+	    $this->db->limit($limit_of);
     
         $query = $this->db->get();
         
