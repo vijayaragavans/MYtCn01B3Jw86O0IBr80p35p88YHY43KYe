@@ -48,7 +48,7 @@ class behaviour extends CI_Controller {
        	   $tags = $this->sh_behaviour->Get_All_Tags( $Userdata['user_api_key'] );
 
 	    $visitor_flow = $this->users->VisitorsFlow( $Userdata['user_api_key'], 2 );
-	   
+
 		   $unique_total = '';
 		   $i = 0;
 			$comma = ',';
@@ -69,6 +69,7 @@ class behaviour extends CI_Controller {
 
 		}
 
+
 		$action_labels = '[ Date ' .$label. ']';
 
 			$action_data =  $action_labels;
@@ -78,34 +79,21 @@ class behaviour extends CI_Controller {
 			{
 				$action_dat[ ] = $flow['dates'];
 				$dats = $flow['dates'];
-				$action_data .= $comma. '['.$dats .$out[$dats]. ']' ;
+				$action_data .= $comma. '['. "'$dats'" .$out[$dats]. ']' ;
 
 			}
 
 		}
-
-		   foreach($unique_visitors as $visitor){
-	
-		   	if($i > 0 ) $comma = ',';
-	   		$rtt = explode('-', $visitor['dates']);
-		   	$mont = $rtt[1]-1;
-		   	$utc_date = date('y', strtotime($visit['dates'])).'-'.date('M', strtotime($visit['dates'])).'-'.$rtt[2]; 
-		   	$visits_details .= $comma.  $start.'"'.$utc_date.'",' . $visit['total'].']';
-		   	$i++;
-		   }
-
 		$data_type = '';
 		   
 		$datas =  $this->sh_behaviour->Get_All_Datas($Userdata['user_api_key'], $data_type);
 
 		$file = 'site/behaviour.html';
-			
-	   	$labels = array("label_name" => "Action Label", "count_of_value" =>"VISITS");
-		
+
+
 	   	$this->mysmarty->assign('unique_total', $unique_total);
 	   	
 		$this->mysmarty->assign('visits', $action_data);
-		$this->mysmarty->assign('labels',$labels);
 	   	$this->mysmarty->assign('datas',$datas);
 	   	$this->mysmarty->assign('user',$Userdata);
 	   	$this->mysmarty->assign('tags',$tags);

@@ -1,23 +1,3 @@
-<div id="main">
-
-<!-- wrapper-main -->
-	<div class="wrapper">		
-	{if is_array($tags) }
-	     	<table>
-	     		<tr>
-	     		<span style="font-size: 20px; ">Action Labels : </span>
-				     {foreach from=$tags item=tag}
-				     	<td>
-				     		<span class="activity">
-								<a href="{$base_url}/behaviour/track_event/?__={$tag.label}" name="tag_stat" class="tag_stat" style="margin-left: 25px; color: green" >{$tag.label}</a>    		
-				     		</span>
-				     		</td>
-				     {/foreach}
-	     		</tr>
-	     	</table>
-	{/if}
-	</div>
-</div>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
  {literal}
@@ -33,7 +13,7 @@
         var data = google.visualization.arrayToDataTable( [ {/literal}{$visits}{literal} ] );
 
         var options = {
-          title: 'Company Performance'
+          title: 'Action Events'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('unique_container'));
@@ -73,9 +53,7 @@
 <!-- wrapper-main -->
 	<div class="wrapper">
 
-	<div id="unique_container" style="min-width: 400px; width:450px; height: 400px; margin: 0 auto 0 0; float:right;"></div>
-
-	<div id="repeat_container" style="min-width: 400px; width:450px; height: 400px; margin: 0 auto 0 0; float:right;"></div>
+	<div id="unique_container" style="min-width: 400px; width:100%; height: 400px; margin: 0 auto 0 0; float:right;"></div>
 
 		{if $label.label_name}
 		<table id="box-table-a" summary="Employee Pay Sheet" style="width: 925px;">

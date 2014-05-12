@@ -27,7 +27,7 @@
 									{foreach from=$lang_data item=data key=i}
 									<tr>
 										<td>{$data.lang}</td>
-										<td>{$data.users}</td>
+										<td><a href="{$base_url}language/user_language_details/{$data.lang}">{$data.users}</a></td>
 									</tr>
 									{/foreach}		    	
 					            
@@ -68,7 +68,7 @@
 											{foreach from=$country_data item=data key=i}
 										    	<tr>
 										        	<td>{$data.lang}</td>
-										        	<td>{$data.users}</td>
+										        	<td><a href="{$base_url}country/user_country_details/{$data.user_country_code}">{$data.users}</a></td>
 										        </tr>
 											{/foreach}		    	
 										</tbody>
@@ -107,7 +107,7 @@
 											{foreach from=$city_data item=data key=i}
 										    	<tr>
 										        	<td>{$data.lang}</td>
-										        	<td>{$data.users}</td>
+										        	<td><a href="{$base_url}city/user_city_details/{$data.lang}">{$data.users}</a></td>
 										        </tr>
 											{/foreach}		    	
 										</tbody>
