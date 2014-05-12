@@ -45,22 +45,53 @@ class behaviour extends CI_Controller {
 	   
 	   if($Userdata['user_id'] > 0){
        	
-       	$tags = $this->sh_behaviour->Get_All_Tags( $Userdata['user_api_key'] );
-       	
-	    $unique_visitors = $this->users->VisitorsFlow( $Userdata['user_api_key'], 1 );
+       	   $tags = $this->sh_behaviour->Get_All_Tags( $Userdata['user_api_key'] );
+
+	    $visitor_flow = $this->users->VisitorsFlow( $Userdata['user_api_key'], 2 );
 	   
 		   $unique_total = '';
 		   $i = 0;
+			$comma = ',';
 		   $Mon = '';
-		   
+		for($i=0; $i< count($visitor_flow); $i++)
+		{
+			$old_label = $tags[$i]['label'];
+
+			($tags[$i] != '') ? $label  .= $comma ."'$old_label'": NULL;		// Labels for Charts
+
+			if( $visitor_flow[$i-1]['dates'] == $visitor_flow[$i]['dates'])
+			{
+				$out[$visitor_flow[$i]['dates']] .=  $comma. $visitor_flow[$i]['count_of'];
+			}else{
+				$out[$visitor_flow[$i]['dates']] = $comma .$visitor_flow[$i]['count_of'];
+			}
+
+
+		}
+
+		$action_labels = '[ Date ' .$label. ']';
+
+			$action_data =  $action_labels;
+		foreach($visitor_flow as $flow )
+		{
+			if( !in_array($flow['dates'], $action_dat)  )
+			{
+				$action_dat[ ] = $flow['dates'];
+				$dats = $flow['dates'];
+				$action_data .= $comma. '['.$dats .$out[$dats]. ']' ;
+
+			}
+
+		}
+
 		   foreach($unique_visitors as $visitor){
 	
-		   		if($i > 0 ) $comma = ',';
-	   			$rtt = explode('-', $visitor['dates']);
-		   		$mont = $rtt[1]-1;
-		   		$utc_date = $rtt[0].', '.$mont.', '.$rtt[2]; 
-		   		$unique_total .= $comma. '[Date.UTC('.$utc_date.'),'.$visitor['total'].']' ;
-		   		$i++;
+		   	if($i > 0 ) $comma = ',';
+	   		$rtt = explode('-', $visitor['dates']);
+		   	$mont = $rtt[1]-1;
+		   	$utc_date = date('y', strtotime($visit['dates'])).'-'.date('M', strtotime($visit['dates'])).'-'.$rtt[2]; 
+		   	$visits_details .= $comma.  $start.'"'.$utc_date.'",' . $visit['total'].']';
+		   	$i++;
 		   }
 
 		$data_type = '';
@@ -69,10 +100,11 @@ class behaviour extends CI_Controller {
 
 		$file = 'site/behaviour.html';
 			
-	    $labels = array("label_name" => "Action Label", "count_of_value" =>"VISITS");
+	   	$labels = array("label_name" => "Action Label", "count_of_value" =>"VISITS");
 		
 	   	$this->mysmarty->assign('unique_total', $unique_total);
 	   	
+		$this->mysmarty->assign('visits', $action_data);
 		$this->mysmarty->assign('labels',$labels);
 	   	$this->mysmarty->assign('datas',$datas);
 	   	$this->mysmarty->assign('user',$Userdata);

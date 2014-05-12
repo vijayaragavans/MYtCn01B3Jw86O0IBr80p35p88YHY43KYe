@@ -19,69 +19,42 @@
 	</div>
 </div>
 
-{literal}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ {literal}
+
 <script type="text/javascript">
-	$(document).ready(function () {
-		// Graph Data ##############################################
- 		var unique_datas = [ {/literal}{$unique_total}{literal} ];
- 	 	var repeat_datas = [ {/literal}{$repeat_total}{literal} ]; 			 
 
- 	 	 	alert(unique_datas);
- 	 	 	
-			$(function () {
-		        $('#unique_container').highcharts({
-		            chart: {
-		                type: 'line'
-		            },
-		            title: {
-		                text: 'Unique Visitors Flow'
-		            },
-		            subtitle: {
-		                text: 'Tag+'
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                dateTimeLabelFormats: { // don't display the dummy year
-		                    month: '%e. %b',
-		                    year: '%b'
-		                }
-		            },
-		            yAxis: {
-		                title: {
-		                    text: 'Count Of Visits'
-		                },
-		                min: 0
-		            },
-		            plotOptions: {
-		                line: {
-		                    dataLabels: {
-		                        enabled: true
-		                    },
-		                    enableMouseTracking: false
-		                }
-		            },
-		            tooltip: {
-		                enabled: false,
-		                formatter: function() {
-		                    return '<b>'+ this.series.name +'</b><br/>'+
-		                        this.x +': '+ this.y +'°C';
-		                }
-		            },
-		            
-		            series: [{
-		                name: 'Unique Visitors',
-		                // Define the data points. All series have a dummy year
-		                // of 1970/71 in order to be compared on the same x axis. Note
-		                // that in JavaScript, months start at 0 for January, 1 for February etc.
-		                data: unique_datas
-		              }]
-		        });
-		    });
+    //var input_data = [ ["Year", "Sales"], ["2004",  1000], ["2005",  1170], ["2006",  660,], ["2007",  1030]  ];
 
+  
+     google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable( [ {/literal}{$visits}{literal} ] );
+
+        var options = {
+          title: 'Company Performance'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('unique_container'));
+        chart.draw(data, options);
+      }
+    
+
+    	function sample()
+	{
+		$.removeCookie('country', {expires: -1, path: '/'});
+		$.removeCookie('country_code', {expires: -1, path: '/'});
 		
+		window.location.reload();
+		
+	}
+
 	
-	});
 </script>
+
+{/literal}
+
 
 {/literal}
 

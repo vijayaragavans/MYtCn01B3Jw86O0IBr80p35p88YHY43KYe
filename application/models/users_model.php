@@ -135,20 +135,20 @@ class Users_Model extends CI_Model
 	        
         }else if($type == 2){
 
-	        $this->db->select("count(traffic.user_ip) as count_of,  count( distinct traffic.user_ip ) as total, DATE(traffic.data_created_on) as dates");
+	        $this->db->select("count(traffic.user_ip) as count_of,  count( distinct traffic.user_ip ) as total, DATE(traffic.data_created_on) as dates, actions.action_label");
 	        $this->db->from(TOOL_DB_NAME.'.traffic');
-        	$this->db->where(array('traffic.user_api_key '=>$user_api_key ));
+                        $this->db->join(TOOL_DB_NAME.'.actions', 'actions.traffic_id = traffic.traffic_id', 'left'); 
+        	        $this->db->where(array('traffic.user_api_key '=>$user_api_key, "actions.action_label !=" => '' ));
 	        $this->db->group_by('DATE(`data_created_on`)');
-	        $this->db->group_by('user_ip');	        
-	        $this->db->having('count_of > 1');
-	        $this->db->order_by('traffic.data_created_on', 'ASC');
+	        $this->db->group_by('actions.action_label');  
+	        $this->db->order_by('traffic.data_created_on', 'DESC');
 	        $this->db->limit(6);
 	        
         }
         
         $query = $this->db->get();
         
-		$db_results = $query->result_array();		 
+        $db_results = $query->result_array();		 
     
         if (count($db_results) > 0 )
         { 
