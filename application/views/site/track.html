@@ -8,26 +8,7 @@
 		<!-- Graph HTML -->
 		<div id="graph-wrapper">
 <pre>
-	
-	&lt;script type="text/javascript"&gt;
-	
-	  var _hwa = _hwa || [];
-	  
-		_hwa.push(['_AccountNo', '--API--KEY--']);
-		  
-		_hwa.push(['_Pageview', 'Page Label']);		--	NO SPL CHAR
-	
-	(function() {
-	    var a = document.createElement('script'); a.type = 'text/javascript'; a.async = true;
-	    a.src = 'http://supertag1.havasmatrix.com/hwwa.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(a, s);
-	
-	})();
-	
-	&lt;/script&gt;	
-	
-	&lt;a href="#" onClick="__hwa(['Category', 'Action_Label', 'Action_Value']);"&gt;Click Me!&lt;/a&gt; -->
-	
+	{$track|replace:'APIKEY':$user.user_api_key}
 </pre>
 
 		</div>

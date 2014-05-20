@@ -54,9 +54,30 @@ class Overview extends CI_Controller {
 	   	redirect(SITE_URL."home/login");
 	   }
 	   
+	   $track = '&lt;script type="text/javascript"&gt;
+	
+		var _hii = _hii || [];
+
+		_hii.push(["_AccountNo", "APIKEY"]);
+
+		_hii.push(["_Pageview", "page"]);
+
+		(function() {
+		  var a = document.createElement(script); 
+		  a.type = "text/javascript"; 
+		  a.async = true;
+		  a.src = "//www.tag.haiinteractive.com/hii.js";
+		  var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(a, s);
+		
+		})();
+		
+	&lt;/script&gt;	
+		
+		&lt;a href="#" onClick="__hwa(["Category", "Action_Label", "Action_Value"]);"&gt;Click Me!&lt;/a&gt; --> ';
 	   
 	   	$file = 'site/track.html';
-	    $this->mysmarty->assign('user', $user_data);
+	    	$this->mysmarty->assign('user', $user_data);
+	   	$this->mysmarty->assign('track',$track);            
 	   	$this->mysmarty->assign('filename',$file);            
 		$this->mysmarty->display('home.html'); 
 	}

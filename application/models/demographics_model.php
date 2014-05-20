@@ -39,6 +39,7 @@ class Demographics_Model extends CI_Model
     		
 	        $this->db->select("distinct(traffic.user_city) as lang, count(traffic_id) as users");
 	        $this->db->group_by('traffic.user_city');
+	        $this->db->order_by('users', 'DESC');
     		
     	}    	
 	        $this->db->from(TOOL_DB_NAME.'.traffic');

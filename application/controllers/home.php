@@ -43,11 +43,11 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		
-		$user_info = false;
+	   $user_info = false;
 
-		$user_data = $this->session->userdata('mystat');
+	   $user_data = $this->session->userdata('mystat');
 		
-	   	$user_api_key = $user_data['user_api_key'];
+	   $user_api_key = $user_data['user_api_key'];
 	   		
 	   //VISITS DETAILS
 
@@ -146,7 +146,7 @@ class Home extends CI_Controller {
 	   $user_data = false;
 		
 	   $user_data = $this->session->userdata('mystat');
-	   
+
 	   if($user_data['user_id'] > 0 )
 	   {
 		   redirect(SITE_URL."home/index");
