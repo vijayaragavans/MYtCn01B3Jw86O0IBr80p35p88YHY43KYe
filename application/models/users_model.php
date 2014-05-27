@@ -448,6 +448,28 @@ class Users_Model extends CI_Model
         } 
     	
     }
+
+
+
+
+
+    public function List_Of_Sites( $user_id )
+    {
+
+            $this->db->select("*");
+            $this->db->from(TOOL_DB_NAME.'.sites');
+            $this->db->where(array('sites.created_by'=>$user_id));
+            $query = $this->db->get();
+            
+            $db_results = $query->result_array();   
+            
+             if (count($db_results) > 0 )
+            {   
+                return $db_results;
+            } else {            
+                 return false;
+            } 
+    }
     
     
 }

@@ -29,6 +29,7 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
+								<li><a href="{$base_url}site/add_new_site"><i class="icon-tasks"></i>Add New Site</a></li>
 								<li><a href="{$base_url}overview/track_code"><i class="icon-tasks"></i>Tracking Code</a></li>
 								<li><a href="#"><i class="icon-ok"></i> Edit Profile</a></li>
 								<li class="divider"></li>
@@ -67,6 +68,13 @@
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
 						<h3 class="page-title">
 							Dashboard		<small>statistics and more</small>
+							<div style="float:right;">
+								<select name='sites' id='sites'>
+								{foreach from=$list_of_sites item=site key=i}
+									<option value="{$site.site_api_key}">{$site.site_name}</option>	
+								{/foreach}
+								</select>
+							</div>
 						</h3>
 						<ul class="breadcrumb">
 							

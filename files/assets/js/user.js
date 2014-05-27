@@ -1,9 +1,9 @@
 $(document).ready(function() { 
 		
 	//var local_dir = "http://localhost/myanalytics/";
-	//var local_dir = location.protocol + "//" + document.domain + "/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/";
 	var local_dir = location.protocol + "//" + document.domain + "/";
-	 
+	//var local_dir = location.protocol + "//" + document.domain + "/";
+	
 	$("#logForm").validate({
 		rules: {
 		input_password: {
@@ -37,9 +37,9 @@ $(document).ready(function() {
 
 	    submitHandler: function(form) {
 			
-			var params = "user_password="+$("#input_password").val()+"&username="+$("#input_username").val()+"&for=login";
+		var params = "user_password="+$("#input_password").val()+"&username="+$("#input_username").val()+"&for=login";
 			
-			 $.ajax({
+		$.ajax({
 		            type: "POST",
 		            url: local_dir+"home/processLogin/",
 		            data: params,
@@ -61,10 +61,59 @@ $(document).ready(function() {
 	}); // End of Login Validation
 
 	
+	$("#siteForm").validate({
+		rules: {
+		input_site_label: {
+				required: true,
+				minlength: 5
+			},
+		input_site_url: {
+				required: true,
+				minlength: 5
+			}
+		},
+		messages: {
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+			
+		var params = "input_site_label="+$("#input_site_label").val()+"&input_site_url="+$("#input_site_url").val()+"&for=add_site";
+			
+		$.ajax({
+		            type: "POST",
+		            url: local_dir+"site/add_new_site/",
+		            data: params,
+		            async: false,
+		            success: function(sresponse) {
+
+				 if(sresponse == 0)
+				{
+				 	$(".response").html("Insert Failed! Please try again...");
+				 	return false;
+				}else{
+				 	$(".response").html("Site Added Successfully.");
+				 	return false;
+				}
+			}
+			});
+			
+		}
+		
+	}); // End of Add New Site
+
 	
-	$(".update_user-btn").click(function(){
-    	document.logForm.submit();
-    });
 
     $('#photoimg').live('change', function()	{ 
     	   var showResponse  = '';
@@ -83,6 +132,13 @@ $(document).ready(function() {
 	});
    
     
+    $("#sites").live('change', function(){
+
+    	var current_site = $(this).val();
+
+    	$.cookie('current_site', current_site, {path:'/'});
+    });
+
     $("#client_info").live('change', function(){
     	var user_api_key = $(this).val();
     	

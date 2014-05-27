@@ -29,9 +29,26 @@ class AppConstructor extends CI_Hooks {
      */
     function doConstruct()
     {
-    	$view_info = false;
-       
-	}    
+
+            $mystat      = $this->CI->session->userdata('mystat');
+
+            $response = $this->CI->users->List_Of_Sites( $mystat['user_id'] );
+
+            $current_site = $this->CI->input->cookie('current_site');
+
+            if( ( $current_site != '' || $current_site != NULL || !empty( $current_site) ) && $response['user_api_key'] != $current_site )
+            {
+
+                    $sessionUserdata['current_site'] = $current_site;
+                    
+                    $this->CI->session->unset_userdata('current_site');
+                    
+                    $this->CI->session->set_userdata(array('current_site'=>$sessionUserdata));
+            }
+
+            $this->CI->mysmarty->assign('list_of_sites',  $response);
+
+    }    
 	
 	
 }

@@ -289,5 +289,16 @@ class Users
     	return $response;
     }    
     
+
+    public function List_Of_Sites( $user_id )
+    {
+
+        $response = false;
+
+        $response = $this->_CI->users_model->List_Of_Sites( $user_id );
+
+        return $response;
+
+    }
 }
 /* End of file users.php */
