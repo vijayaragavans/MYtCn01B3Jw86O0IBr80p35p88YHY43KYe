@@ -137,6 +137,9 @@ $(document).ready(function() {
     	var current_site = $(this).val();
 
     	$.cookie('current_site', current_site, {path:'/'});
+
+    	window.location.reload();
+    	
     });
 
     $("#client_info").live('change', function(){
