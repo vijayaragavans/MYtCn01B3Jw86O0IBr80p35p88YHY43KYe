@@ -89,8 +89,12 @@ class Home extends CI_Controller {
 	   $Mon = '';
 
 	   $start = "[";
-	     $visits_details = '["Year", "Visits"], ';
-	   foreach($visits as $visit){
+	    $visits_details = '["Year", "Visits"], ';
+
+	    if(is_array($visits))
+	    {
+
+		   foreach($visits as $visit){
 
 
 	   		if($i > 0 ) $comma = ',';
@@ -100,7 +104,11 @@ class Home extends CI_Controller {
 	   		$visits_details .= $comma.  $start.'"'.$utc_date.'",' . $visit['total'].']';
 	   		$i++;
 
-	   }
+		   }
+	    }else{
+
+	   		$visits_details .= $comma. '[0, 0]';
+	    }
 
 
 	  $browser = $this->sh_behaviour->Get_All_Browsers( $api_key );
@@ -127,9 +135,9 @@ class Home extends CI_Controller {
 	   	   $this->mysmarty->assign('top_2_language', $top_2_language);	   	   
 	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
-	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
+	   	   $this->mysmarty->assign('unique_visits',  ( $unique_visits > 0 ) ? $unique_visits  : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
-		   $this->mysmarty->assign('count_repeat', $count_repeat);
+		   $this->mysmarty->assign('count_repeat',  ( $count_repeat > 0 ) ? $count_repeat  : 0 );
 		   $this->mysmarty->assign('country', $this->country);
 		   $this->mysmarty->assign('api_key', $api_key);		   
 		   $this->mysmarty->assign('country_code', $this->country_code);
