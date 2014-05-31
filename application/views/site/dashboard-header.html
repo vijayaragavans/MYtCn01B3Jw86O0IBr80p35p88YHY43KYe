@@ -70,8 +70,14 @@
 							Dashboard		<small>statistics and more</small>
 							<div style="float:right;">
 								<select name='sites' id='sites'>
+
 								{foreach from=$list_of_sites item=site key=i}
-									<option value="{$site.site_api_key}">{$site.site_name}</option>	
+
+									{if $site.site_api_key == $api_key}
+									<option value="{$site.site_api_key}" selected="selected">{$site.site_name}</option>	
+
+									{else}
+									<option value="{$site.site_api_key}">{$site.site_name}</option> {/if} 
 								{/foreach}
 								</select>
 							</div>

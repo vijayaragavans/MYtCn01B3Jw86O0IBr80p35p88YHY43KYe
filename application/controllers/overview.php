@@ -49,6 +49,11 @@ class Overview extends CI_Controller {
 	public function track_code()
 	{
 	   $user_data = $this->session->userdata('mystat');
+
+	   $current_site = $this->session->userdata('current_site');
+
+	   $user_api_key = $current_site['current_site'];
+
 	   
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	redirect(SITE_URL."home/login");
@@ -77,6 +82,7 @@ class Overview extends CI_Controller {
 	   
 	   	$file = 'site/track.html';
 	    	$this->mysmarty->assign('user', $user_data);
+	    	$this->mysmarty->assign('user_api_key', $user_api_key);
 	   	$this->mysmarty->assign('track',$track);            
 	   	$this->mysmarty->assign('filename',$file);            
 		$this->mysmarty->display('home.html'); 

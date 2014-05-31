@@ -46,8 +46,10 @@ class Home extends CI_Controller {
 	   $user_info = false;
 
 	   $user_data = $this->session->userdata('mystat');
-		
-	   $user_api_key = $user_data['user_api_key'];
+
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
 	   		
 	   //VISITS DETAILS
 
@@ -102,7 +104,8 @@ class Home extends CI_Controller {
 
 
 	  $browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
-	   	
+	   
+	   //mystat.haiinteractive.com/	
 	  $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
 	   		   	
 	   	if(isset($user_data['user_id'])){
@@ -121,12 +124,14 @@ class Home extends CI_Controller {
 	   	   $this->mysmarty->assign('top_2_country', $top_2_country);
 	   	   $this->mysmarty->assign('top_1_language', $top_1_language);
 	   	   $this->mysmarty->assign('top_2_language', $top_2_language);
+	   	   $this->mysmarty->assign('top_2_language', $top_2_language);	   	   
 	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
 	   	   $this->mysmarty->assign('unique_visits', ( count( $unique_visits ) > 0 ) ? $unique_visits = count( $unique_visits ) : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
 		   $this->mysmarty->assign('count_repeat', $count_repeat);
 		   $this->mysmarty->assign('country', $this->country);
+		   $this->mysmarty->assign('api_key', $api_key);		   
 		   $this->mysmarty->assign('country_code', $this->country_code);
 		   $this->mysmarty->assign('latest_events', $latest_events);
 		   $this->mysmarty->assign('active_user_count', $active_user_count);
