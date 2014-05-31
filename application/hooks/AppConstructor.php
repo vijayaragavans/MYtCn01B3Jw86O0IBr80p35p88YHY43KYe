@@ -36,6 +36,9 @@ class AppConstructor extends CI_Hooks {
 
             $current_site = $this->CI->input->cookie('current_site');
 
+            $site_api_key = $this->CI->session->userdata('current_site');
+
+
             if( ( $current_site != '' || $current_site != NULL || !empty( $current_site) ) && $response['user_api_key'] != $current_site )
             {
 
@@ -46,7 +49,10 @@ class AppConstructor extends CI_Hooks {
                     $this->CI->session->set_userdata(array('current_site'=>$sessionUserdata));
             }
 
+           $api_key = $site_api_key['current_site'];
+
             $this->CI->mysmarty->assign('list_of_sites',  $response);
+            $this->CI->mysmarty->assign('api_key',  $api_key);
 
     }    
 	
