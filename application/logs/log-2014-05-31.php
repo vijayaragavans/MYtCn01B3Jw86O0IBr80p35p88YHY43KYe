@@ -10910,3 +10910,83 @@ ERROR - 2014-05-31 14:35:21 --> Severity: Notice  --> Undefined property: Home::
 DEBUG - 2014-05-31 14:35:21 --> Hooks Class Initialized
 DEBUG - 2014-05-31 14:35:21 --> Users class already loaded. Second attempt ignored.
 ERROR - 2014-05-31 14:35:21 --> 404 Page Not Found --> home/assets
+DEBUG - 2014-05-31 14:45:42 --> Config Class Initialized
+DEBUG - 2014-05-31 14:45:42 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:45:42 --> Utf8 Class Initialized
+DEBUG - 2014-05-31 14:45:42 --> UTF-8 Support Enabled
+DEBUG - 2014-05-31 14:45:42 --> URI Class Initialized
+DEBUG - 2014-05-31 14:45:42 --> Router Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Output Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Security Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Input Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-05-31 14:45:43 --> Language Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Loader Class Initialized
+DEBUG - 2014-05-31 14:45:43 --> Helper loaded: date_helper
+DEBUG - 2014-05-31 14:45:43 --> Helper loaded: cookie_helper
+DEBUG - 2014-05-31 14:45:43 --> Helper loaded: url_helper
+DEBUG - 2014-05-31 14:45:43 --> Database Driver Class Initialized
+ERROR - 2014-05-31 14:45:43 --> Severity: Warning  --> mysql_pconnect() [<a href='function.mysql-pconnect'>function.mysql-pconnect</a>]: Access denied for user 'rightern_news'@'localhost' (using password: YES) C:\wamp\www\MYtCn01B3Jw86O0IBr80p35p88YHY43KYe\system\database\drivers\mysql\mysql_driver.php 88
+ERROR - 2014-05-31 14:45:43 --> Unable to connect to the database
+DEBUG - 2014-05-31 14:45:43 --> Language file loaded: language/english/db_lang.php
+DEBUG - 2014-05-31 14:45:48 --> Config Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Utf8 Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> UTF-8 Support Enabled
+DEBUG - 2014-05-31 14:45:48 --> URI Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Router Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Output Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Security Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Input Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-05-31 14:45:48 --> Language Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Loader Class Initialized
+DEBUG - 2014-05-31 14:45:48 --> Helper loaded: date_helper
+DEBUG - 2014-05-31 14:45:48 --> Helper loaded: cookie_helper
+DEBUG - 2014-05-31 14:45:48 --> Helper loaded: url_helper
+DEBUG - 2014-05-31 14:45:48 --> Database Driver Class Initialized
+ERROR - 2014-05-31 14:45:48 --> Severity: Warning  --> mysql_pconnect() [<a href='function.mysql-pconnect'>function.mysql-pconnect</a>]: Access denied for user 'rightern_news'@'localhost' (using password: YES) C:\wamp\www\MYtCn01B3Jw86O0IBr80p35p88YHY43KYe\system\database\drivers\mysql\mysql_driver.php 88
+ERROR - 2014-05-31 14:45:48 --> Unable to connect to the database
+DEBUG - 2014-05-31 14:45:48 --> Language file loaded: language/english/db_lang.php
+DEBUG - 2014-05-31 14:46:39 --> Config Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> Utf8 Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> UTF-8 Support Enabled
+DEBUG - 2014-05-31 14:46:39 --> URI Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> Router Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> Output Class Initialized
+DEBUG - 2014-05-31 14:46:39 --> Security Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Input Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-05-31 14:46:40 --> Language Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Loader Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Helper loaded: date_helper
+DEBUG - 2014-05-31 14:46:40 --> Helper loaded: cookie_helper
+DEBUG - 2014-05-31 14:46:40 --> Helper loaded: url_helper
+DEBUG - 2014-05-31 14:46:40 --> Database Driver Class Initialized
+ERROR - 2014-05-31 14:46:40 --> Severity: Warning  --> mysql_pconnect() [<a href='function.mysql-pconnect'>function.mysql-pconnect</a>]: Access denied for user 'rightern_news'@'localhost' (using password: YES) C:\wamp\www\MYtCn01B3Jw86O0IBr80p35p88YHY43KYe\system\database\drivers\mysql\mysql_driver.php 88
+ERROR - 2014-05-31 14:46:40 --> Unable to connect to the database
+DEBUG - 2014-05-31 14:46:40 --> Language file loaded: language/english/db_lang.php
+DEBUG - 2014-05-31 14:46:40 --> Config Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Utf8 Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> UTF-8 Support Enabled
+DEBUG - 2014-05-31 14:46:40 --> URI Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Router Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Output Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Security Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Input Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-05-31 14:46:40 --> Language Class Initialized
+DEBUG - 2014-05-31 14:46:40 --> Hooks Class Initialized
+DEBUG - 2014-05-31 14:46:41 --> Loader Class Initialized
+DEBUG - 2014-05-31 14:46:41 --> Helper loaded: date_helper
+DEBUG - 2014-05-31 14:46:41 --> Helper loaded: cookie_helper
+DEBUG - 2014-05-31 14:46:41 --> Helper loaded: url_helper
+DEBUG - 2014-05-31 14:46:41 --> Database Driver Class Initialized
+ERROR - 2014-05-31 14:46:41 --> Severity: Warning  --> mysql_pconnect() [<a href='function.mysql-pconnect'>function.mysql-pconnect</a>]: Access denied for user 'rightern_news'@'localhost' (using password: YES) C:\wamp\www\MYtCn01B3Jw86O0IBr80p35p88YHY43KYe\system\database\drivers\mysql\mysql_driver.php 88
+ERROR - 2014-05-31 14:46:41 --> Unable to connect to the database
+DEBUG - 2014-05-31 14:46:41 --> Language file loaded: language/english/db_lang.php
