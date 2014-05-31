@@ -121,8 +121,8 @@
 									<div class="percent"></div>
 								</div>
 								<div class="details">
-									<div class="title">{$top_1_country.user_country} / {$top_2_country.user_country}</div>
-									<div class="numbers">{$top_1_country.count_of_hits} / {$top_2_country.count_of_hits}</div>
+									<div class="title">{$top_1_country.user_country|default:'NULL'} / {$top_2_country.user_country|default:'NULL'|default:'NULL'}</div>
+									<div class="numbers">{$top_1_country.count_of_hits|default:'0'} / {$top_2_country.count_of_hits|default:'0'}</div>
 									<div class="progress progress-danger">
 										<div class="bar" style="width: 100%"></div>
 									</div>
@@ -135,8 +135,8 @@
 									<div class="percent"></div>
 								</div>
 								<div class="details">
-									<div class="title">{$top_1_language.user_agent_lang} / {$top_2_language.user_agent_lang}</div>
-									<div class="numbers">{$top_1_language.count_of_hits} / {$top_2_language.count_of_hits}</div>
+									<div class="title">{$top_1_language.user_agent_lang|default:'NULL'} / {$top_2_language.user_agent_lang|default:'NULL'}</div>
+									<div class="numbers">{$top_1_language.count_of_hits|default:'0'} / {$top_2_language.count_of_hits|default:'0'}</div>
 									<div class="progress progress-success">
 										<div class="bar" style="width: 100%"></div>
 									</div>
