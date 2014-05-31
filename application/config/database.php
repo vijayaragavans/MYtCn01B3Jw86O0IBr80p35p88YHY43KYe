@@ -51,7 +51,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost'; 
 $db['default']['username'] = 'rightern_news';
-$db['default']['password'] = 'M@nster88';
+$db['default']['password'] = 'M0nster.com';
 $db['default']['database'] = 'rightern_mystat'; 
 
 
