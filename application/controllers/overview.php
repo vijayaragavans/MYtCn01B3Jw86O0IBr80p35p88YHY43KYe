@@ -78,7 +78,7 @@ class Overview extends CI_Controller {
 		
 	&lt;/script&gt;	
 		
-		&lt;a href="#" onClick="__hwa(["Category", "Action_Label", "Action_Value"]);"&gt;Click Me!&lt;/a&gt; --> ';
+		&lt;a href="#" onClick="_hii.push(["_trackEvent", "Action_Label", "Action_Value"]);"&gt;Click Me!&lt;/a&gt;  ';
 	   
 	   	$file = 'site/track.html';
 	    	$this->mysmarty->assign('user', $user_data);
