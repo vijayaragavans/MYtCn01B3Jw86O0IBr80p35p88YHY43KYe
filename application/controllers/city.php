@@ -52,8 +52,13 @@ class City extends CI_Controller {
 	
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $api_key = $user_data['api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -69,9 +74,9 @@ class City extends CI_Controller {
 
  	   $code = array( 'group_by_city' => $city_code );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code , 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code , 'all', 'all' );
 	   
-	   $details = $this->sh_city->Get_All_Cities( $user_api_key, $this->perPage, $fromStart );
+	   $details = $this->sh_city->Get_All_Cities( $api_key, $this->perPage, $fromStart );
 
 	   $file = 'site/city.html';
 		
@@ -99,6 +104,10 @@ class City extends CI_Controller {
 	   
 	   $user_api_key = $user_data['user_api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -114,9 +123,9 @@ class City extends CI_Controller {
 
 	   $code = array( 'where_by_city' => $city_code );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_city->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $city_code );
+	   $details = $this->sh_city->Get_All_Details( $api_key, $this->perPage, $fromStart, $city_code );
 	   
 	   $file = 'site/view_city_visits.html';
 		

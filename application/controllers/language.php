@@ -52,7 +52,9 @@ class Language extends CI_Controller {
 	
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
 	   
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
@@ -69,9 +71,9 @@ class Language extends CI_Controller {
 
 	   $code = array( 'group_by_language' => "all" );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_language->Get_All_languages( $user_api_key, $this->perPage, $fromStart );
+	   $details = $this->sh_language->Get_All_languages( $api_key, $this->perPage, $fromStart );
 
 	   $file = 'site/language.html';
 		
@@ -97,7 +99,9 @@ class Language extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
 	   
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
@@ -114,9 +118,9 @@ class Language extends CI_Controller {
 
 	   $code = array( 'lang_code' => "$lang_code" );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_language->Get_Lang_Details( $user_api_key, $this->perPage, $fromStart, $lang_code );
+	   $details = $this->sh_language->Get_Lang_Details( $api_key, $this->perPage, $fromStart, $lang_code );
 	   
 	   $file = 'site/view_language_visits.html';
 		

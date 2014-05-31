@@ -34,16 +34,20 @@ class Demographics extends CI_Controller {
 	
 	   $user_data = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   	redirect("/home/login");
 	   }
 		
-	   $lang_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], 'Language' );
+	   $lang_data =  $this->sh_demographics->Get_All_Data( $api_key, 'Language' );
 	   
-	   $country_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], 'Territory' );
+	   $country_data =  $this->sh_demographics->Get_All_Data( $api_key, 'Territory' );
 	   
-	   $city_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], 'City' );
+	   $city_data =  $this->sh_demographics->Get_All_Data( $api_key, 'City' );
 	   
 	   $labels = array("label_name" => "DemoGraphics", "count_of_value" =>"VISIT");
 	   
@@ -66,12 +70,16 @@ class Demographics extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   	redirect("/home/login");
 	   }
 		
-	   $lang_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], $data_type );
+	   $lang_data =  $this->sh_demographics->Get_All_Data( $api_key, $data_type );
 	   
 	   $labels = array("label_name" => "USER AGENT LANG", "count_of_value" =>"VISIT");
 	   
@@ -93,12 +101,16 @@ class Demographics extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   	redirect("/home/login");
 	   }
 		
-	   $lang_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], $data_type );
+	   $lang_data =  $this->sh_demographics->Get_All_Data( $api_key, $data_type );
 	   
 	   $labels = array("label_name" => "TERRITORY", "count_of_value" =>"VISIT");
 	   
@@ -118,12 +130,16 @@ class Demographics extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   	redirect("/home/login");
 	   }
 		
-	   $lang_data =  $this->sh_demographics->Get_All_Data( $user_data['user_api_key'], $data_type );
+	   $lang_data =  $this->sh_demographics->Get_All_Data( $api_key, $data_type );
 	   
 	   $labels = array("label_name" => "City", "count_of_value" =>"VISIT");
 	   

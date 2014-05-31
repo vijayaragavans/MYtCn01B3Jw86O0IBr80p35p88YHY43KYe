@@ -43,11 +43,15 @@ class behaviour extends CI_Controller {
 		
 	   $Userdata = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($Userdata['user_id'] > 0){
        	
-       	   $tags = $this->sh_behaviour->Get_All_Tags( $Userdata['user_api_key'] );
+       	   $tags = $this->sh_behaviour->Get_All_Tags( $api_key );
 
-	    $visitor_flow = $this->users->VisitorsFlow( $Userdata['user_api_key'], 2 );
+	    $visitor_flow = $this->users->VisitorsFlow( $api_key, 2 );
 
 		   $unique_total = '';
 		   $i = 0;
@@ -86,7 +90,7 @@ class behaviour extends CI_Controller {
 		}
 		$data_type = '';
 		   
-		$datas =  $this->sh_behaviour->Get_All_Datas($Userdata['user_api_key'], $data_type);
+		$datas =  $this->sh_behaviour->Get_All_Datas($api_key, $data_type);
 
 		$file = 'site/behaviour.html';
 
@@ -113,14 +117,18 @@ class behaviour extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 		
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   $tag = $this->security->xss_clean( $this->input->get_post('__') );
 	   
 		   if($user_data['user_id'] > 0)
 		   {
 		   	
-       		  $tags = $this->sh_behaviour->Get_All_Tags( $user_data['user_api_key'] );
+       		  $tags = $this->sh_behaviour->Get_All_Tags( $api_key );
 		   	
-		   	   $tag_graph_details = $this->sh_behaviour->Get_Tag_Details( 1, $tag, $user_data['user_api_key']);
+		   	   $tag_graph_details = $this->sh_behaviour->Get_Tag_Details( 1, $tag, $api_key);
 		   	   
 			   $unique_total = '';
 			   $i = 0;
@@ -138,7 +146,7 @@ class behaviour extends CI_Controller {
 		   
 		    $labels = array("label_name" => "Action Label", "count_of_value" =>"VISITS");
 			   
-		    $datas =  $this->sh_behaviour->Get_All_Datas($user_data['user_api_key'], $tag);
+		    $datas =  $this->sh_behaviour->Get_All_Datas($api_key, $tag);
 			
 	   	    $file = 'site/behaviour.html';
 		   
@@ -166,6 +174,10 @@ class behaviour extends CI_Controller {
 	   
 	   $Userdata = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if(isset($admin_view['user_api_key']) )
 	   {
 	   		$user_api_key = $admin_view['user_api_key'];

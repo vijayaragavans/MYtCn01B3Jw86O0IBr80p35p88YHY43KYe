@@ -54,6 +54,10 @@ class Country extends CI_Controller {
 	   
 	   $user_api_key = $user_data['user_api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -69,9 +73,9 @@ class Country extends CI_Controller {
 
  	   $code = array( 'group_by_country' => $country_code );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code , 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code , 'all', 'all' );
 	   
-	   $details = $this->sh_country->Get_All_Countries( $user_api_key, $this->perPage, $fromStart );
+	   $details = $this->sh_country->Get_All_Countries( $api_key, $this->perPage, $fromStart );
 
 	   $file = 'site/country.html';
 		
@@ -99,6 +103,10 @@ class Country extends CI_Controller {
 	   
 	   $user_api_key = $user_data['user_api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -114,9 +122,9 @@ class Country extends CI_Controller {
 
 	   $code = array( 'country_code' => $country_code );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_country->Get_All_Details( $user_api_key, $this->perPage, $fromStart, $country_code );
+	   $details = $this->sh_country->Get_All_Details( $api_key, $this->perPage, $fromStart, $country_code );
 	   
 	   $file = 'site/view_country_visits.html';
 		

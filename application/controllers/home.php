@@ -62,27 +62,27 @@ class Home extends CI_Controller {
 
 	   $limit_of = floor( ( $str_end_date - $str_start_date) /(60*60*24));
 
-	   $visits = $this->users->Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code, ( $limit_of >0 ) ? $limit_of : 1 );
+	   $visits = $this->users->Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code, ( $limit_of >0 ) ? $limit_of : 1 );
 	   
-	   $count_repeat = $this->users->Count_Repeat( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code  );
+	   $count_repeat = $this->users->Count_Repeat( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code  );
 	   	   
-	   $total_visits = $this->users->Total_Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Total Visits Count
+	   $total_visits = $this->users->Total_Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Total Visits Count
 	   
-	   $unique_visits = $this->users->Unique_Visits( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Unique Visits Count
+	   $unique_visits = $this->users->Unique_Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Unique Visits Count
 	   
-	   $latest_events = $this->Get_Latest_Events( $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Latest Hits
+	   $latest_events = $this->Get_Latest_Events( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Latest Hits
 	   
-	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $browser_chrome = $this->users->Get_Browser( 'Chrome',  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $browser_firefox = $this->users->Get_Browser( 'Firefox',  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $top_1_country = $this->sh_country->Top_Country( '1' ,  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $top_2_country = $this->sh_country->Top_Country( '2' ,  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $top_1_language = $this->sh_language->Top_Language( '1' ,  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
-	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $user_api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
+	   $top_2_language = $this->sh_language->Top_Language( '2' ,  $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Chrome Count
 	   
 	   $visits_details = '';
 	   $i = 0;
@@ -103,10 +103,10 @@ class Home extends CI_Controller {
 	   }
 
 
-	  $browser = $this->sh_behaviour->Get_All_Browsers( $user_api_key );
+	  $browser = $this->sh_behaviour->Get_All_Browsers( $api_key );
 	   
 	   //mystat.haiinteractive.com/	
-	  $country_data =  $this->sh_demographics->Get_All_Data( $user_api_key, 'Territory' );
+	  $country_data =  $this->sh_demographics->Get_All_Data( $api_key, 'Territory' );
 	   		   	
 	   	if(isset($user_data['user_id'])){
 
@@ -328,10 +328,10 @@ class Home extends CI_Controller {
     
     
     
-    public function Get_Latest_Events( $user_api_key, $start_dt, $end_dt, $country, $country_code )
+    public function Get_Latest_Events( $api_key, $start_dt, $end_dt, $country, $country_code )
     {
     	
-    	$latest_hits = 	$this->users->Latest_Hits( $user_api_key, $start_dt, $end_dt, $country, $country_code );		//	Unique Visits Count
+    	$latest_hits = 	$this->users->Latest_Hits( $api_key, $start_dt, $end_dt, $country, $country_code );		//	Unique Visits Count
     	
     	$j = 1;
     	foreach( $latest_hits as $hits )

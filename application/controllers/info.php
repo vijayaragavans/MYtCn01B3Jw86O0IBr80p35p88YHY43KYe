@@ -71,7 +71,9 @@ class Info extends CI_Controller {
 	{
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
 	   
 	   $page =  $this->url_input[$this->url_count];
 	   
@@ -83,7 +85,7 @@ class Info extends CI_Controller {
 	   
 	   $fromStart = $this->perPage * $page;
 	   
-	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart );
+	   $details = $this->sh_info->Get_All_Notifications( $api_key, $this->perPage, $fromStart );
 	   
 	   $file = 'site/notification.html';
 		
@@ -103,7 +105,9 @@ class Info extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
 	   
 	   $page =  $this->url_input[$this->url_count];
 	   
@@ -119,9 +123,9 @@ class Info extends CI_Controller {
 
 	   $fromStart = $this->perPage * $page;
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $this->country_code, $date_range['start_dt'], $date_range['end_dt']  );
+	   $total_pages = $this->sh_common->pagination( $api_key, $this->country_code, $date_range['start_dt'], $date_range['end_dt']  );
 	   
-	   $details = $this->sh_info->Get_All_Notifications( $user_api_key, $this->perPage, $fromStart, $date_range['start_dt'], $date_range['end_dt'], $this->country_code );
+	   $details = $this->sh_info->Get_All_Notifications( $api_key, $this->perPage, $fromStart, $date_range['start_dt'], $date_range['end_dt'], $this->country_code );
 	   
 	   $file = 'site/notification.html';
 		
@@ -144,12 +148,15 @@ class Info extends CI_Controller {
 		
 	   $user_data = $this->session->userdata('mystat');
 	   
-	   $user_api_key = $user_data['user_api_key'];
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 		
 	   $date_range = $this->sh_common->Get_Date_Range( );
 	   
 			
-	   $data = $this->sh_info->Export_Data( $user_api_key, $date_range['start_dt'], $date_range['end_dt']  );
+	   $data = $this->sh_info->Export_Data( $api_key, $date_range['start_dt'], $date_range['end_dt']  );
 	   
 			$contents="Id, Url, Screen Size, User agent lang, Visitor Ip, City, Country, Browser, Plateform, isCookieSet ( Yes - 1 No - 0 ), User Agent, Data Created On \n";
 

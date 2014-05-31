@@ -54,6 +54,10 @@ class Browser extends CI_Controller {
 	   
 	   $user_api_key = $user_data['user_api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -69,9 +73,9 @@ class Browser extends CI_Controller {
 
 	   $code = array( 'where_by_browser' => $lang_code );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_browser->Get_Browser_Details( $user_api_key, $this->perPage, $fromStart,  $lang_code);
+	   $details = $this->sh_browser->Get_Browser_Details( $api_key, $this->perPage, $fromStart,  $lang_code);
 
 	   $file = 'site/browser.html';
 		
@@ -99,6 +103,10 @@ class Browser extends CI_Controller {
 	   
 	   $user_api_key = $user_data['user_api_key'];
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	
 	   		redirect(SITE_URL."home/login");
@@ -114,9 +122,9 @@ class Browser extends CI_Controller {
 
 	   $code = array( 'lang_code' => "$lang_code" );
 
-	   $total_pages = $this->sh_common->pagination( $user_api_key, $code, 'all', 'all' );
+	   $total_pages = $this->sh_common->pagination( $api_key, $code, 'all', 'all' );
 
-	   $details = $this->sh_language->Get_Lang_Details( $user_api_key, $this->perPage, $fromStart, $lang_code );
+	   $details = $this->sh_language->Get_Lang_Details( $api_key, $this->perPage, $fromStart, $lang_code );
 	   
 	   $file = 'site/view_language_visits.html';
 		

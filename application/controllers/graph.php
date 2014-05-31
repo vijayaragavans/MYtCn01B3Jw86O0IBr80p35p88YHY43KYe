@@ -50,13 +50,16 @@ class Graph extends CI_Controller {
 	{
 	   $user_data = $this->session->userdata('mystat');
 	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	redirect(SITE_URL."home/login");
 	   }
 	   
 	   
-	   	$user_api_key = $user_data['user_api_key'];
-	   $visits = $this->users->Visits( $user_api_key );
+	   $visits = $this->users->Visits( $api_key );
 
 	   $visits_details = '';
 	   $i = 0;
