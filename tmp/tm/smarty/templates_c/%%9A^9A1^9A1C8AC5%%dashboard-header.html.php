@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25, created on 2014-04-13 16:52:13
+<?php /* Smarty version 2.6.25, created on 2014-05-31 09:46:48
          compiled from site/dashboard-header.html */ ?>
 <body class="fixed-top">
 	<!-- BEGIN HEADER -->
@@ -24,19 +24,6 @@ files/assets/img/mystats.png" alt="mySTATS" />
 				<div class="top-nav">
 					<!-- BEGIN TOP NAVIGATION MENU -->					
 					<ul class="nav pull-right" id="top_menu">
-						<li class="divider-vertical hidden-phone hidden-tablet"></li>
-						<!-- BEGIN USER LOGIN DROPDOWN -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-wrench"></i>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-cogs"></i> System Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Shortcuts</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Trash</a></li>
-							</ul>
-						</li>
 						<!-- END USER LOGIN DROPDOWN -->
 						<li class="divider-vertical hidden-phone hidden-tablet"></li>
 						<!-- BEGIN USER LOGIN DROPDOWN -->
@@ -46,10 +33,11 @@ files/assets/img/mystats.png" alt="mySTATS" />
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-user"></i> Mark King</a></li>
-								<li><a href="#"><i class="icon-envelope-alt"></i> Inbox</a></li>
-								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
-								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
+								<li><a href="<?php echo $this->_tpl_vars['base_url']; ?>
+site/add_new_site"><i class="icon-tasks"></i>Add New Site</a></li>
+								<li><a href="<?php echo $this->_tpl_vars['base_url']; ?>
+overview/track_code"><i class="icon-tasks"></i>Tracking Code</a></li>
+								<li><a href="#"><i class="icon-ok"></i> Edit Profile</a></li>
 								<li class="divider"></li>
 								<li><a href="<?php echo $this->_tpl_vars['base_url']; ?>
 home/logout/"><i class="icon-key"></i> Log Out</a></li>
@@ -87,6 +75,25 @@ home/logout/"><i class="icon-key"></i> Log Out</a></li>
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->			
 						<h3 class="page-title">
 							Dashboard		<small>statistics and more</small>
+							<div style="float:right;">
+								<select name='sites' id='sites'>
+
+								<?php $_from = $this->_tpl_vars['list_of_sites']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['i'] => $this->_tpl_vars['site']):
+?>
+
+									<?php if ($this->_tpl_vars['site']['site_api_key'] == $this->_tpl_vars['api_key']): ?>
+									<option value="<?php echo $this->_tpl_vars['site']['site_api_key']; ?>
+" selected="selected"><?php echo $this->_tpl_vars['site']['site_name']; ?>
+</option>	
+
+									<?php else: ?>
+									<option value="<?php echo $this->_tpl_vars['site']['site_api_key']; ?>
+"><?php echo $this->_tpl_vars['site']['site_name']; ?>
+</option> <?php endif; ?> 
+								<?php endforeach; endif; unset($_from); ?>
+								</select>
+							</div>
 						</h3>
 						<ul class="breadcrumb">
 							
@@ -102,8 +109,7 @@ demographics/index/">Demographics</a>
 behaviour/index/">Behaviour</a>								
 					        			<i class="icon-angle-right"></i>
 					        </li>
-					        <li><a href="<?php echo $this->_tpl_vars['base_url']; ?>
-resume/index/">Resume / Pause</a>								
+	
 						        </li>
 
 							<li class="pull-right dashboard-report-li">

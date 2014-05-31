@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25, created on 2014-04-08 18:17:22
+<?php /* Smarty version 2.6.25, created on 2014-05-27 17:09:52
          compiled from site/base-header.html */ ?>
 		<script language="JavaScript" src="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/js/jquery-1.8.3.min.js"></script>

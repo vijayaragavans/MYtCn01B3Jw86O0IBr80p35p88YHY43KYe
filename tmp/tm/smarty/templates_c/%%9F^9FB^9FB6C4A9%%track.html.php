@@ -1,31 +1,20 @@
-<?php /* Smarty version 2.6.25, created on 2013-05-30 12:00:10
+<?php /* Smarty version 2.6.25, created on 2014-05-31 11:54:48
          compiled from site/track.html */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'site/track.html', 11, false),)), $this); ?>
 <div id="main">
 
 <!-- wrapper-main -->
 	<div class="wrapper">
-	<h2>Your API Key: <span style="color: red;"><?php echo $this->_tpl_vars['user']['user_api_key']; ?>
+	<h2>Your API Key: <span style="color: red;"><?php echo $this->_tpl_vars['api_key']; ?>
 </span></h2>
 	
 
 		<!-- Graph HTML -->
 		<div id="graph-wrapper">
 <pre>
-	
-	&lt;script type="text/javascript"&gt;
-	
-	  var _hwa = _hwa || [];
-	  
-		_hwa.push(['_AccountNo', '--API--KEY--']);
-		  
-		_hwa.push(['_Pageview', 'Page Label']);		--	NO SPL CHAR
-	
-	(function() )();
-	
-	&lt;/script&gt;	
-	
-	&lt;a href="#" onClick="__hwa(['Category', 'Action_Label', 'Action_Value']);"&gt;Click Me!&lt;/a&gt; -->
-	
+	<?php echo ((is_array($_tmp=$this->_tpl_vars['track'])) ? $this->_run_mod_handler('replace', true, $_tmp, 'APIKEY', $this->_tpl_vars['api_key']) : smarty_modifier_replace($_tmp, 'APIKEY', $this->_tpl_vars['api_key'])); ?>
+
 </pre>
 
 		</div>

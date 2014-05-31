@@ -177,6 +177,8 @@
 								</div>
 								<div class="widget-body" style="height: 399px;">
 									<ul class="item-list scroller padding" data-height="377" data-always-visible="1">
+
+									{if $latest_events !=''}
 										{foreach from=$latest_events item=hits key=i}
 											{if isset($hits.user_ip) } 
 											<li>
@@ -191,6 +193,13 @@
 											</li>
 											{/if}
 										{/foreach}
+									{else}
+
+										<li>
+											<h4 style="color: blue; text-align: center;">Empty Visits. Waiting for the New Visits...</h4>
+										</li>
+
+									{/if}
 									</ul>
 									<div class="space5"></div>
 									<a href="{$base_url}info/all_visits/" class="pull-right">View all notifications</a>										
@@ -249,18 +258,25 @@
 											</tr>
 										</thead>
 										<tbody>
-										{foreach from=$country_data item=data key=i}
-										{if $i < 9 && $data.lang != ''}
+										{if $country_data != ''}
+											{foreach from=$country_data item=data key=i}
+											{if $i < 9 && $data.lang != ''}
+												<tr>
+													<td class="highlight">
+														<div class="success"></div>
+														<a href="{$base_url}country/user_country_details/{$data.user_country_code}">{$data.lang}</a>
+													</td>
+													<td>{$data.users} <a href="{$base_url}country/user_country_details/{$data.user_country_code}" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
+													<td><a href="{$base_url}country/user_country_details/{$data.user_country_code}" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
+												</tr>
+											{/if}
+											{/foreach}
+										{else}
 											<tr>
-												<td class="highlight">
-													<div class="success"></div>
-													<a href="{$base_url}country/user_country_details/{$data.user_country_code}">{$data.lang}</a>
-												</td>
-												<td>{$data.users} <a href="{$base_url}country/user_country_details/{$data.user_country_code}" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-												<td><a href="{$base_url}country/user_country_details/{$data.user_country_code}" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
+												<td>&nbsp;</td>
+												<td align="center">None</td>
 											</tr>
 										{/if}
-										{/foreach}
 										</tbody>
 									</table>
 								</div>
@@ -287,11 +303,18 @@
             	<div class="widget-body">
             		<table class="table table-striped table-bordered table-advance table-hover">
             			<tbody>
+            			{if $browsers != ''}
             				{foreach from=$browsers item=browser key=i}
             			    	<tr>
             			        	<td><a href="{$base_url}browser/index/{$browser.browser_name}">{$browser.browser_name}</a></td>
             			        </tr>
             				{/foreach}
+            			{else}
+            				<tr>
+            					<td>&nbsp;</td>
+            					<td>None</td>
+            				</tr>
+            			{/if}	
             			</tbody>
             		</table>
             	</div>

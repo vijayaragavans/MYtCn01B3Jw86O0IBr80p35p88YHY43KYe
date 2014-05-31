@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25, created on 2014-04-10 19:16:58
+<?php /* Smarty version 2.6.25, created on 2014-05-27 17:09:52
          compiled from site/header.html */ ?>
 <!DOCTYPE  html>
 <html>
@@ -20,7 +20,7 @@ files/assets/css/style-responsive.css" rel="stylesheet" />
 files/assets/css/themes/default.css" rel="stylesheet" id="style_color" />
 	  <link href="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-	  
+
 	  <link href="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/css/pages/login.css" rel="stylesheet" type="text/css" />
 	  
@@ -34,6 +34,8 @@ files/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesh
 files/assets/plugins/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" type="text/css"  />
 	  <link href="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/plugins/jqvmap/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+	  <link href="<?php echo $this->_tpl_vars['static_server']; ?>
+files/assets/css/zebra_datepicker.css" rel="stylesheet" />
 	  
 	  
 	</head>
@@ -64,11 +66,11 @@ files/assets/js/exporting.js"></script>
 	    
     	<script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
+             <script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/js/zebra_datepicker.js"></script>
-        <script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
+             <script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/js/functions.js"></script>
-		<script language="JavaScript" src="<?php echo $this->_tpl_vars['static_server']; ?>
+             <script language="JavaScript" src="<?php echo $this->_tpl_vars['static_server']; ?>
 files/assets/js/user.js"></script>
 
 	
