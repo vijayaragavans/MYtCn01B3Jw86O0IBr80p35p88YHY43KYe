@@ -68,7 +68,7 @@ class Overview extends CI_Controller {
 		_hii.push(["_Pageview", "page"]);
 
 		(function() {
-		  var a = document.createElement(script); 
+		  var a = document.createElement("script"); 
 		  a.type = "text/javascript"; 
 		  a.async = true;
 		  a.src = "//www.tag.haiinteractive.com/hii.js";

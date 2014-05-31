@@ -135,7 +135,7 @@ class Home extends CI_Controller {
 	   	   $this->mysmarty->assign('top_2_language', $top_2_language);	   	   
 	   	   $this->mysmarty->assign('browser_chrome', $browser_chrome->count_of_broswer);
 	   	   $this->mysmarty->assign('browser_firefox', $browser_firefox->count_of_broswer);
-	   	   $this->mysmarty->assign('unique_visits',  ( $unique_visits > 0 ) ? $unique_visits  : 0 );
+	   	   $this->mysmarty->assign('unique_visits',  ( $unique_visits->unique_visits > 0 ) ? $unique_visits ->unique_visits : 0 );
 	   	   $this->mysmarty->assign('total_visits', ( $total_visits->total_visits > 0 ) ? $total_visits->total_visits : 0 );
 		   $this->mysmarty->assign('count_repeat',  ( $count_repeat > 0 ) ? $count_repeat  : 0 );
 		   $this->mysmarty->assign('country', $this->country);
