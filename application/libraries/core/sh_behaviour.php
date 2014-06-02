@@ -36,12 +36,12 @@ class Sh_behaviour
     }
     
     
-    public function Get_All_Tags( $user_api_key )
+    public function Get_All_Tags( $user_api_key, $start_date, $end_date )
     {
     	
     	$response = false;
     	
-    	$response = $this->_CI->behaviour_model->Get_All_Tags( $user_api_key );
+    	$response = $this->_CI->behaviour_model->Get_All_Tags( $user_api_key, $start_date, $end_date );
     	
     	return $response;
     	

@@ -1,88 +1,48 @@
-<?php /* Smarty version 2.6.25, created on 2014-05-27 18:06:34
+<?php /* Smarty version 2.6.25, created on 2014-06-02 18:28:38
          compiled from site/behaviour.html */ ?>
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['static_server']; ?>
+files/assets/grid/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['static_server']; ?>
+files/assets/grid/css/style.css" />
+		<script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
+files/assets/grid/js/modernizr.custom.79639.js"></script> 
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
- <?php echo '
+		<script type="text/javascript" src="<?php echo $this->_tpl_vars['static_server']; ?>
+files/assets/grid/js/jquery.swatchbook.js"></script>
 
-<script type="text/javascript">
+		<?php echo '
+		<script type="text/javascript">
+			$(function() {
+			
+				$( \'#sb-container\' ).swatchbook();
+			
+			});
+		</script>
 
-    //var input_data = [ ["Year", "Sales"], ["2004",  1000], ["2005",  1170], ["2006",  660,], ["2007",  1030]  ];
-
-  
-     google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable( [ '; ?>
-<?php echo $this->_tpl_vars['visits']; ?>
-<?php echo ' ] );
-
-        var options = {
-          title: \'Action Events\'
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById(\'unique_container\'));
-        chart.draw(data, options);
-      }
-    
-
-    	function sample()
-	{
-		$.removeCookie(\'country\', {expires: -1, path: \'/\'});
-		$.removeCookie(\'country_code\', {expires: -1, path: \'/\'});
-		
-		window.location.reload();
-		
-	}
-
-	
-</script>
-
-'; ?>
+		'; ?>
 
 
+<div id="main" style="padding-bottom:200px;">
+		<div class="container">
 
-
-	<?php if ($this->_tpl_vars['success_message']): ?>
-		<div align="center" id="proc_msg" style="align: center; color: green; font-weight: bold;">
-			<br><?php echo $this->_tpl_vars['success_message']; ?>
-
-		</div>                    
-	<?php endif; ?>
-
-	<?php if ($this->_tpl_vars['error_message']): ?>
-		<div align="center" id="proc_msg" style="align: center; color: red; font-weight: bold;">
-			<br><?php echo $this->_tpl_vars['error_message']; ?>
-
-		</div>                    
-	<?php endif; ?>
-<div id="main">
-<!-- wrapper-main -->
-	<div class="wrapper">
-
-	<div id="unique_container" style="min-width: 400px; width:100%; height: 400px; margin: 0 auto 0 0; float:right;"></div>
-
-		<?php if ($this->_tpl_vars['label']['label_name']): ?>
-		<table id="box-table-a" summary="Employee Pay Sheet" style="width: 925px;">
-		    <thead>
-		    	<tr>
-		        	<th scope="col"><?php echo $this->_tpl_vars['labels']['label_name']; ?>
-</th>
-		            <th scope="col"><?php echo $this->_tpl_vars['labels']['count_of_value']; ?>
-</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-				<?php $_from = $this->_tpl_vars['datas']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['i'] => $this->_tpl_vars['data']):
+			<section class="main">
+			
+				<div id="sb-container" class="sb-container">
+				
+				<?php $_from = $this->_tpl_vars['tags']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['i'] => $this->_tpl_vars['tag']):
 ?>
-			    	<tr>
-			        	<td><?php echo $this->_tpl_vars['data']['label']; ?>
- (<?php echo $this->_tpl_vars['data']['visits']; ?>
-)</td>
-			        </tr>
-				<?php endforeach; endif; unset($_from); ?>		    	
-			</tbody>
-		</table>			
-		<?php endif; ?>
-	</div>
-</div>
+					<div>
+						<span class="label_title">Visits: <?php echo $this->_tpl_vars['tag']['total_visits']; ?>
+</span>
+						<h4><span><a href='<?php echo $this->_tpl_vars['base_url']; ?>
+behaviour/label/<?php echo $this->_tpl_vars['tag']['label']; ?>
+'><?php echo $this->_tpl_vars['tag']['label']; ?>
+</a></span></h4>
+					</div>
+				<?php endforeach; endif; unset($_from); ?>
+				</div>
+		</section>
+</div>
+</div>
+</div>

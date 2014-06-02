@@ -29,6 +29,12 @@ class behaviour extends CI_Controller {
         $this->url_count = count($this->url_input) -1;
         
         $this->url_category = count($this->url_input) -2;
+
+        $this->start_date = $this->input->cookie('start') ;
+        $this->end_date = $this->input->cookie('end') ;
+
+        $this->start_date = Date('Y-m-d', strtotime($this->start_date) );
+        $this->end_date = Date('Y-m-d', strtotime($this->end_date) );
     }
     
 	/*
@@ -36,7 +42,37 @@ class behaviour extends CI_Controller {
 	 * Purpose : Loading the landing page
 	 */	
     
+
 	public function index()
+	{
+
+	   $Userdata = $this->session->userdata('mystat');
+	   
+	   $current_site = $this->session->userdata('current_site');
+
+	   $api_key = $current_site['current_site'];
+
+	   if( empty( $Userdata['user_id']) ){
+
+	   	redirect(SITE_URL."home/index");
+
+	   }
+
+	   $tags = $this->sh_behaviour->Get_All_Tags( $api_key, $this->start_date, $this->end_date );
+
+	   $file = 'site/behaviour.html';
+
+	   $this->mysmarty->assign('user',$Userdata);
+	   $this->mysmarty->assign('tags',$tags);
+	   
+	   $this->mysmarty->assign('filename',$file);
+            
+	   $this->mysmarty->display('home.html'); 
+
+
+	}
+
+	public function index_old()
 	{
 		
 	   $keyword =  $this->url_input[$this->url_count];

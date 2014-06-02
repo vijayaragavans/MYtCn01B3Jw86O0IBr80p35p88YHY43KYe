@@ -15,15 +15,18 @@ class Behaviour_Model extends CI_Model
  
 	 public $_dataMap = ''; 
 	 
-    function Get_All_Tags( $user_api_key )
+    function Get_All_Tags( $user_api_key, $start_date, $end_date )
     {
 
-        $this->db->select("distinct( actions.action_label ) as label");
+        $this->db->select("distinct( actions.action_label ) as label, count(actions.action_label) as total_visits");
         $this->db->from(TOOL_DB_NAME.'.actions');
         $this->db->where(array('actions.user_api_key'=>$user_api_key, "actions.action_label !="=> '' ));        
+        $this->db->where("DATE(`tag_created_on`) BETWEEN '$start_date' AND '$end_date' ");
+
+        $this->db->group_by('actions.action_label');
         $query = $this->db->get();
         
-		$db_results = $query->result_array();		 
+       $db_results = $query->result_array();		 
     
         if (count($db_results) > 0 )
         { 
