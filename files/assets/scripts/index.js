@@ -1,6 +1,6 @@
 var Index = function () {
 
-
+ 
     return {
 
         //main function to initiate the module
@@ -8,8 +8,8 @@ var Index = function () {
 
             App.addResponsiveHandler(function () {
                 Index.initCalendar();
-                jQuery('.vmaps').each(function () {
-                    var map = jQuery(this);
+                $('.vmaps').each(function () {
+                    var map = $(this);
                     map.width(map.parent().width());
                 });
             });
@@ -18,8 +18,8 @@ var Index = function () {
         initJQVMAP: function () {
 
             var showMap = function (name) {
-                jQuery('.vmaps').hide();
-                jQuery('#vmap_' + name).show();
+                $('.vmaps').hide();
+                $('#vmap_' + name).show();
             }
 
             var setMap = function (name) {
@@ -41,7 +41,7 @@ var Index = function () {
                     showTooltip: true,
                     onLabelShow: function (event, label, code) {
                         var region_name = $(label).text();
-                        label.html('Modify tooltip content as: ' + region_name );
+                        label.html(' ' + region_name );
                     },
                     onRegionOver: function (event, code) {
                         if (code == 'ca') {
@@ -50,12 +50,12 @@ var Index = function () {
                     },
                     onRegionClick: function (element, code, region) {
                         var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-                        alert(message);
+                        Country_Cookie( region,  code.toUpperCase());
                     }
                 };
 
                 data.map = name + '_en';
-                var map = jQuery('#vmap_' + name);
+                var map = $('#vmap_' + name);
                 if (!map) {
                     return;
                 }
@@ -72,21 +72,21 @@ var Index = function () {
             setMap("germany");
             showMap("world");
 
-            jQuery('#regional_stat_world').click(function () {
+            $('#regional_stat_world').click(function () {
                 showMap("world");
             });
 
-            jQuery('#regional_stat_usa').click(function () {
+            $('#regional_stat_usa').click(function () {
                 showMap("usa");
             });
 
-            jQuery('#regional_stat_europe').click(function () {
+            $('#regional_stat_europe').click(function () {
                 showMap("europe");
             });
-            jQuery('#regional_stat_russia').click(function () {
+            $('#regional_stat_russia').click(function () {
                 showMap("russia");
             });
-            jQuery('#regional_stat_germany').click(function () {
+            $('#regional_stat_germany').click(function () {
                 showMap("germany");
             });
 
@@ -95,7 +95,7 @@ var Index = function () {
         },
 
         initCalendar: function () {
-             if (!jQuery().fullCalendar) {
+             if (!$().fullCalendar) {
             return;
         }
 
@@ -171,7 +171,7 @@ var Index = function () {
         },
 
         initCharts: function () {
-            if (!jQuery.plot) {
+            if (!$.plot) {
                 return;
             }
 
@@ -444,7 +444,7 @@ var Index = function () {
 
         initKnowElements : function () {
             //knob does not support ie8 so skip it
-            if (!jQuery().knob || App.isIE8()) {
+            if (!$().knob || App.isIE8()) {
                 return;
             }
 
@@ -507,11 +507,11 @@ var Index = function () {
         },
 
         initPeityElements : function() {
-               if (!jQuery().peity) {
+               if (!$().peity) {
                     return;
                 }
 
-                if (jQuery.browser.msie && jQuery.browser.version.substr(0, 2) <= 8) { // ie7&ie8
+                if ($.browser.msie && $.browser.version.substr(0, 2) <= 8) { // ie7&ie8
                     return;
                 }
 
@@ -598,6 +598,8 @@ var Index = function () {
 
         initDashboardDaterange: function () {
 
+        	var start_dt = new Date($.cookie('start'));
+        	
             $('#dashboard-report-range').daterangepicker({
                 ranges: {
                     'Today': ['today', 'today'],
@@ -638,14 +640,11 @@ var Index = function () {
             },
 
             function (start, end) {
-                App.blockUI(jQuery(".dashboard"));
+                App.blockUI($(".dashboard"));
                 setTimeout(function () {
-                    App.unblockUI(jQuery(".dashboard"));
-                    $.gritter.add({
-                        title: 'Dashboard',
-                        text: 'Dashboard date range updated.'
-                    });
+                    App.unblockUI($(".dashboard"));
                     App.scrollTo();
+                    App.Data(start.toString('yyyy-MM-dd'), end.toString('yyyy-MM-dd'));
                 }, 1000);
                 $('#dashboard-report-range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
 
@@ -653,196 +652,34 @@ var Index = function () {
 
             $('#dashboard-report-range').show();
 
-            $('#dashboard-report-range span').html(Date.today().add({
-                days: -29
-            }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
+            $('#dashboard-report-range span').html(new Date( $.cookie('start')).toString('MMMM d, yyyy') + ' - ' + new Date( $.cookie('end')).toString('MMMM d, yyyy'));
         },
 
-        initIntro: function () {
-            if ($.cookie('intro_show')) {
-                return;
-            }
-
-            $.cookie('intro_show', 1);
-
-            setTimeout(function () {
-                var unique_id = $.gritter.add({
-                    // (string | mandatory) the heading of the notification
-                    title: 'Meet Metronic!',
-                    // (string | mandatory) the text inside the notification
-                    text: 'Metronic is a brand new Responsive Admin Dashboard Template you have always been looking for!',
-                    // (string | optional) the image to display on the left
-                    image: './assets/img/avatar1.jpg',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: true,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: '',
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
-
-                // You can have it return a unique id, this can be used to manually remove it later using
-                setTimeout(function () {
-                    $.gritter.remove(unique_id, {
-                        fade: true,
-                        speed: 'slow'
-                    });
-                }, 12000);
-            }, 2000);
-
-            setTimeout(function () {
-                var unique_id = $.gritter.add({
-                    // (string | mandatory) the heading of the notification
-                    title: 'Buy Metronic!',
-                    // (string | mandatory) the text inside the notification
-                    text: 'Metronic comes with a huge collection of reusable and easy customizable UI components and plugins. Buy Metronic today!',
-                    // (string | optional) the image to display on the left
-                    image: './assets/img/avatar1.jpg',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: true,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: '',
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
-
-                // You can have it return a unique id, this can be used to manually remove it later using
-                setTimeout(function () {
-                    $.gritter.remove(unique_id, {
-                        fade: true,
-                        speed: 'slow'
-                    });
-                }, 13000);
-            }, 8000);
-
-            setTimeout(function () {
-
-                $('#styler').pulsate({
-                    color: "#bb3319",
-                    repeat: 10
-                });
-
-                $.extend($.gritter.options, {
-                    position: 'top-left'
-                });
-
-                var unique_id = $.gritter.add({
-                    position: 'top-left',
-                    // (string | mandatory) the heading of the notification
-                    title: 'Customize Metronic!',
-                    // (string | mandatory) the text inside the notification
-                    text: 'Metronic allows you to easily customize the theme colors and layout settings.',
-                    // (string | optional) the image to display on the left
-                    image1: './assets/img/avatar1.png',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: true,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: '',
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
-
-                $.extend($.gritter.options, {
-                    position: 'top-right'
-                });
-
-                // You can have it return a unique id, this can be used to manually remove it later using
-                setTimeout(function () {
-                    $.gritter.remove(unique_id, {
-                        fade: true,
-                        speed: 'slow'
-                    });
-                }, 15000);
-
-            }, 23000);
-
-            setTimeout(function () {
-
-                $.extend($.gritter.options, {
-                    position: 'top-left'
-                });
-
-                var unique_id = $.gritter.add({
-                    // (string | mandatory) the heading of the notification
-                    title: 'Notification',
-                    // (string | mandatory) the text inside the notification
-                    text: 'You have 3 new notifications.',
-                    // (string | optional) the image to display on the left
-                    image1: './assets/img/image1.jpg',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: true,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: '',
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
-
-                setTimeout(function () {
-                    $.gritter.remove(unique_id, {
-                        fade: true,
-                        speed: 'slow'
-                    });
-                }, 4000);
-
-                $.extend($.gritter.options, {
-                    position: 'top-right'
-                });
-
-                var number = $('#header_notification_bar .badge').text();
-                number = parseInt(number);
-                number = number + 3;
-                $('#header_notification_bar .badge').text(number);
-                $('#header_notification_bar').pulsate({
-                    color: "#66bce6",
-                    repeat: 5
-                });
-
-            }, 40000);
-
-            setTimeout(function () {
-
-                $.extend($.gritter.options, {
-                    position: 'top-left'
-                });
-
-                var unique_id = $.gritter.add({
-                    // (string | mandatory) the heading of the notification
-                    title: 'Inbox',
-                    // (string | mandatory) the text inside the notification
-                    text: 'You have 2 new messages in your inbox.',
-                    // (string | optional) the image to display on the left
-                    image1: './assets/img/avatar1.jpg',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: true,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: '',
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
-
-                $.extend($.gritter.options, {
-                    position: 'top-right'
-                });
-
-                setTimeout(function () {
-                    $.gritter.remove(unique_id, {
-                        fade: true,
-                        speed: 'slow'
-                    });
-                }, 4000);
-
-                var number = $('#header_inbox_bar .badge').text();
-                number = parseInt(number);
-                number = number + 2;
-                $('#header_inbox_bar .badge').text(number);
-                $('#header_inbox_bar').pulsate({
-                    color: "#dd5131",
-                    repeat: 5
-                });
-
-            }, 60000);
-        }
 
     };
 
 }();
+
+
+
+function Country_Cookie( country, country_code )
+{
+	
+	if($.cookie('country') || $.cookie('country_code'))
+	{
+		$.removeCookie('country');
+		$.removeCookie('country_code');
+		
+		$.cookie("country", country, {path: '/'});
+		$.cookie("country_code", country_code, {path: '/'});
+		
+		window.location.reload();
+
+	}else{
+		
+		$.cookie("country", country, {path: '/'});
+		$.cookie("country_code", country_code, {path: '/'});
+		window.location.reload();
+	}
+
+}
