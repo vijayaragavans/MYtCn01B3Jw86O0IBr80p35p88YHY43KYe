@@ -4,12 +4,28 @@
 		"selected_items":
 		[
 			[
-				"mysqli",
-				"mysqli_error"
+				"start",
+				"start_date"
+			],
+			[
+				"strt",
+				"strtotime"
+			],
+			[
+				"action",
+				"action_label"
+			],
+			[
+				"sty",
+				"style	Attr"
 			],
 			[
 				"al",
 				"align	Attr"
+			],
+			[
+				"mysqli",
+				"mysqli_error"
 			],
 			[
 				"vi",
@@ -22,10 +38,6 @@
 			[
 				"visi",
 				"visits_details"
-			],
-			[
-				"sty",
-				"style	Attr"
 			],
 			[
 				"_",
@@ -80,18 +92,10 @@
 	"buffers":
 	[
 		{
-			"file": "/C/wamp/www/miti/mitisbj_new/index.html",
+			"file": "/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/dashboard-header.html",
 			"settings":
 			{
-				"buffer_size": 12807,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/wamp/www/miti/mitisbj_new/js/jquery.validate.js",
-			"settings":
-			{
-				"buffer_size": 36155,
+				"buffer_size": 7499,
 				"line_ending": "Windows"
 			}
 		}
@@ -228,6 +232,26 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/Plugins/SamsungGrid/index2.html",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/dashboard-header.html",
+		"/C/wamp/www/Plugins/SwatchBook/index.html",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files/assets/grid/css/demo.css",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/home.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/models/users_model.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/models/behaviour_model.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_behaviour.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/behaviour.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files/assets/scripts/index.js",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/database.php",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/behaviour.html",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files - Copy/assets/scripts/index.js",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/landing.html",
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/country.html",
+		"/C/wamp/www/miti/mitisbj_new/js/jquery.validate.js",
+		"/C/wamp/www/miti/mitisbj_new/thankyou.html",
+		"/C/wamp/www/miti/mitisbj_new/index.html",
+		"/C/wamp/www/miti/mitisbj_new/controller.php",
+		"/C/wamp/www/miti/mitisbj_new/config.php",
 		"/C/Users/sachin/AppData/Roaming/Sublime Text 3/Packages/User/Gist.sublime-settings",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/header 2.tpl",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/overview.php",
@@ -236,20 +260,16 @@
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/index.php",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/contact-us.php",
 		"/C/wamp/www/test/ppt/files/orgchart.css",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/behaviour.php",
 		"/C/wamp/www/test/fb_tokens.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files - Copy/ugc/PHPMailer/test_script/styles/shThemeRDark.css",
 		"/C/wamp/www/test/ppt/files/translateelement.css",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/system/libraries/Trackback.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/database.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/language.html",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/country.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/city.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files/assets/js/user.js",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/includes/header.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/footer.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/header.html",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/dashboard-header.html",
 		"/C/wamp/www/template/paid/Admin-Panel/conquer/assets/scripts/index.js",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/includes/header.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/includes/footer.php",
@@ -276,13 +296,9 @@
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/header.tpl",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/hii.js",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/default.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/landing.html",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/files/assets/scripts/index.js",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/home.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/demographics.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/track.html",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/users.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/models/users_model.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/system/database/DB_active_rec.php",
 		"/C/wamp/www/test/db.inc",
 		"/C/wamp/www/test/src/base_facebook.php",
@@ -343,23 +359,11 @@
 		"/E/PHP/Projectz/skillsweet/application/web_default/libraries/sys/app/sh_games.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_site.php",
 		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/menu.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/config.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/models/site_model.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/add_new_site.html",
-		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/.htaccess",
-		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/global.css",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/foreign_chars.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/constants.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/doctypes.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_info.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/login.html",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_common.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_country.php",
-		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/libraries/core/sh_demographics.php"
+		"/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/config/config.php"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 62.0
 	},
 	"find_in_files":
 	{
@@ -373,6 +377,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"icons",
+			"icons\n",
+			"img/d",
 			"set",
 			"evtnm",
 			"pg",
@@ -455,6 +462,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"{$static_server}files/assets/grid/img/d",
 			"'Category'",
 			"",
 			"api_key",
@@ -474,19 +482,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/C/wamp/www/miti/mitisbj_new/index.html",
+					"file": "/C/wamp/www/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/views/site/dashboard-header.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12807,
+						"buffer_size": 7499,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5507,
-								5507
+								7448,
+								7448
 							]
 						],
 						"settings":
@@ -494,39 +502,10 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4002.0,
+						"translation.y": 3450.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/wamp/www/miti/mitisbj_new/js/jquery.validate.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 36155,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6557,
-								6557
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5589.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
