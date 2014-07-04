@@ -28,7 +28,6 @@ class Home extends CI_Controller {
         $this->load->library('core/sh_country');          
         $this->config->load('mail_vars', TRUE);
         
-        
         $this->country;
         $this->country_code;
         
@@ -186,13 +185,9 @@ class Home extends CI_Controller {
 	    {
 		   redirect(SITE_URL."home/login");
 	    }
-	    
 		$user_name = $this->security->xss_clean( $this->input->get_post('username') );
-		   
-	    $user_password = md5($this->security->xss_clean( $this->input->get_post('user_password') ));
-	       
+	    $user_password = md5($this->security->xss_clean($this->input->get_post('user_password')));
 	    $response = $this->users->userLogin( $user_name, $user_password );
-	       
 	    if(isset($response) && $response['user_id'] != '')
 	    {
 	       

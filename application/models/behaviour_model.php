@@ -74,13 +74,10 @@ class Behaviour_Model extends CI_Model
 	        $this->db->where(array('traffic.user_api_key'=>$api));
 	        
 	        $query = $this->db->get();
-	        
 			$db_results = $query->result_array();
-	    
 	        if (count($db_results) > 0 )
 	        { 
 	            return $db_results;
-	            
 	        } else {            
 	            return  FALSE;
 	        } 
@@ -143,6 +140,64 @@ class Behaviour_Model extends CI_Model
     
     }
         
+    function Label_Details( $user_api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of  )
+    {
+    	
+        $this->db->select("count(traffic.user_ip) as total, DATE(traffic.data_created_on) as dates");
+        $this->db->from(TOOL_DB_NAME.'.traffic');
+	    $this->db->join(TOOL_DB_NAME.'.actions', 'actions.traffic_id = traffic.traffic_id', 'left');	        
+        $this->db->where(array('traffic.user_api_key '=>$user_api_key));
+        $this->db->where(array('actions.action_label'=>$label));        
+        $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
+        
+        /*
+         * By dafault country & country code is 0
+         */
+        
+        $whare = "( traffic.user_country = '".$country."' OR traffic.user_country_code = '".$country_code."' )";
+        if($country != $country_code )
+        {
+			$this->db->where($whare);
+        }
+        
+                
+        $this->db->group_by(" DATE(`data_created_on`)");
+	    $this->db->order_by("traffic.data_created_on", ASC);	        
+	    $this->db->limit($limit_of);
+    
+        $query = $this->db->get();
+        		$db_results = $query->result_array();		 
+    
+        if (count($db_results) > 0 )
+        { 
+            return $db_results;
+            
+        } else {            
+            return  FALSE;
+        } 
+    
+    }
+
+    function Get_label_Details( $api_key, $perPage, $fromStart, $code, $date  )
+    {
+/*        $this->db->select("*");
+        $this->db->from(TOOL_DB_NAME.'.traffic');
+        $this->db->join(TOOL_DB_NAME.'.actions', 'actions.traffic_id = traffic.traffic_id', 'left');
+        $this->db->where(array( 'traffic.user_api_key'=>$api_key, 'actions.action_label' => $code['label']));
+        $this->db->where(array( DATE('actions.tag_created_on') => "$date" ));
+        $this->db->order_by('traffic.traffic_id', 'DESC');
+        $this->db->limit( $perPage, $fromStart);
+*/        
+        $query = $this->db->query("SELECT * FROM traffic  t LEFT JOIN actions a ON a.traffic_id = t.traffic_id WHERE t.user_api_key = '".$api_key."' AND a.action_label = '".$code['label']."' AND DATE(a.tag_created_on)  = '".$date."' ORDER BY t.data_created_on DESC LIMIT $fromStart, $perPage") or die(mysql_error($query));
+        $db_results = $query->result_array();       
+         if (count($db_results) > 0 )
+        {   
+            return $db_results;
+        } else {
+             return false;
+        } 
+    }
+
 }
 /* End of file users_model.php */
 ?>

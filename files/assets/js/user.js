@@ -60,7 +60,7 @@ $(document).ready(function() {
 		
 	}); // End of Login Validation
 
-	
+
 	$("#siteForm").validate({
 		rules: {
 		input_site_label: {

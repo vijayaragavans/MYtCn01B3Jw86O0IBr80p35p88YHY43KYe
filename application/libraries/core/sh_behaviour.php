@@ -89,6 +89,18 @@ class Sh_behaviour
     	return $response;    	
     }
     
+
+
+    public function Label_Details( $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of){
+        $response = false;
+        $response = $this->_CI->behaviour_model->Label_Details(  $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of );
+        return $response;       
+    }
     
+    public function Get_Label_Details( $api_key, $page, $fromStart, $lang_code, $date ){
+        $response = false;
+        $response = $this->_CI->behaviour_model->Get_Label_Details(  $api_key, $page, $fromStart, $lang_code, $date );
+        return $response;       
+    }
 }
 /* End of file users.php */

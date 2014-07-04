@@ -112,19 +112,13 @@ class Users_Model extends CI_Model
     
     function add_user( $user_id, $data )
     {
-    	
-		$this->db->where('users.user_id', $user_id);
-		$this->db->update(TOOL_DB_NAME.'.users', $data);    	
-		
-		return "1";
-    	
+	$this->db->where('users.user_id', $user_id);
+	$this->db->update(TOOL_DB_NAME.'.users', $data);    	
+	return "1";
     }
 
-
-    
     function VisitorsFlow( $user_api_key, $type  )
     {
-        
         if($type == 1){
         	
         	$this->db->select("DATE(traffic.data_created_on) as dates");

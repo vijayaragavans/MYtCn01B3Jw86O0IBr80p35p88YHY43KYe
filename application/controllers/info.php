@@ -35,14 +35,9 @@ class Info extends CI_Controller {
         $this->email_date = date("Y-M-d");
         
         $this->url = $_SERVER['REQUEST_URI'];
-
         $this->url_input = split('/', $this->url);
-
         $this->url_count = count($this->url_input) -1;
-        
         $this->url_category = count($this->url_input) -2;
-
-
     }
     
 	/*
@@ -151,15 +146,9 @@ class Info extends CI_Controller {
 	   $current_site = $this->session->userdata('current_site');
 
 	   $api_key = $current_site['current_site'];
-
-		
 	   $date_range = $this->sh_common->Get_Date_Range( );
-	   
-			
 	   $data = $this->sh_info->Export_Data( $api_key, $date_range['start_dt'], $date_range['end_dt']  );
-	   
 			$contents="Id, Url, Screen Size, User agent lang, Visitor Ip, City, Country, Browser, Plateform, isCookieSet ( Yes - 1 No - 0 ), User Agent, Data Created On \n";
-
 	   		foreach($data as $visit)
 	   		{
 	   			$contents .= $visit['traffic_id'].',';
@@ -183,7 +172,38 @@ class Info extends CI_Controller {
 			
 	}
 	
+	public function edit_profile( $update ){
+		 $user_data = $this->session->userdata('mystat');
+		 if($update == 1){
+		   	$this->mysmarty->assign('notify', 'Updated Successfully.');
+		   }
+		$file = 'site/edit_profile.html';
+	   	$this->mysmarty->assign('filename',$file);     
+		$this->mysmarty->assign('user', $user_data);
+		$this->mysmarty->display('home.html'); 
 
+	}
+
+	public function profileupdate(){
+		 $user_data = $this->session->userdata('mystat');
+		$user_name = $this->security->xss_clean( $this->input->get_post('input_username') );
+		$user_email = $this->security->xss_clean( $this->input->get_post('input_email') );
+		$user_password = md5( $this->security->xss_clean( $this->input->get_post('input_password') ) );
+		$response = $this->sh_info->Update_Profile( $user_data['user_id'], $user_name, $user_email, $user_password );
+		if($response){
+			$sessionUserdata['user_id'] = $user_data['user_id'];
+			$sessionUserdata['user_unique_key'] = $user_data['user_unique_key'];
+			$sessionUserdata['username'] = $user_name;
+			$sessionUserdata['display_name'] = $user_email;
+			$sessionUserdata['user_type'] = $user_data['user_type'];
+			$sessionUserdata['user_api_key'] = $user_data['user_api_key'];
+			$sessionUserdata['user_logo'] = $user_data['user_logo'];
+			$this->session->set_userdata(array('mystat'=>$sessionUserdata));
+
+	   		redirect(SITE_URL."info/edit_profile/1");
+		}
+		die;
+	}
 }
 
 /* End of file home.php */
