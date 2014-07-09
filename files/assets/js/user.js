@@ -45,7 +45,6 @@ $(document).ready(function() {
 		            data: params,
 		            async: false,
 		            success: function(sresponse) {
-				 
 				 		if(sresponse == 0)
 				 		{
 				 			$(".response").html("Email Address or Password does not match");

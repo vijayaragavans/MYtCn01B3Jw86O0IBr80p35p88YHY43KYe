@@ -39,34 +39,29 @@ class Home extends CI_Controller {
 	 * Purpose : Loading the landing page
 	 */	
     
-	public function index()
+	public function index( $site_api_key )
 	{
 		
 	   $user_info = false;
-
 	   $user_data = $this->session->userdata('mystat');
-
 	   $current_site = $this->session->userdata('current_site');
-
 	   $api_key = $current_site['current_site'];
-	   		
+	   if(is_null($api_key) && $site_api_key != null  ){
+ 		$this->session->unset_userdata('current_site');
+ 		$current_site = array('current_site' => $site_api_key );
+		$this->session->set_userdata( $current_site );
+		$current_site = $this->session->userdata('current_site');
+		$api_key = $site_api_key;
+	   }
 	   //VISITS DETAILS
-
 	   $this->country_code = $this->input->cookie('country_code') ;
-
 	   $date_range = $this->sh_common->Get_Date_Range( );
-
 	   $str_start_date = strtotime( $date_range['start_dt']);
 	   $str_end_date = strtotime( $date_range['end_dt']);
-
 	   $limit_of = floor( ( $str_end_date - $str_start_date) /(60*60*24));
-
 	   $visits = $this->users->Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code, ( $limit_of >0 ) ? $limit_of : 1 );
-	   
 	   $count_repeat = $this->users->Count_Repeat( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code  );
-	   	   
 	   $total_visits = $this->users->Total_Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Total Visits Count
-	   
 	   $unique_visits = $this->users->Unique_Visits( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );		//	Unique Visits Count
 	   
 	   $latest_events = $this->Get_Latest_Events( $api_key, $date_range['start_dt'], $date_range['end_dt'], $this->country, $this->country_code   );	//	Latest Hits
@@ -161,7 +156,7 @@ class Home extends CI_Controller {
 
 	   if($user_data['user_id'] > 0 )
 	   {
-		   redirect(SITE_URL."home/index");
+		   redirect(SITE_URL."home/landing");
 	   }
 	   
 	   $file = 'site/login.html';
@@ -372,6 +367,19 @@ class Home extends CI_Controller {
 	   }
 	
 	   return "$difference $periods[$j] ago ";
+	}
+
+	public function landing()
+	{
+	   $user_data = false;
+		
+	   $user_data = $this->session->userdata('mystat');
+	    $list_of_sites = $this->users->List_Of_Sites( $user_data['user_id'] );
+	   $file = 'site/dashboard.html';
+	   //$this->mysmarty->assign('user', $user_data);
+	   $this->mysmarty->assign('list_of_sites', $list_of_sites);
+	   $this->mysmarty->assign('filename', $file);
+	   $this->mysmarty->display('home.html'); 
 	}
 
 }
