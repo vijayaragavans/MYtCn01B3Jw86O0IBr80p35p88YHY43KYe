@@ -1,13 +1,12 @@
 <?php	 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 	/**
-	 * Controller  : Home, Landing Page
-	 * Created on  : 20-03-2013
+	 * Controller  : For Browser Agent Language
+	 * Created on  : 20-03-2014
 	 * Created By  : Vijayaragavan Sivagurusamy
-	 * Contact Me  : vijayaragavan.sivagurusamy@gmail.com
-	 * Modified On :
-	 * Modified By :	  
-	 * Project     : myanalytics
+	 * Contact Me  : vijay@haiinteractive.com
+	 * Project     : mySTATS
+	 * powered By    : www.haiinteractive.com
 	 * Version	   : 1.0
 	 */
 
