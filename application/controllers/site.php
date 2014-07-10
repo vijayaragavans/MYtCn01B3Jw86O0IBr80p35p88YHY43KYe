@@ -64,15 +64,19 @@ class Site extends CI_Controller {
 
 		if($usuage == 'add_site')
 		{
+			if($_SERVER['HTTP_HOST'] == DEMO_URL){
+				echo 'demo';
+				die;
 
-			$input_site_url = $this->security->xss_clean( $this->input->post('input_site_url') );
-			$input_site_label = $this->security->xss_clean( $this->input->post('input_site_label') );
+			}else{
+				$input_site_url = $this->security->xss_clean( $this->input->post('input_site_url') );
+				$input_site_label = $this->security->xss_clean( $this->input->post('input_site_label') );
+				$response = $this->sh_site->Add_New_Site( $input_site_label, $input_site_url, $user_data['user_id'] );
+				echo $response;
+				die;
 
-			$response = $this->sh_site->Add_New_Site( $input_site_label, $input_site_url, $user_data['user_id'] );
+			}
 
-
-			echo $response;
-			die;
 		}
 
 	   

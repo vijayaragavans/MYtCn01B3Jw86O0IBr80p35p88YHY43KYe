@@ -176,6 +176,8 @@ class Info extends CI_Controller {
 		 $user_data = $this->session->userdata('mystat');
 		 if($update == 1){
 		   	$this->mysmarty->assign('notify', 'Updated Successfully.');
+		   }else if( $update = 'limit'){
+		   	$this->mysmarty->assign('notify', 'Sorry! Limited access in Demo version.');		   	
 		   }
 		$file = 'site/edit_profile.html';
 	   	$this->mysmarty->assign('filename',$file);     
@@ -185,22 +187,26 @@ class Info extends CI_Controller {
 	}
 
 	public function profileupdate(){
-		 $user_data = $this->session->userdata('mystat');
-		$user_name = $this->security->xss_clean( $this->input->get_post('input_username') );
-		$user_email = $this->security->xss_clean( $this->input->get_post('input_email') );
-		$user_password = md5( $this->security->xss_clean( $this->input->get_post('input_password') ) );
-		$response = $this->sh_info->Update_Profile( $user_data['user_id'], $user_name, $user_email, $user_password );
-		if($response){
-			$sessionUserdata['user_id'] = $user_data['user_id'];
-			$sessionUserdata['user_unique_key'] = $user_data['user_unique_key'];
-			$sessionUserdata['username'] = $user_name;
-			$sessionUserdata['display_name'] = $user_email;
-			$sessionUserdata['user_type'] = $user_data['user_type'];
-			$sessionUserdata['user_api_key'] = $user_data['user_api_key'];
-			$sessionUserdata['user_logo'] = $user_data['user_logo'];
-			$this->session->set_userdata(array('mystat'=>$sessionUserdata));
+		if($_SERVER['HTTP_HOST'] == DEMO_URL){
+	   		redirect(SITE_URL."info/edit_profile/limit");
+		}else{
+			 $user_data = $this->session->userdata('mystat');
+			$user_name = $this->security->xss_clean( $this->input->get_post('input_username') );
+			$user_email = $this->security->xss_clean( $this->input->get_post('input_email') );
+			$user_password = md5( $this->security->xss_clean( $this->input->get_post('input_password') ) );
+			$response = $this->sh_info->Update_Profile( $user_data['user_id'], $user_name, $user_email, $user_password );
+			if($response){
+				$sessionUserdata['user_id'] = $user_data['user_id'];
+				$sessionUserdata['user_unique_key'] = $user_data['user_unique_key'];
+				$sessionUserdata['username'] = $user_name;
+				$sessionUserdata['display_name'] = $user_email;
+				$sessionUserdata['user_type'] = $user_data['user_type'];
+				$sessionUserdata['user_api_key'] = $user_data['user_api_key'];
+				$sessionUserdata['user_logo'] = $user_data['user_logo'];
+				$this->session->set_userdata(array('mystat'=>$sessionUserdata));
+			   		redirect(SITE_URL."info/edit_profile/1");
 
-	   		redirect(SITE_URL."info/edit_profile/1");
+			}
 		}
 		die;
 	}

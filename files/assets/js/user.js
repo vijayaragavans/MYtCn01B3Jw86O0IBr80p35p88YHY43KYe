@@ -97,9 +97,9 @@ $(document).ready(function() {
 		            async: false,
 		            success: function(sresponse) {
 
-				 if(sresponse == 0)
+				 if(sresponse == 'demo')
 				{
-				 	$(".response").html("Insert Failed! Please try again...");
+				 	$(".response").html("Sorry! Limited Actions allowed in Demo Version.");
 				 	return false;
 				}else{
 				 	$(".response").html("Site Added Successfully.");
