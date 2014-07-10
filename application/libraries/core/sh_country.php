@@ -1,15 +1,13 @@
 <?php	 	
-/**
- * The Users class file.
- *
- * @category Users
- * @package  None
- * Created By  : Vijayaragavan Sivagurusamy
- * Contact Me  : vijayaragavan.sivagurusamy@gmail.com
- * @license    : myanalytics
- * @link       : libraries/core/sh_client.php
- * @version	   : 1.0
- */
+    /**
+     * Library  : Country
+     * Created on  : 20-03-2014
+     * Created By  : Vijayaragavan Sivagurusamy
+     * Contact Me  : vijay@haiinteractive.com
+     * Project     : mySTATS
+     * powered By    : www.haiinteractive.com
+     * Version     : 1.0
+     */
  
 class Sh_country
 {

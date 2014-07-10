@@ -1,14 +1,13 @@
 <?php	 	
-/**
- * The Users class file.
- *
- * @category   : Users
- * @package    : None
- * @author     : Vijayaragavan Sivagurusamy
- * @license    : myanalytics
- * @link       : libraries/core/sh_demographics.php
- * 
- */
+    /**
+     * Library  : Information
+     * Created on  : 20-03-2014
+     * Created By  : Vijayaragavan Sivagurusamy
+     * Contact Me  : vijay@haiinteractive.com
+     * Project     : mySTATS
+     * powered By    : www.haiinteractive.com
+     * Version     : 1.0
+     */
  
 class Sh_info
 {

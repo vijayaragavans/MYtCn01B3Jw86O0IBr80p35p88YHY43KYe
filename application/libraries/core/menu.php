@@ -1,14 +1,13 @@
 <?php	
-	/**
-	 * Controller  : Menu Class
-	 * Created on  : 20-03-2013
-	 * Created By  : Vijayaragavan Sivagurusamy
-	 * Contact Me  : vijayaragavan.sivagurusamy@gmail.com
-	 * Modified On :
-	 * Modified By :	  
-	 * Project     : myanalytics
-	 * Version	   : 1.0
-	 */
+    /**
+     * Library  : For Menu - AutoLoader
+     * Created on  : 20-03-2014
+     * Created By  : Vijayaragavan Sivagurusamy
+     * Contact Me  : vijay@haiinteractive.com
+     * Project     : mySTATS
+     * powered By    : www.haiinteractive.com
+     * Version     : 1.0
+     */
 
  
 class Menu

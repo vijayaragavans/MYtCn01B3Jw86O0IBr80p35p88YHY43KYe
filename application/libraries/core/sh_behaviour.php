@@ -1,15 +1,13 @@
 <?php	 	
-/**
- * The Users class file.
- *
- * @category Users
- * @package  None
- * @author   Vijayaragavan Sivagurusamy
- * @license  myanalytics
- * @link       : libraries/core/sh_behaviour.php
- * @version  1.0
- * 
- */
+    /**
+     * Library  : For Behaviour
+     * Created on  : 20-03-2014
+     * Created By  : Vijayaragavan Sivagurusamy
+     * Contact Me  : vijay@haiinteractive.com
+     * Project     : mySTATS
+     * powered By    : www.haiinteractive.com
+     * Version     : 1.0
+     */
  
 class Sh_behaviour
 {
