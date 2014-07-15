@@ -57,7 +57,7 @@ class Overview extends CI_Controller {
 	   if($user_data['user_id'] == '' || $user_data['user_id'] == null ){
 	   	redirect(SITE_URL."home/login");
 	   }
-	   
+	   $base_url =	   preg_replace('#^https?://#', '', base_url());
 	   $track = '&lt;script type="text/javascript"&gt;
 	
 		var _hii = _hii || [];
@@ -70,7 +70,7 @@ class Overview extends CI_Controller {
 		  var a = document.createElement("script"); 
 		  a.type = "text/javascript"; 
 		  a.async = true;
-		  a.src = "//www.tag.haiinteractive.com/hii.js";
+		  a.src = "//www.'. $base_url.'hii.js";
 		  var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(a, s);
 		
 		})();

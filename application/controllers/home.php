@@ -44,17 +44,15 @@ class Home extends CI_Controller {
 	   $user_info = false;
 	   $user_data = $this->session->userdata('mystat');
 	   $current_site = $this->session->userdata('current_site');
-	   print_r($current_site);
 	   $api_key = $current_site['current_site'];
 
 	   if(is_null($api_key) && $site_api_key != null  ){
  		$this->session->unset_userdata('current_site');
- 		$current_site = array('current_site' => $site_api_key );
-		$this->session->set_userdata( $current_site );
+ 		$current_site['current_site'] = $site_api_key;
+		$this->session->set_userdata( 'current_site' , $current_site );
 		$current_site = $this->session->userdata('current_site');
 		$api_key = $site_api_key;
 	   }
-
 	   //VISITS DETAILS
 	   $this->country_code = $this->input->cookie('country_code') ;
 	   $date_range = $this->sh_common->Get_Date_Range( );
