@@ -1,4 +1,4 @@
-<?php	 	
+<?php         
     /**
      * Library  : Site
      * Created on  : 20-03-2014
@@ -8,11 +8,9 @@
      * powered By    : www.haiinteractive.com
      * Version     : 1.0
      */
- 
 class Sh_site
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,31 +30,59 @@ class Sh_site
         $this->_CI->load->model('site_model');
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
-
         $this->current_date = date('Y-m-d H:i:s');
     }
-    
-    
     public function Add_New_Site( $input_site_label, $input_site_url, $user_id )
     {
-    	$response = false;
-    	
+        $response = false;
               $key = $this->_CI->users->Generate_API('13');
-
             $data = array(
                     'site_api_key' => $key,
                     'site_name' => $input_site_label,
                     'site_url' => $input_site_url,     
                     'created_by' => $user_id,
                      'site_created_on'  =>  $this->current_date
-
                 );
-
-    	$response = $this->_CI->site_model->Add_New_Site( $data );
-    	
-    	return $response;    	
+        $response = $this->_CI->site_model->Add_New_Site( $data );
+        return $response;        
     }
-        
-        
+    function managesites( $user_id )
+    {
+        $response = false;
+        $response = $this->_CI->site_model->managesites( $user_id );
+        return $response;
+    }
+
+    function GetSiteInfo( $site_id )
+    {
+        $response = false;
+        $response = $this->_CI->site_model->GetSiteInfo( $site_id );
+        return $response;
+    }
+
+    function UpdateInfo( $site_name, $site_url, $site_id )
+    {
+        $response = false;
+        $arg = array(
+                    'site_name' => $site_name,
+                    'site_url'      => $site_url
+            );
+        $response = $this->_CI->site_model->UpdateInfo( $arg, $site_id );
+        return $response;
+    }
+
+    function DeleteTraffic( $api_key )
+    {
+       $response = false;
+        $response = $this->_CI->site_model->DeleteTraffic( $api_key );
+        return $response;
+    }
+    function DeleteSite( $api_key )
+    {
+       $response = false;
+        $response = $this->_CI->site_model->DeleteSite( $api_key );
+        return $response;
+    }
+    
 }
-/* End of file users.php */
+/* End of file sh_site.php */

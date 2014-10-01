@@ -1,4 +1,4 @@
-<?php	 	
+<?php       
     /**
      * Library  : For Sh City
      * Created on  : 20-03-2014
@@ -8,11 +8,9 @@
      * powered By    : www.haiinteractive.com
      * Version     : 1.0
      */
- 
 class Sh_city
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,25 +30,17 @@ class Sh_city
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    public function Get_All_Details( $user_api_key, $perPage, $end_dt, $city_code  )
+    public function GetAllDetails( $user_api_key, $perPage, $end_dt, $city_code  )
     {
         $response = false;
-        
-        $response = $this->_CI->city_model->Get_All_Details( $user_api_key, $perPage, $end_dt, $city_code  );
-        
+        $response = $this->_CI->city_model->GetAllDetails( $user_api_key, $perPage, $end_dt, $city_code  );
         return $response;       
     }
-
-
-    public function Get_All_Cities( $user_api_key, $perPage, $fromStart  )
+    public function GetAllCities( $user_api_key, $perPage, $fromStart  )
     {
         $response = false;
-        
-        $response = $this->_CI->city_model->Get_All_Cities( $user_api_key, $perPage, $fromStart  );
-        
+        $response = $this->_CI->city_model->GetAllCities( $user_api_key, $perPage, $fromStart  );
         return $response;       
     }
 }
-/* End of file users.php */
+/* End of file sh_city.php */

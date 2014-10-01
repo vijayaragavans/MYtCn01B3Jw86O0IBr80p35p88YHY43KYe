@@ -1,53 +1,38 @@
-<?php	 		 	
+<?php                
 /**
- * The Country model
+ * The Info model
  *
- * @category Users
+ * @category Info
  * @package  None
  * @author   Vijayaragavan Sivagurusamy
  * @license  myanalytics
  * @link     libraries/core/sh_country.php
  *
  */
- 
 class Info_Model extends CI_Model
 {
- 
-	 public $_dataMap = ''; 
-	 
-    
-    
-    function Get_All_Notifications( $api_key, $perPage, $fromStart, $start_dt, $end_dt, $country_code   )
+    public $_dataMap = ''; 
+    function GetAllNotifications( $api_key, $perPage, $fromStart, $start_dt, $end_dt, $country_code   )
     {
-    	
-    	$this->db->select(" * ");
+        $this->db->select(" * ");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where(array('traffic.user_api_key'=>$api_key ));
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
-
          if( isset( $country_code ) && $country_code != 'all' )
             $this->db->where("traffic.user_country_code =", $country_code);
-
         $this->db->order_by('traffic.data_created_on', DESC);
         $this->db->limit( $perPage, $fromStart);
-        
         $query = $this->db->get();
-        
-		$db_results = $query->result_array();	
-		
-		 if (count($db_results) > 0 )
+        $db_results = $query->result_array();    
+        if (count($db_results) > 0 )
         {   
-        	return $db_results;
+            return $db_results;
         } else {
-        	 return false;
+            return false;
         } 
-    	
     }
-    
-	 
     function Pagination( $api_key, $code, $start_dt, $end_dt, $other  )
     {
-
         $this->db->select("*");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where('traffic.user_api_key', $api_key);
@@ -77,48 +62,37 @@ class Info_Model extends CI_Model
                         $this->db->where("actions.action_label =", $code['label']);
                         $this->db->where("DATE(`data_created_on`) = '$other' ");
             }
-
         if( $start_dt != 'all' && $end_dt != 'all' )
             $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
-
-
         $query = $this->db->get();
         $db_results = $query->result();
-	
         if (count($db_results) > 0 )
         {
             return count($db_results);
-            
         } else {            
-        	 return FALSE;
+            return FALSE;
         }  
-        
     }
-    
-    
-    
-    function Export_Data( $api_key, $start_dt, $end_dt )
+    function ExportData( $api_key, $start_dt, $end_dt )
     {
         $this->db->select("*");
         $this->db->from(TOOL_DB_NAME.'.traffic');
         $this->db->where('traffic.user_api_key', $api_key);
         $this->db->where("DATE(`data_created_on`) BETWEEN '$start_dt' AND '$end_dt' ");
         $query = $this->db->get();
-		$db_results = $query->result_array();
+        $db_results = $query->result_array();
         if (count($db_results) > 0 )
         {
             return $db_results;
         } else {            
-        	 return FALSE;
+            return FALSE;
         }  
     }
-    
-    public function Update_Profile( $user_id, $arg ){
+    public function UpdateProfile( $user_id, $arg ){
             $this->db->where('users.user_id', $user_id);
             $this->db->update(TOOL_DB_NAME.'.users', $arg);        
             return "1";
     }
-    
 }
-/* End of file users_model.php */
+/* End of file info_model.php */
 ?>

@@ -15,7 +15,6 @@
 |
 */
 $url = "http://". $_SERVER['SERVER_NAME']."/" ; 
-//$url = "http://". $_SERVER['SERVER_NAME']."/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/" ; 
 $config['base_url']	=  $url;
 
   

@@ -1,4 +1,4 @@
-<?php	 	
+<?php       
 /**
  * The Users class file.
  *
@@ -8,13 +8,11 @@
  * Contact Me  : vijayaragavan.sivagurusamy@gmail.com
  * @license    : myanalytics
  * @link       : libraries/core/sh_client.php
- * @version	   : 1.0
+ * @version    : 1.0
  */
- 
 class Sh_browser
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -34,17 +32,11 @@ class Sh_browser
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-
-    public function Get_Browser_Details( $user_api_key, $perPage, $fromStart, $lang_code  )
+    public function GetBrowserDetails( $user_api_key, $perPage, $fromStart, $lang_code  )
     {
         $response = false;
-        
-        $response = $this->_CI->browser_model->Get_Browser_Details( $user_api_key, $perPage, $fromStart, $lang_code  );
-        
+        $response = $this->_CI->browser_model->GetBrowserDetails( $user_api_key, $perPage, $fromStart, $lang_code  );
         return $response;       
     }
-
-    
 }
-/* End of file users.php */
+/* End of file sh_browser.php */

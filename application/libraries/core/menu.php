@@ -8,13 +8,10 @@
      * powered By    : www.haiinteractive.com
      * Version     : 1.0
      */
-
- 
 class Menu
 {
     private $_CI;    
     // present for all users
-    
     public $loggedIn = false;
     /**
      * Constructor.
@@ -34,21 +31,15 @@ class Menu
         $this->_CI->load->library('core/users');         
         $this->_CI->load->config('menu');
         $this->_CI->load->helper('url');        
-		$menus= $this->_CI->config->item('menus');
-		$finalMenu = array();		
-    	$userdata = $this->_CI->session->userdata('user');          
+        $menus= $this->_CI->config->item('menus');
+       $finalMenu = array();		
+       $userdata = $this->_CI->session->userdata('user');          
         $this->_CI->mysmarty->assign('base_url',base_url());
         $sessionUserdata = $this->_CI->session->userdata('RIGHT');
         $this->_CI->mysmarty->assign('sess',$sessionUserdata);
-     	 
-
-		   
         define('SITE_URL', base_url());
          $this->_CI->mysmarty->assign('static_server',base_url());
-		 $this->_CI->mysmarty->assign('menus',$finalMenu);
-         
+         $this->_CI->mysmarty->assign('menus',$finalMenu);
     }
- 
-        
 }
 /* End of file menu.php */

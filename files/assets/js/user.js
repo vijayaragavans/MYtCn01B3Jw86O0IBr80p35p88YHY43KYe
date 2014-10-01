@@ -92,7 +92,7 @@ $(document).ready(function() {
 			
 		$.ajax({
 		            type: "POST",
-		            url: local_dir+"site/add_new_site/",
+		            url: local_dir+"site/addnewsite/",
 		            data: params,
 		            async: false,
 		            success: function(sresponse) {
@@ -112,7 +112,57 @@ $(document).ready(function() {
 		
 	}); // End of Add New Site
 
-	
+	$("#esitsiteForm").validate({
+		rules: {
+		input_site_label: {
+				required: true,
+				minlength: 5
+			},
+		input_site_url: {
+				required: true,
+				minlength: 5
+			}
+		},
+		messages: {
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+			
+		var params = "site_name="+$("#input_site_label").val()+"&site_url="+$("#input_site_url").val()+"&id="+$("#id").val()+"&for=edit_site";
+			
+		$.ajax({
+		            type: "POST",
+		            url: local_dir+"site/edit/",
+		            data: params,
+		            async: false,
+		            success: function(sresponse) {
+
+				 if(sresponse == 'demo')
+				{
+				 	$(".response").html("Sorry! Limited Actions allowed in Demo Version.");
+				 	return false;
+				}else{
+				 	$(".response").html("Updated Successfully.");
+				 	return false;
+				}
+			}
+			});
+			
+		}
+		
+	}); // End of Add New Site	
 
     $('#photoimg').live('change', function()	{ 
     	   var showResponse  = '';
@@ -186,6 +236,28 @@ $(document).ready(function() {
 			 	}
 		});
     	
+    });
+
+    $(".delete_btn").on('click', function(){
+    	var res = confirm("Are you sure?");
+    	if(res == true){
+	var params = "for=del&site_api_key="+$(this).attr('id');
+	$.ajax({
+	            type: "POST",
+	            url: local_dir+"site/delete/",
+	            data: params,
+	            async: false,
+	            success: function(sresponse) {
+	            	if(sresponse == 'demo'){
+	            		$(".notice").html('Sorry!, Limited  access in DEMO version');
+	            	}else if( sresponse == 1){
+	            		$(".notice").html('Deteled successfully!');
+	            	}else{
+	            		$(".notice").html('Failed!, try again...');
+	            	}
+	            }   
+	            }); 		
+    	}
     });
 
 }); 

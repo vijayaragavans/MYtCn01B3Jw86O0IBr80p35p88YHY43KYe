@@ -1,4 +1,4 @@
-<?php	 	
+<?php       
     /**
      * Library  : For Common
      * Created on  : 20-03-2014
@@ -12,7 +12,6 @@
 class Sh_common
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -34,52 +33,31 @@ class Sh_common
         $this->_CI->start = '';
         $this->_CI->perPage = 5;
     }
-    
-    
-    
     # Purpose: Dynamically getting the date range
-    public function Get_Date_Range (  )
+    public function GetDateRange (  )
     {
-    	
        $start_dt = $this->_CI->input->cookie('start') ;
        $end_dt = $this->_CI->input->cookie('end') ;
-       
        if( ( $start_dt == '' || $start_dt == null ) && ( $end_dt == '' || $end_dt == null ) )
        {
-        
             $d1 = strtotime(date("Y-m-d", strtotime("-29 day")));
-
             $date['start_dt'] = date('Y-m-d', $d1);
             $date['end_dt'] = date('Y-m-d');
-            
             $expire_time = time()+3600*24*30;
             setcookie('start', date('M d Y', strtotime($date['start_dt']) ), $expire_time, '/');
             setcookie('end', date('M d Y', strtotime($date['end_dt']) ), $expire_time, '/');
        }else{
-        
             $date['start_dt'] = date('Y-m-d', strtotime( $start_dt ) );
             $date['end_dt'] = date('Y-m-d', strtotime( $end_dt ) );
-        
        }    
-
         return $date;
-
     }
-    
-
-
-
-    public function pagination( $user_api_key, $country_code , $start_dt, $end_dt, $other )
+    public function Pagination( $user_api_key, $country_code , $start_dt, $end_dt, $other )
     {
-        
         $result = '';
-
         $count =  ceil( $this->_CI->sh_info->Pagination( $user_api_key, $country_code, $start_dt, $end_dt, $other  ) / floor($this->_CI->perPage) );
-        
         //$count = $this->_CI->sh_info->Pagination( $user_api_key, $country_code, $start_dt, $end_dt );
         return $count-1;
     }
-
-        
 }
-/* End of file users.php */
+/* End of file sh_common.php */

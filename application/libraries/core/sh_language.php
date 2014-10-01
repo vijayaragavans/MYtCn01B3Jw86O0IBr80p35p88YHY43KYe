@@ -1,4 +1,4 @@
-<?php	 	
+<?php       
     /**
      * Library  : Language
      * Created on  : 20-03-2014
@@ -8,11 +8,9 @@
      * powered By    : www.haiinteractive.com
      * Version     : 1.0
      */
- 
 class Sh_language
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,38 +30,23 @@ class Sh_language
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    public function Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
+    public function TopLanguage( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
-
-    	$response = false;
-
-    	$response = $this->_CI->language_model->Top_Language( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
-
-    	return $response;
+        $response = false;
+        $response = $this->_CI->language_model->TopLanguage( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
+        return $response;
     }   
-
-
-    public function Get_All_languages( $user_api_key, $perPage, $fromStart  )
+    public function GetAllLanguages( $user_api_key, $perPage, $fromStart  )
     {
         $response = false;
-        
-        $response = $this->_CI->language_model->Get_All_languages( $user_api_key, $perPage, $fromStart  );
-        
+        $response = $this->_CI->language_model->GetAllLanguages( $user_api_key, $perPage, $fromStart  );
         return $response;       
     }
-
-
-    public function Get_Lang_Details( $user_api_key, $perPage, $fromStart, $lang_code  )
+    public function GetLangDetails( $user_api_key, $perPage, $fromStart, $lang_code  )
     {
         $response = false;
-        
-        $response = $this->_CI->language_model->Get_Lang_Details( $user_api_key, $perPage, $fromStart, $lang_code  );
-        
+        $response = $this->_CI->language_model->GetLangDetails( $user_api_key, $perPage, $fromStart, $lang_code  );
         return $response;       
     }
-
-    
 }
-/* End of file users.php */
+/* End of file sh_language.php */

@@ -1,4 +1,4 @@
-<?php	 	
+<?php         
     /**
      * Library  : Country
      * Created on  : 20-03-2014
@@ -12,7 +12,6 @@
 class Sh_country
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,36 +31,23 @@ class Sh_country
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    public function Top_Country( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
-    {
-
-    	$response = false;
-
-    	$response = $this->_CI->country_model->Top_Country( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
-
-    	return $response;
-    }    
-    
-    
-    public function Get_All_Details( $user_api_key, $perPage, $end_dt, $country_code  )
+    public function TopCountry( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
         $response = false;
-        
-        $response = $this->_CI->country_model->Get_All_Details( $user_api_key, $perPage, $end_dt, $country_code  );
-        
+        $response = $this->_CI->country_model->TopCountry( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  );
+        return $response;
+    }    
+    public function GetAllDetails( $user_api_key, $perPage, $end_dt, $country_code  )
+    {
+        $response = false;
+        $response = $this->_CI->country_model->GetAllDetails( $user_api_key, $perPage, $end_dt, $country_code  );
         return $response;       
     }
-
-
-    public function Get_All_Countries( $user_api_key, $perPage, $fromStart  )
+    public function GetAllCountries( $user_api_key, $perPage, $fromStart  )
     {
         $response = false;
-        
-        $response = $this->_CI->country_model->Get_All_Countries( $user_api_key, $perPage, $fromStart  );
-        
+        $response = $this->_CI->country_model->GetAllCountries( $user_api_key, $perPage, $fromStart  );
         return $response;       
     }
 }
-/* End of file users.php */
+/* End of file sh_country.php */

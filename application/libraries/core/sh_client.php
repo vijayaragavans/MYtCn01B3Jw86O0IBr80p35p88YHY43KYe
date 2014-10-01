@@ -1,4 +1,4 @@
-<?php	 	
+<?php       
 /**
  * The Users class file.
  *
@@ -8,13 +8,12 @@
  * Contact Me  : vijayaragavan.sivagurusamy@gmail.com
  * @license    : myanalytics
  * @link       : libraries/core/sh_client.php
- * @version	   : 1.0
+ * @version    : 1.0
  */
  
 class Sh_client
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -34,18 +33,11 @@ class Sh_client
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    public function Get_All_Client_Details( )
+    public function GetAllClientDetails( )
     {
-    	
-    	$response = false;
-    	
-    	$response = $this->_CI->client_model->Get_All_Client_Details( );
-    	
-    	return $response;
-    	
+        $response = false;
+        $response = $this->_CI->client_model->GetAllClientDetails( );
+        return $response;
     }
-    
 }
-/* End of file users.php */
+/* End of file sh_client.php */

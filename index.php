@@ -39,15 +39,18 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 			error_reporting(0);
+			ini_set('display_errors', 0);  
 		break;
 	
 		case 'testing':
 		case 'production':
 			error_reporting(0);
+			ini_set('display_errors', 0);  
 		break;
 
 		default:
 			error_reporting(0);
+			ini_set('display_errors', 0);  
 			exit('The application environment is not set correctly.');
 	}
 }

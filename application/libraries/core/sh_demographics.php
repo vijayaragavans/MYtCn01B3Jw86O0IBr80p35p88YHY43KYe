@@ -32,19 +32,11 @@ class Sh_demographics
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    
-    
-    public function Get_All_Data( $user_api_key, $data_type )
+    function GetAllData( $user_api_key, $data_type )
     {
     	$response = false;
-    	
-    	$response = $this->_CI->demographics_model->Get_All_Data( $user_api_key, $data_type );
-    	
+    	$response = $this->_CI->demographics_model->GetAllData( $user_api_key, $data_type );
     	return $response;    	
     }
-    
-    
 }
 /* End of file users.php */

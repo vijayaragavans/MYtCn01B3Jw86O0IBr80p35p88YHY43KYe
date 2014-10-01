@@ -1,4 +1,4 @@
-<?php	 	
+<?php         
     /**
      * Library  : For Behaviour
      * Created on  : 20-03-2014
@@ -8,11 +8,9 @@
      * powered By    : www.haiinteractive.com
      * Version     : 1.0
      */
- 
-class Sh_behaviour
+ class Sh_behaviour
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,73 +30,45 @@ class Sh_behaviour
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
-    public function Get_All_Tags( $user_api_key, $start_date, $end_date )
+    public function GetAllTags( $user_api_key, $start_date, $end_date )
     {
-    	
-    	$response = false;
-    	
-    	$response = $this->_CI->behaviour_model->Get_All_Tags( $user_api_key, $start_date, $end_date );
-    	
-    	return $response;
-    	
-    }
-    
-        
-    public function Get_Tag_Details($type, $tag, $user_api_key )
-    {
-    	
-    	$response = false;
-    	
-    	$response = $this->_CI->behaviour_model->Get_Tag_Details( $type, $tag, $user_api_key );
-    	
-    	return $response;
-    	
-    }
-    
-    public function Get_All_Browsers($api )
-    {
-    	
-    	$response = false;
-    	
-    	$response = $this->_CI->behaviour_model->Get_All_Browsers( $api );
-    	
-    	return $response;
-    }
-    
-    
-    public function Get_Data( $browser, $api_key )
-    {
-    	$response = false;
-    	
-    	$response = $this->_CI->behaviour_model->Get_Data( $browser, $api_key);
-    	
-    	return $response;    	
-    }
-    
-    
-    public function Get_All_Datas( $user_api_key, $data_type )
-    {
-    	$response = false;
-    	
-    	$response = $this->_CI->behaviour_model->Get_All_Datas( $user_api_key, $data_type );
-    	
-    	return $response;    	
-    }
-    
-
-
-    public function Label_Details( $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of){
         $response = false;
-        $response = $this->_CI->behaviour_model->Label_Details(  $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of );
+        $response = $this->_CI->behaviour_model->GetAllTags( $user_api_key, $start_date, $end_date );
+        return $response;
+    }
+    public function GetTagDetails($type, $tag, $user_api_key )
+    {
+      $response = false;
+    $response = $this->_CI->behaviour_model->GetTagDetails( $type, $tag, $user_api_key );
+    return $response;
+    }
+    public function GetAllBrowsers($api )
+    {
+      $response = false;
+      $response = $this->_CI->behaviour_model->GetAllBrowsers( $api );
+      return $response;
+    }
+    public function GetData( $browser, $api_key )
+    {
+        $response = false;
+        $response = $this->_CI->behaviour_model->GetData( $browser, $api_key);
+        return $response;        
+    }
+    public function GetAllDatas( $user_api_key, $data_type )
+    {
+        $response = false;
+        $response = $this->_CI->behaviour_model->GetAllDatas( $user_api_key, $data_type );
+        return $response;        
+    }
+    public function LabelDetails( $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of){
+        $response = false;
+        $response = $this->_CI->behaviour_model->LabelDetails(  $api_key, $label, $start_dt, $end_dt, $country, $country_code, $limit_of );
         return $response;       
     }
-    
-    public function Get_Label_Details( $api_key, $page, $fromStart, $lang_code, $date ){
+    public function GetLabelDetails( $api_key, $page, $fromStart, $lang_code, $date ){
         $response = false;
-        $response = $this->_CI->behaviour_model->Get_Label_Details(  $api_key, $page, $fromStart, $lang_code, $date );
+        $response = $this->_CI->behaviour_model->GetLabelDetails(  $api_key, $page, $fromStart, $lang_code, $date );
         return $response;       
     }
 }
-/* End of file users.php */
+/* End of file sh_behaviour.php */

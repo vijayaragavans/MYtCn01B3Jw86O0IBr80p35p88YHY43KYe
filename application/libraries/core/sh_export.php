@@ -1,4 +1,4 @@
-<?php	 	
+<?php         
     /**
      * Library  : Export
      * Created on  : 20-03-2014
@@ -12,7 +12,6 @@
 class Sh_Export
 {
     private $_CI;    
-
     /**
      * Constructor.
      * Loads the CI instance, the users_model and some useful helpers.
@@ -32,18 +31,11 @@ class Sh_Export
         $this->_CI->config->load('mail_vars', TRUE);
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
     }
-    
-    
     public function export_data( $user_api_key, $start_date, $end_date )
     {
-    	
-    	$response = false;
-    	
-    	$response = $this->_CI->export_model->export_data( $user_api_key, $start_date, $end_date );
-    	
-    	return $response;
-    	
+        $response = false;
+        $response = $this->_CI->export_model->export_data( $user_api_key, $start_date, $end_date );
+        return $response;
     }
-    
 }
-/* End of file users.php */
+/* End of file sh_export.php */

@@ -1,0 +1,245 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp/www/Hai_interactive/demo/mystats/files/assets/js/user.js",
+		"/C/wamp/www/Hai_interactive/demo/mystats/index.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/config/database.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/models/demographics_model.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/behaviour.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/browser.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/clients.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/country.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/demographics.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/graph.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/home.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/info.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/language.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/overview.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/site.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/controllers/export.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/libraries/core/sh_demographics.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/views/site/base-header.html",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/views/site/dashboard-header.html",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/behaviour.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/site.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/overview.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/language.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/info.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/home.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/graph.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/export.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/demographics.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/country.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/clients.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/city.php",
+		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/browser.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/models/behaviour_model.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/libraries/core/sh_behaviour.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/libraries/core/sh_common.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/user_guide/general/controllers.html",
+		"/C/wamp/www/Hai_interactive/demo/mystats/system/core/Controller.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/config/config.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/user_guide/changelog.html",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/libraries/core/users.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/user_guide/userguide.css",
+		"/C/wamp/www/Hai_interactive/demo/mystats/files/assets/scripts/ui-sliders.js",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/config/user_agents.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/hooks/AppConstructor.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/files - Copy/ugc/PHPMailer/examples/contents.html",
+		"/C/wamp/www/Hai_interactive/demo/mystats/files/assets/js/functions.js",
+		"/C/wamp/www/Hai_interactive/demo/mystats/files/assets/js/exporting.js",
+		"/C/wamp/www/Hai_interactive/demo/mystats/files/assets/js/highcharts.js",
+		"/C/wamp/www/Hai_interactive/demo/mystats/system/database/DB_active_rec.php"
+	],
+	"find":
+	{
+		"height": 51.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"	",
+			"      		",
+			"	 "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"    ",
+			"        ",
+			"    "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 51.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "mystats.sublime-project",
+	"replace":
+	{
+		"height": 98.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"demographics_model",
+				"application\\models\\demographics_model.php"
+			],
+			[
+				"sh_demographics",
+				"application\\libraries\\core\\sh_demographics.php"
+			],
+			[
+				"demographics",
+				"application\\controllers\\demographics.php"
+			],
+			[
+				"sh_common",
+				"application\\libraries\\core\\sh_common.php"
+			],
+			[
+				"behaviour_model",
+				"application\\models\\behaviour_model.php"
+			],
+			[
+				"sh_behaviour",
+				"application\\libraries\\core\\sh_behaviour.php"
+			],
+			[
+				"controlls",
+				"application\\controllers\\site.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"data",
+				"application\\config\\database.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
