@@ -50,7 +50,7 @@ define('MANDRILL_API_KEY', 'TCHM17uAxP-6rNcovt5jYg');
 
 define('GRAPH_PATH', '/files/ugc/uploads/');
 
-define('DEMO_URL', 'demo.haiinteractive.com');
+define('DEMO_URL', 'mystat.haiinteractive.com');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
