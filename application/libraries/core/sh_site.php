@@ -32,10 +32,10 @@ class Sh_site
         //$this->_CI->load->helper(array('form', 'url', 'cookie'));         
         $this->current_date = date('Y-m-d H:i:s');
     }
-    public function Add_New_Site( $input_site_label, $input_site_url, $user_id )
+    public function AddNewSite( $input_site_label, $input_site_url, $user_id )
     {
         $response = false;
-              $key = $this->_CI->users->Generate_API('13');
+              $key = $this->_CI->users->GenerateAPI('13');
             $data = array(
                     'site_api_key' => $key,
                     'site_name' => $input_site_label,
@@ -43,7 +43,7 @@ class Sh_site
                     'created_by' => $user_id,
                      'site_created_on'  =>  $this->current_date
                 );
-        $response = $this->_CI->site_model->Add_New_Site( $data );
+        $response = $this->_CI->site_model->AddNewSite( $data );
         return $response;        
     }
     function managesites( $user_id )
