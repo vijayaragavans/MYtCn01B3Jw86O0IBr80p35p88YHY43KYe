@@ -211,7 +211,7 @@
                                      {foreach from=$tags item=tag}
                                          <td>
                                              <span class="activity">
-                                                <a href="{$base_url}/behaviour/track_event/?__={$tag.label}" name="tag_stat" class="tag_stat" style="margin-left: 25px; color: green" >{$tag.label}</a>            
+                                                <a href="{$base_url}/behaviour/trackevent/?__={$tag.label}" name="tag_stat" class="tag_stat" style="margin-left: 25px; color: green" >{$tag.label}</a>            
                                              </span>
                                              </td>
                                      {/foreach}
@@ -235,7 +235,7 @@
                                 <tbody>
                                     {foreach from=$datas item=data key=i}
                                         <tr>
-                                            <td><a href="{$base_url}/behaviour/track_event/?__={$data.label}" name="tag_stat" class="tag_stat" style="margin-left: 25px; color: green" >{$data.label} ({$data.visits})</a></td>
+                                            <td><a href="{$base_url}/behaviour/trackevent/?__={$data.label}" name="tag_stat" class="tag_stat" style="margin-left: 25px; color: green" >{$data.label} ({$data.visits})</a></td>
                                         </tr>
                                     {/foreach}                
                                 </tbody>

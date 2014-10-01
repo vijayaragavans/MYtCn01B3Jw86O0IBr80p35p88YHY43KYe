@@ -15,7 +15,7 @@ class Language extends CI_Controller
         parent::__construct();                    
         // load the necessary libraries
         $this->start = '';
-        $this->perPage = 5;
+        $this->perPage = 15;
         $this->load->library('form_validation');
         $this->load->helper(array('form', 'url', 'cookie'));
         $this->load->library('core/users');

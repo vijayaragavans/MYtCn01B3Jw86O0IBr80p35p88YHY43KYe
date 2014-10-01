@@ -23,16 +23,13 @@ class City extends CI_Controller
         $this->url_input = split('/', $this->url);
         $this->url_count = count($this->url_input) -1;
         $this->url_category = count($this->url_input) -2;
-    }
-    function __autoload()
-    {
         $this->load->library('form_validation');   
         $this->load->helper(array('form', 'url', 'cookie'));           
         $this->load->library('core/users');   
         $this->load->library('core/sh_behaviour');   
         $this->load->library('core/sh_common'); 
         $this->load->library('core/sh_city'); 
-      }
+    }
     /*
      * Function: Index 
      * Purpose : Loading the landing page

@@ -23,7 +23,7 @@ class Country extends CI_Controller
         $this->load->library('core/sh_common'); 
         $this->load->library('core/sh_country'); 
        $this->start = '';
-        $this->perPage = 5;
+        $this->perPage = 15;
         $this->current_date = date("Y-m-d H:i:s");
         $this->email_date = date("Y-M-d");
         $this->url = $_SERVER['REQUEST_URI'];

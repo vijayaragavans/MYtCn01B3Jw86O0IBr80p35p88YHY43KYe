@@ -18,7 +18,7 @@ class Info extends CI_Controller
         parent::__construct();                    
         // load the necessary libraries
         $this->start = '';
-        $this->perPage = 5;
+        $this->perPage = 10;
         $this->country_code ;
         $this->load->library('form_validation');   
         $this->load->helper(array('form', 'url', 'cookie'));           
