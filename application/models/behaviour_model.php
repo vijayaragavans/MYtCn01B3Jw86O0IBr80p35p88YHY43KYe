@@ -13,6 +13,12 @@
 class Behaviour_Model extends CI_Model
 {
      public $_dataMap = ''; 
+    function Behaviour_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
+
     function GetAllTags( $user_api_key, $start_date, $end_date )
     {
         $this->db->select("distinct( actions.action_label ) as label, count(actions.action_label) as total_visits");

@@ -22,6 +22,7 @@ class Users_Model extends CI_Model
     function Users_Model()
     {
         parent::__construct();        
+         $this->load->database();  
     }
     function UserLogin( $username, $password )
     {
@@ -68,17 +69,35 @@ class Users_Model extends CI_Model
     }
     function RegisterUser($data)
     {
-         //$this->db->where('tb_users.username', $username); 
-    $this->db->insert(TOOL_DB_NAME.'.users', $data);         
-         //echo $this->db->last_query(); 
-         //die;
-    return $this->db->insert_id(); 
+            $this->db->insert(TOOL_DB_NAME.'.users', $data);         
+            return $this->db->insert_id(); 
     }
+    function CreateManageSites( $arg )
+    {
+            $this->db->insert_batch(TOOL_DB_NAME.'.site_access', $arg );         
+            return $this->db->insert_id(); 
+    }
+
     function CheckUser( $unique_id )
     {
         $this->db->select("user_id, user_email");
         $this->db->from(TOOL_DB_NAME.'.users');        
         $this->db->where(array('users.user_unique_id'=>$unique_id, "users.user_is_active"=> '0'));
+        $this->db->limit('1');
+        $query = $this->db->get();
+        $db_results = $query->result_array();        
+        if (count($db_results) > 0 )
+        { 
+            return $db_results[0];
+        } else {            
+            return  FALSE;
+        } 
+    }
+    function CheckManageUser( $user_name )
+    {
+        $this->db->select("user_id");
+        $this->db->from(TOOL_DB_NAME.'.users');        
+        $this->db->where(array('users.user_name'=>$user_name ));
         $this->db->limit('1');
         $query = $this->db->get();
         $db_results = $query->result_array();        
@@ -327,7 +346,8 @@ class Users_Model extends CI_Model
     {
             $this->db->select("*");
             $this->db->from(TOOL_DB_NAME.'.sites');
-            $this->db->where(array('sites.created_by'=>$user_id));
+           $this->db->join(TOOL_DB_NAME.'.site_access', 'site_access.site_id = sites.site_id', 'left'); 
+            $this->db->where(array('site_access.user_id'=>$user_id));
             $query = $this->db->get();
             $db_results = $query->result_array();   
              if (count($db_results) > 0 )

@@ -93,6 +93,12 @@ class Users
         $response = $this->_CI->users_model->CheckUser( $unique_id );
         return $response;
     }
+    public function CheckManageUser( $user_name )
+    {
+        $response = false;
+        $response = $this->_CI->users_model->CheckManageUser( $user_name );
+        return $response;
+    }
     public function AddUser( $user_id, $user_name, $user_password )
     {
         $response = false;
@@ -103,7 +109,28 @@ class Users
                     'user_password' => md5($user_password),        
                     'user_is_active' => '1'        
                 );
+        if($this->CheckManageUser( $user_name)){
+            $response = 'exist';
+        }else{
         $response = $this->_CI->users_model->AddUser( $user_id, $data );
+        }
+        return $response;
+    }
+
+    public function CreateNewUser( $user_type, $user_email, $user_password )
+    {
+        $response = false;
+        $api = $this->GenerateAPI('13');
+        $unique_id = $this->GenerateAPI('13');
+        $data = array(
+                    'user_api_key' => $api,
+                    'user_unique_id' => $unique_id,
+                    'user_type' => $user_type,
+                    'user_email' => $user_email,
+                    'user_password' => md5($user_password),        
+                    'user_is_active' => '1'        
+                );
+        $response = $this->_CI->users_model->RegisterUser( $data );
         return $response;
     }
     public function GenerateAPI( $length )
@@ -123,6 +150,12 @@ class Users
     {
         $response = false;
         $response = $this->_CI->users_model->VisitorsFlow( $user_api_key, $type );
+        return $response;
+    }
+    public function CreateManageSites( $arg )
+    {
+        $response = false;
+        $response = $this->_CI->users_model->CreateManageSites( $arg );
         return $response;
     }
     public function CheckUserAvailability( $user_email )

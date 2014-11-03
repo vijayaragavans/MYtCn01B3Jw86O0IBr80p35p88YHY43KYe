@@ -12,6 +12,11 @@
 class Language_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function Language_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function TopLanguage( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
         $this->db->select(" count(traffic_id) as count_of_hits, user_agent_lang ");

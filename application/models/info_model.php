@@ -12,6 +12,11 @@
 class Info_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function Info_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function GetAllNotifications( $api_key, $perPage, $fromStart, $start_dt, $end_dt, $country_code   )
     {
         $this->db->select(" * ");

@@ -1,39 +1,13 @@
+            <link href="{$static_server}files/assets/login-form/css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="{$static_server}files/assets/login-form/js/prefixfree.min.js"></script>
 
-  <div id="login">
-    <!-- BEGIN LOGIN FORM -->
-    <form  name="logForm" id="logForm" class="form-vertical no-padding no-margin"  method="POST" >
-    		
-      <p class="response" style="color: red;">Enter your username and password.</p>
+  <div class="login">
+  <h3>Login</h3>
+    <form name="logForm" id="logForm" class="form-vertical no-padding no-margin"  method="POST" >
+          <p class="response" style="color: red;">Enter your username and password.</p>
 
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend">
             <input id="input_username" name='input_username' type="text" placeholder="Username" />
-          </div>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend">
             <input id="input_password" name='input_password' type="password" placeholder="Password" />
-          </div>
-        </div>
-      </div>
-      <input type="submit" id="login-btn" class="button button-size-large" value="Login" />
+        <button type="submit" class="btn btn-primary btn-block btn-large" id='login-btn'>Let me in.</button>
     </form>
-    <!-- END LOGIN FORM -->        
-    <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form id="forgotform" class="form-vertical no-padding no-margin hide" action="http://www.keenthemes.com/preview/conquer/index.html">
-      <p class="center">Enter your e-mail address below to reset your password.</p>
-      <div class="control-group">
-        <div class="controls">
-          <div class="input-prepend">
-            <span class="add-on"><i class="icon-envelope"></i></span><input id="input-email" type="text" placeholder="Email" />
-          </div>
-        </div>
-        <div class="space10"></div>
-      </div>
-      <input type="button" id="forget-btn" class="btn btn-block btn-inverse" value="Submit" />
-    </form>
-    <!-- END FORGOT PASSWORD FORM -->
-  </div>
+</div>

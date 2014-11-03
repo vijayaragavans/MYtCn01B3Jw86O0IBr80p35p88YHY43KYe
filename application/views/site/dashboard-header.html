@@ -29,8 +29,11 @@
                             <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
+                            {if $user.user_type eq 2}
                                 <li><a href="{$base_url}site/addnewsite"><i class="icon-tasks"></i>Add New Site</a></li>
+                                <li><a href="{$base_url}manageusers/index"><i class="icon-user"></i>Manage Users</a></li>
                                 <li><a href="{$base_url}site/managesites"><i class="icon-tasks"></i>Manage Sites</a></li>
+                             {/if}   
                                 <li><a href="{$base_url}overview/trackcode"><i class="icon-tasks"></i>Tracking Code</a></li>
                                 <li><a href="{$base_url}info/editprofile"><i class="icon-ok"></i> Edit Profile</a></li>
                                 <li class="divider"></li>

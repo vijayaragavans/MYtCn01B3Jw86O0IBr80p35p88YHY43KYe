@@ -12,6 +12,11 @@
 class Export_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function Export_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
    function ExportData( $user_api_key, $start_date, $end_date  )
     {
         $this->db->select("*");

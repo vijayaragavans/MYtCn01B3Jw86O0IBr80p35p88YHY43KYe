@@ -11,8 +11,12 @@
  */
 class Client_Model extends CI_Model
 {
- 
     public $_dataMap = ''; 
+    function Client_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function GetAllClientDetails( )
     {
         $user_type = '1';

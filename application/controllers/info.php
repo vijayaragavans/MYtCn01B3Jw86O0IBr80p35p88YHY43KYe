@@ -129,7 +129,7 @@ class Info extends CI_Controller
     }
     public function ProfileUpdate(){
         if($_SERVER['HTTP_HOST'] == DEMO_URL){
-               redirect(SITE_URL."info/edit_profile/limit");
+               redirect(SITE_URL."info/editprofile/limit");
         }else{
              $user_data = $this->session->userdata('mystat');
             $user_name = $this->security->xss_clean( $this->input->get_post('input_username') );
@@ -145,7 +145,7 @@ class Info extends CI_Controller
                 $sessionUserdata['user_api_key'] = $user_data['user_api_key'];
                 $sessionUserdata['user_logo'] = $user_data['user_logo'];
                 $this->session->set_userdata(array('mystat'=>$sessionUserdata));
-                       redirect(SITE_URL."info/edit_profile/1");
+                       redirect(SITE_URL."info/editprofile/1");
             }
         }
         die;

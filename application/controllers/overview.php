@@ -51,7 +51,7 @@ class Overview extends CI_Controller
           var a = document.createElement("script"); 
           a.type = "text/javascript"; 
           a.async = true;
-          a.src = "//www.'. $base_url.'hii.js";
+          a.src = "//www.'. $base_url.'subtag/hii.js";
           var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(a, s);
         })();
     &lt;/script&gt;    

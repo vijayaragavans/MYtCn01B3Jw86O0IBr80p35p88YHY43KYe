@@ -1,9 +1,5 @@
 $(document).ready(function() { 
-		
-	//var local_dir = "http://localhost/myanalytics/";
-	var local_dir = location.protocol + "//" + document.domain + "/";
-	//var local_dir = location.protocol + "//" + document.domain + "/";
-	
+	var local_dir = location.protocol + "//" + document.domain + "/mystats/";
 	$("#logForm").validate({
 		rules: {
 		input_password: {
@@ -60,6 +56,49 @@ $(document).ready(function() {
 	}); // End of Login Validation
 
 
+	$("#profileForm").validate({
+		rules: {
+		input_username: {
+				required: true,
+				minlength: 5
+			},
+			input_email: {
+				required: true,
+				email: true
+			},
+			input_password: {
+				required: true,
+				minlength: 5
+			}
+		},
+		messages: {
+			user_password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			user_email: "Please enter a valid email address"
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+	    	return true;
+	}
+		
+	}); // End of Edit Profile Validation
+
+
+
 	$("#siteForm").validate({
 		rules: {
 		input_site_label: {
@@ -111,6 +150,123 @@ $(document).ready(function() {
 		}
 		
 	}); // End of Add New Site
+
+
+	$("#adduserForm").validate({
+		rules: {
+		user_type: {
+				required: true
+			},
+		input_username: {
+				required: true,
+				email:true,
+				minlength: 5
+			},
+		input_password: {
+				required: true,
+				minlength: 5
+			}
+		},
+		messages: {
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+	    	var sites = [];
+		$(':checkbox:checked').each(function(i){
+          			sites[i] = $(this).val();
+        		});
+		var params = "user_type="+$("#user_type").val()+"&input_username="+$("#input_username").val()+"&input_password="+$("#input_password").val()+"&sites="+sites+"&for=add_new_user";
+		$.ajax({
+		            type: "POST",
+		            url: local_dir+"manageusers/add/",
+		            data: params,
+		            async: false,
+		            success: function(sresponse) {
+				 if(sresponse == 'demo')
+				{
+				 	$(".response").html("Sorry! Limited Actions allowed in Demo Version.");
+				 	return false;
+				}else if( sresponse == 'exist'){
+				 	$(".response").html("User Already Exist..");
+				 	return false;
+				}else{
+				 	$(".response").html("User Added Successfully.");
+				 	return false;
+				 }
+			}
+			});
+			
+		}
+		
+	}); // End of Add New User
+
+	$("#euserForm").validate({
+		rules: {
+		user_type: {
+				required: true
+			},
+		input_useremail: {
+				required: true,
+				email:true,
+				minlength: 5
+			},
+		},
+		messages: {
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+	    	var sites = [];
+		$(':checkbox:checked').each(function(i){
+          			sites[i] = $(this).val();
+        		});
+		var user_id = $("#user_id").val();
+		var params = "user_type="+$("#user_type").val()+"&input_username="+$("#input_useremail").val()+"&input_password="+$("#input_pwd").val()+"&sites="+sites+"&for=edit_user";
+		$.ajax({
+		            type: "POST",
+		            url: local_dir+"manageusers/edit/"+user_id,
+		            data: params,
+		            async: false,
+		            success: function(sresponse) {
+		            	alert(sresponse);
+		            	return false;
+/*				 if(sresponse == 'demo')
+				{
+				 	$(".response").html("Sorry! Limited Actions allowed in Demo Version.");
+				 	return false;
+				}else{
+				 	$(".response").html("Updated Successfully.");
+				 	return false;
+				 }
+*/			}
+			});
+			
+		}
+		
+	}); // End of Add New User
 
 	$("#esitsiteForm").validate({
 		rules: {
@@ -259,6 +415,86 @@ $(document).ready(function() {
 	            }); 		
     	}
     });
+
+
+    $(".delete_user").on('click', function(){
+    	var res = confirm("Are you sure?");
+    	if(res == true){
+	var params = "for=del&user_id="+$(this).attr('id');
+	$.ajax({
+	            type: "POST",
+	            url: local_dir+"manageusers/delete/",
+	            data: params,
+	            async: false,
+	            success: function(sresponse) {
+	            	if(sresponse == 'demo'){
+	            		$(".notice").html('Sorry!, Limited  access in DEMO version');
+	            	}else if( sresponse == 1){
+	            		$(".notice").html('Deteled successfully!');
+	            	}else{
+	            		$(".notice").html('Failed!, try again...');
+	            	}
+	            }   
+	            }); 		
+    	}
+    });
+
+        	$("#authForm").validate({
+		rules: {
+		input_hostname: {
+			required: true,
+			minlength: 5
+		},
+		input_dbname: {
+			required: true,
+			minlength: 5
+		},
+		input_dbusername: {
+			required: true,
+			minlength: 4
+		},
+		input_useremail: {
+			required: true,
+			email: true
+		},
+		input_userpassword: {
+			required: true,
+			minlength: 5
+		},
+		},
+	    onfocusout: function(element) {
+	        $(element).valid();
+	    },
+	    highlight: function(element) {
+	        var cssObj = {'border' : '1px solid red', 'background-color:':'red', 'color' : 'red'}
+	    	$(element).css(cssObj);
+	    },
+	    unhighlight: function(element) {
+	    	$(element).removeClass('error');
+	        var cssObj = {'border' : '1px solid #0EA6BF', 'color' : '#222222'}
+	    	$(element).css(cssObj);
+	    },
+
+	    submitHandler: function(form) {
+			
+		var params = "hostname="+$("#input_hostname").val()+"&dbname="+$("#input_dbname").val()+"&dbusername="+$("#input_dbusername").val()+"&dbpassword="+$("#input_dbpassword").val()+"&useremail="+$("#input_useremail").val()+"&userpassword="+$("#input_userpassword").val()+"&for=install";
+		$.ajax({
+		            type: "POST",
+		            url: local_dir+"auth/index/",
+		            data: params,
+		            async: false,
+		            success: function(sresponse) {
+		            				if(sresponse == 1){
+		            					window.location.reload();
+		            				}else{
+		            					$(".response").html("Sorry! Error. Try again...");
+		            				}
+				 	}
+				 });
+			
+		}
+		
+	}); // End of Installation Validation
 
 }); 
 

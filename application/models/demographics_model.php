@@ -12,6 +12,11 @@
 class Demographics_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function Demographics_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function GetAllData( $user_api_key, $data_type )
     {
         if($data_type == 'Language')

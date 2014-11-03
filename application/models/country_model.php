@@ -12,6 +12,11 @@
 class Country_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function Country_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function TopCountry( $placeholder, $api_key, $start_dt, $end_dt, $country, $country_code  )
     {
         $this->db->select(" count(traffic_id) as count_of_hits, user_country ");

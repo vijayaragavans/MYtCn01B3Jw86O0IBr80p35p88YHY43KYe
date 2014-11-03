@@ -1,4 +1,6 @@
 <?php	 	
+	define('DIR_NAME', dirname(__FILE__));
+	define('BASE_PATH', $_SERVER['HTTP_HOST'].''.$_SERVER['REQUEST_URI'] );
 
 /*
  *---------------------------------------------------------------
@@ -38,8 +40,8 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
-			error_reporting(0);
-			ini_set('display_errors', 0);  
+			error_reporting(E_ERROR);
+			ini_set('display_errors', 1);  
 		break;
 	
 		case 'testing':

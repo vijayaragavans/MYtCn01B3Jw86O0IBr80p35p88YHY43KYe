@@ -17,8 +17,8 @@ class Home extends CI_Controller
         parent::__construct();                    
         // load the necessary libraries
         $this->config->load('mail_vars', TRUE);
-        $this->country;
-        $this->country_code;
+        $this->country = '';
+        $this->country_code = '';
         $this->current_date = date('Y-m-d');
         $this->load->library('form_validation');   
         $this->load->helper(array('form', 'url', 'cookie'));           
@@ -271,9 +271,18 @@ class Home extends CI_Controller
     {
        $user_data = false;
        $user_data = $this->session->userdata('mystat');
+        if($user_data['user_id'] == ''){
+            redirect(SITE_URL."home/login/");
+        }
         $list_of_sites = $this->users->ListOfSites( $user_data['user_id'] );
+                      if($list_of_sites ==''){
+                            redirect(SITE_URL."site/addnewsite/");
+                       }
+
        $file = 'site/dashboard.html';
        //$this->mysmarty->assign('user', $user_data);
+
+       $this->mysmarty->assign('page', 'landing');
        $this->mysmarty->assign('list_of_sites', $list_of_sites);
        $this->mysmarty->assign('filename', $file);
        $this->mysmarty->display('home.html'); 

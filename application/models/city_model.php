@@ -12,6 +12,11 @@
 class City_Model extends CI_Model
 {
     public $_dataMap = ''; 
+    function City_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function GetAllDetails( $api_key, $perPage, $fromStart, $city_code )
     {
         $this->db->select(" * ");

@@ -13,6 +13,11 @@
 class Site_Model extends CI_Model
 {
         public $_dataMap = ''; 
+    function Site_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
         function AddNewSite( $data )
         {
          $this->db->insert(TOOL_DB_NAME.'.sites', $data);

@@ -2,7 +2,11 @@
         <script type="text/javascript" src="{$static_server}files/assets/js/jquery.form.js"></script>
     <body>
       <div id="logo" class="center">
-        <img src="{$static_server}files/assets/img/mystats.png" alt="logo" class="center" /> 
+       {if $user.user_type eq 1 OR $view.user_type eq 1 OR $page eq 'landing' }
+             <img src="{$static_server}files/assets/img/mystats.png" alt="logo" class="center" /> 
+        {else}
+             <img src="{$static_server}files/assets/img/logo.png" alt="logo" class="center" /> 
+        {/if}
       </div>
 
     {if $user.user_type eq 1 OR $view.user_type eq 1 }

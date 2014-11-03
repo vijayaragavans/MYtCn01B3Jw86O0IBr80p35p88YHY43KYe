@@ -11,6 +11,11 @@
 class Browser_Model extends CI_Model
 {
      public $_dataMap = ''; 
+    function Browser_Model()
+    {
+        parent::__construct();        
+         $this->load->database();  
+    }
     function GetBrowserDetails( $api_key, $perPage, $fromStart, $lang_code  )
     {
         $this->db->select("*");
